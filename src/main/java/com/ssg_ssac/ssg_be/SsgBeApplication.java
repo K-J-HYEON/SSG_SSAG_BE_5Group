@@ -1,4 +1,4 @@
-package com.ssg.ssg_be;
+package com.ssg_ssac.ssg_be;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
