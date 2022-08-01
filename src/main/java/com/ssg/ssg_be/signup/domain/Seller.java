@@ -3,7 +3,6 @@ package com.ssg.ssg_be.signup.domain;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
@@ -27,7 +26,4 @@ public class Seller {
 
     @Column(nullable = false)
     private String corporation_number;
-
-//    private Timestamp createAt;
-//    private Timestamp updateAt;
 }

@@ -38,9 +38,6 @@ public class ShippingAddr {
     private String lotAddr;      // 지번 주소
 
     // 0: 기본 배송지 x, 1: 기본 배송지 o
-    @Column(columnDefinition = "tinyint() default 0")
+    @Column(columnDefinition = "tinyint(1) default 0")
     private int addrDefault; // 기본 배송지 여부
-
-//    private Timestamp createAt;
-//    private Timestamp updateAt;
 }

@@ -4,7 +4,6 @@ import com.ssg.ssg_be.product.domain.Product;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
@@ -29,7 +28,4 @@ public class NonMemberOrder {
 
     @Column(nullable = false)
     private String streetAddr;
-
-//    private Timestamp createAt;
-//    private Timestamp updateAt;
 }

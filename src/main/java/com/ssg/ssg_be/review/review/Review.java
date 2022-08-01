@@ -5,7 +5,6 @@ import com.ssg.ssg_be.signup.domain.User;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
@@ -28,7 +27,4 @@ public class Review {
 
     @Column(nullable = false)
     private int score;
-
-//    private Timestamp createAt;
-//    private Timestamp updateAt;
 }

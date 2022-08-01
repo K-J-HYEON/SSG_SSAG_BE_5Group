@@ -16,17 +16,15 @@ public class Order {
     private Long orderId;
 
     // 상태값 정하기
-    @Column(columnDefinition = "tinyint() default 0")
+    @Column(columnDefinition = "tinyint(1) default 0")
     private int orderState;     // 주문 상태
 
     // 상태값 정하기
-    @Column(columnDefinition = "tinyint() default 0")
+    @Column(columnDefinition = "tinyint(1) default 0")
     private int shippingState;  // 배송 상태
 
     @Column(nullable = false)
     private String shippingMsg;
-
-//    private Timestamp createAt;
 
     @ManyToOne
     @JoinColumn(name = "addrId", nullable = false)
