@@ -10,6 +10,9 @@ import javax.persistence.*;
 public class Token {
 
     @Id
+    private Long userId;
+
+    @MapsId
     @OneToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;

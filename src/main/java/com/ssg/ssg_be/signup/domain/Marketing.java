@@ -10,6 +10,9 @@ import java.sql.Timestamp;
 public class Marketing {
 
     @Id
+    private Long userId;
+
+    @MapsId
     @OneToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
