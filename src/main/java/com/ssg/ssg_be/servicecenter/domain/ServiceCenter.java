@@ -1,6 +1,7 @@
 package com.ssg.ssg_be.servicecenter.domain;
 
 
+import com.ssg.ssg_be.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class ServiceCenter {
+public class ServiceCenter extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

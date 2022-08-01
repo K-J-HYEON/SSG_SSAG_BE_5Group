@@ -1,6 +1,7 @@
-package com.ssg.ssg_be.servicecenter.store;
+package com.ssg.ssg_be.store;
 
 
+import com.ssg.ssg_be.BaseTimeEntity;
 import com.ssg.ssg_be.paymentmethod.domain.PaymentMethod;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +12,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Store {
+public class Store extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +28,10 @@ public class Store {
     @Column(nullable = false)
     private int state;
 
-    @OneToOne
-    @Column(nullable = false)
-    @JoinColumn(name = "seller_id")
-    private Long sellerId;
+    // sell 엔티티 넣어서 반영
+    // 비식별자 OneToOne 매핑인데 어떻게 해결해야 할지 고민중
+//    @OneToOne
+//    @JoinColumn(name = "sellerId")
+//    private Long sellerId;
 
 }

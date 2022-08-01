@@ -23,15 +23,15 @@ public class Cart extends BaseTimeEntity {
 
     //    product 엔티티 반영(product 컬럼 조인 시켜야함)
 //    @ManyToOne
-//    @JoinColumn(name = "product_id")
+//    @JoinColumn(name = "productId")
 //    private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    @Column(nullable = false)
-    private User user;
 
-    @ManyToOne
+    // user 엔티티 넣어서 반영
+//    @ManyToOne
+//    @JoinColumn(name = "userId", nullable = false)
+//    private User user;
+
     @Column(nullable = false)
     private int count;
 

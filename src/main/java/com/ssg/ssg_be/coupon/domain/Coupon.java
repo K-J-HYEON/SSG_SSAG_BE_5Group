@@ -1,9 +1,14 @@
 package com.ssg.ssg_be.coupon.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-public class Coupon {
+@NoArgsConstructor
+public class Coupon extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +32,11 @@ public class Coupon {
 
     @Column(nullable = true)
     private int ableAmount;
+
+    @Column(nullable = false)
+    private LocalDateTime endDate;
+
+    @Column(nullable = false)
+    private LocalDateTime startDate;
+
 }

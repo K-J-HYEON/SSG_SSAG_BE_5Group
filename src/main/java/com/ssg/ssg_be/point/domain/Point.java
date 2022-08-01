@@ -1,21 +1,27 @@
 package com.ssg.ssg_be.point.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.apache.catalina.User;
 
 import javax.persistence.*;
 
 @Entity
-public class Point {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Point extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long pointId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    @Column(nullable = false)
-    private User user;
+
+    // user 엔티티 넣어서 반영
+//    @ManyToOne
+//    @JoinColumn(name = "userId", nullable = false)
+//    private User user;
 
     @Column(nullable = false)
     private int point;
