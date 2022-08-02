@@ -1,12 +1,13 @@
 package com.ssg.ssg_be.signup.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Seller {
+public class Seller extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

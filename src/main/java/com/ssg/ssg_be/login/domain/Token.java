@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.login.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.NoArgsConstructor;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Token {
+public class Token extends BaseTimeEntity {
 
     @Id
     private Long userId;

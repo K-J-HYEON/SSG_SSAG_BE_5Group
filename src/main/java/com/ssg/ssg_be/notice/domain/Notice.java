@@ -1,15 +1,15 @@
 package com.ssg.ssg_be.notice.domain;
-
-
 import com.ssg.config.BaseTimeEntity;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Getter
+@Setter
 public class Notice extends BaseTimeEntity {
 
     @Id

@@ -1,6 +1,7 @@
 package com.ssg.ssg_be.point.domain;
 
 import com.ssg.config.BaseTimeEntity;
+import com.ssg.ssg_be.signup.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -18,9 +19,9 @@ public class Point extends BaseTimeEntity {
 
 
     // user 엔티티 넣어서 반영
-//    @ManyToOne
-//    @JoinColumn(name = "userId", nullable = false)
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+    private User user;
 
     @Column(nullable = false)
     private int point;

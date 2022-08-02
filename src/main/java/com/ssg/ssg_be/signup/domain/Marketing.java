@@ -1,7 +1,6 @@
 package com.ssg.ssg_be.signup.domain;
 
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 

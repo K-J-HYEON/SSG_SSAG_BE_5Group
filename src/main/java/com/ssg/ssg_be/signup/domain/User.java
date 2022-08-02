@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.signup.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
-public class User {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.order.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
 import com.ssg.ssg_be.product.domain.Product;
 import lombok.NoArgsConstructor;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class NonMemberOrder {
+public class NonMemberOrder extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
