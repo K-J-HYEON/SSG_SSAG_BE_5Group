@@ -1,7 +1,7 @@
 package com.ssg.ssg_be.product.domain;
 
 import com.ssg.config.BaseTimeEntity;
-import com.ssg.ssg_be.store.Store;
+import com.ssg.ssg_be.store.domain.Store;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

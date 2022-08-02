@@ -1,4 +1,4 @@
-package com.ssg.ssg_be.store;
+package com.ssg.ssg_be.store.domain;
 
 
 import com.ssg.config.BaseTimeEntity;
