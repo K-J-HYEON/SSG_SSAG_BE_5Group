@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class ReviewImg {
+public class ReviewImg{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

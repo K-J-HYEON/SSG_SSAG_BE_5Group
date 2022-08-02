@@ -1,9 +1,10 @@
 package com.ssg.ssg_be.productInquiry.domain;
 
 import com.ssg.ssg_be.BaseTimeEntity;
+import com.ssg.ssg_be.product.domain.Product;
+import com.ssg.ssg_be.signup.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 
@@ -18,15 +19,14 @@ public class ProductInquiry extends BaseTimeEntity {
     private Long qnaId;
 
     // user 엔티티 넣어서 반영
-//    @ManyToOne
-//    @JoinColumn(name = "userId", nullable = false)
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+    private User user;
 
     // product 엔티티 넣어서 반영
-//    @ManyToOne
-//    @JoinColumn(name = "productId")
-//    @Column(nullable = false)
-//    private Product product;
+    @ManyToOne
+    @JoinColumn(name = "productId", nullable = false)
+    private Product product;
 
     @Column(nullable = false)
     private int type;

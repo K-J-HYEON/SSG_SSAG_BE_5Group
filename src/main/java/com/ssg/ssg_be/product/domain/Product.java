@@ -1,5 +1,7 @@
 package com.ssg.ssg_be.product.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
+import com.ssg.ssg_be.store.Store;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -7,15 +9,15 @@ import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
-public class Product {
+public class Product extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "storeId", nullable = false)
-//    private Store store;
+    @ManyToOne
+    @JoinColumn(name = "storeId", nullable = false)
+    private Store store;
 
     @Column(nullable = false)
     private int price;

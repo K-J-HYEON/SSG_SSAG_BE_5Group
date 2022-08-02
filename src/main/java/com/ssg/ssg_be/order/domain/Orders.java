@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.order.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.shippingaddr.domain.ShippingAddr;
 import com.ssg.ssg_be.signup.domain.User;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Orders {
+public class Orders extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

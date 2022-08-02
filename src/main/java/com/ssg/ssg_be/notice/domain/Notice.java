@@ -1,6 +1,4 @@
 package com.ssg.ssg_be.notice.domain;
-
-
 import com.ssg.ssg_be.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +10,8 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Data
 public class Notice extends BaseTimeEntity {
 
     @Id

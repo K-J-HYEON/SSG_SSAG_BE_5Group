@@ -1,8 +1,8 @@
 package com.ssg.ssg_be.store;
 
-
 import com.ssg.ssg_be.BaseTimeEntity;
 import com.ssg.ssg_be.paymentmethod.domain.PaymentMethod;
+import com.ssg.ssg_be.signup.domain.Seller;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,8 +30,7 @@ public class Store extends BaseTimeEntity {
 
     // sell 엔티티 넣어서 반영
     // 비식별자 OneToOne 매핑인데 어떻게 해결해야 할지 고민중
-//    @OneToOne
-//    @JoinColumn(name = "sellerId")
-//    private Long sellerId;
-
+    @OneToOne
+    @JoinColumn(name = "sellerId", nullable = false)
+    private Seller seller;
 }

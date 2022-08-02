@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.shippingaddr.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.NoArgsConstructor;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class ShippingAddr {
+public class ShippingAddr extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

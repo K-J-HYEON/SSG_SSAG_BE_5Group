@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.wish.domain;
 
+import com.ssg.ssg_be.BaseTimeEntity;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Wish {
+public class Wish extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +22,6 @@ public class Wish {
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
+
+
 }
