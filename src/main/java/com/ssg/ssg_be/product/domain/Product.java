@@ -1,6 +1,6 @@
 package com.ssg.ssg_be.product.domain;
 
-import com.ssg.ssg_be.BaseTimeEntity;
+import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.store.Store;
 import lombok.NoArgsConstructor;
 

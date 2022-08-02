@@ -1,6 +1,6 @@
 package com.ssg.ssg_be.signup.domain;
 
-import com.ssg.ssg_be.BaseTimeEntity;
+import com.ssg.config.BaseTimeEntity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
