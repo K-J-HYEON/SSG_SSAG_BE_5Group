@@ -1,19 +1,26 @@
-package com.ssg.ssg_be.review.review;
+package com.ssg.ssg_be.qna.domain;
+
 
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.signup.domain.User;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Review extends BaseTimeEntity {
+@AllArgsConstructor
+@Getter
+@Setter
+@Data
+public class Qna extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewId;
+    @Column(nullable = false)
+    private Long qnaId;
+
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
@@ -24,8 +31,18 @@ public class Review extends BaseTimeEntity {
     private Product product;
 
     @Column(nullable = false)
+    private int type;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
-    private int score;
+    private int secret;
+
+    @Column(nullable = false)
+    private int answerStatus;
+
 }

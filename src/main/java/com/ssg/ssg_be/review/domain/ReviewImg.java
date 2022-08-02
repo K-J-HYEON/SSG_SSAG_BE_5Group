@@ -1,4 +1,4 @@
-package com.ssg.ssg_be.review.review;
+package com.ssg.ssg_be.review.domain;
 
 import lombok.NoArgsConstructor;
 
