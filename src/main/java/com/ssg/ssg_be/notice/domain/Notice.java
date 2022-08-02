@@ -1,10 +1,8 @@
 package com.ssg.ssg_be.notice.domain;
 
 
-import com.ssg.ssg_be.BaseTimeEntity;
+import com.ssg.config.BaseTimeEntity;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

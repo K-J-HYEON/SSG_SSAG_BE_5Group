@@ -1,11 +1,9 @@
 package com.ssg.ssg_be.paymentmethod.domain;
 
 
-import com.ssg.ssg_be.BaseTimeEntity;
+import com.ssg.config.BaseTimeEntity;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.ssg.ssg_be;
+package com.ssg.config;
 
 
 import org.springframework.data.annotation.CreatedDate;
