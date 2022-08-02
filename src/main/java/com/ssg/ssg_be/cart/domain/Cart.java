@@ -3,16 +3,14 @@ package com.ssg.ssg_be.cart.domain;
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.signup.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
