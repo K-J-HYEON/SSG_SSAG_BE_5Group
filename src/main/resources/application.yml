@@ -1,14 +1,16 @@
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ssgNew?serverTimezone=Asia/Seoul
         username: root
-        url: jdbc:mysql://localhost:3306/ssgNew
         password: '1234'
     jpa:
+        generate-ddl: 'true'
         properties:
             hibernate:
-                dialect: org.hibernate.dialect.MySQL5Dialect
-                format_sql: 'true'
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+                show_sql: 'true'
+        show_sql: 'true'
+        database: mysql
         hibernate:
             ddl-auto: create
-        show-sql: 'true'
