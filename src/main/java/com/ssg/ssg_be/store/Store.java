@@ -20,7 +20,7 @@ public class Store extends BaseTimeEntity {
     private Long storeId;
 
     @Column(nullable = false)
-    private String rank;
+    private String grade;
 
     @Column(nullable = false)
     private String name;
