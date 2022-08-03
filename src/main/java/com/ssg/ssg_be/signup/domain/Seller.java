@@ -1,12 +1,17 @@
 package com.ssg.ssg_be.signup.domain;
 
 import com.ssg.config.BaseTimeEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Seller extends BaseTimeEntity {
 
     @Id
