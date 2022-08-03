@@ -40,4 +40,11 @@ public class Product extends BaseTimeEntity {
     private String size;
 
     private Timestamp expirationDate;
+
+    private int sale;
+
+    private Timestamp sale_start_date;
+
+    private Timestamp sale_end_date;
+
 }
