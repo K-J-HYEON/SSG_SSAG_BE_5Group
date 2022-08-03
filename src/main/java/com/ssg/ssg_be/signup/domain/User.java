@@ -1,6 +1,8 @@
 package com.ssg.ssg_be.signup.domain;
 
 import com.ssg.config.BaseTimeEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,6 +10,8 @@ import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class User extends BaseTimeEntity {
 
     @Id
