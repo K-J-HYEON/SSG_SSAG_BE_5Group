@@ -13,9 +13,9 @@ import java.sql.Timestamp;
 public class Marketing {
 
     @Id
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long marketingId;
 
-    @MapsId
     @OneToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;

@@ -1,6 +1,8 @@
 package com.ssg.ssg_be.signup.application;
 
 import com.ssg.config.BaseException;
+import com.ssg.ssg_be.signup.domain.MarketingDtoReq;
+import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.domain.UserDtoReq;
 import com.ssg.ssg_be.signup.infrastucture.MarketingRepository;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
@@ -24,16 +26,23 @@ public class UserSignupServiceImpl implements UserSignupService {
     }
 
     @Override
-    @Transactional
     public void addUser(UserDtoReq userDtoReq) throws BaseException {
+
+        User user = userDtoReq.toEntity();
+
         try {
-            userRepository.save(userDtoReq.toEntity());
+            userRepository.save(user);
         } catch (Exception exception) {
             throw new BaseException(USER_INSERT_FAILED);
         }
 
+        System.out.println(userDtoReq.getMarketing1());
+        System.out.println(userDtoReq.getUpdateAt1());
+
+        MarketingDtoReq marketingDtoReq = new MarketingDtoReq(user, userDtoReq.getMarketing1(), userDtoReq.getUpdateAt1(), userDtoReq.getMarketing2(), userDtoReq.getUpdateAt2(), userDtoReq.getMarketing3(), userDtoReq.getUpdateAt3());
+
         try {
-            marketingRepository.save(userDtoReq.toMarketingEntity());
+            marketingRepository.save(marketingDtoReq.toMarketingEntity());
         } catch (Exception exception) {
             throw new BaseException(USER_INSERT_FAILED);
         }

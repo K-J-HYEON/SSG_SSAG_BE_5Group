@@ -14,7 +14,6 @@ public class UserDtoReq {
     private String email;
     private String phone;
 
-    // 마케팅수신동의 관련
     private int marketing1;
     private Timestamp updateAt1;
     private int marketing2;
@@ -32,14 +31,9 @@ public class UserDtoReq {
                 .build();
     }
 
-    public Marketing toMarketingEntity() {
-        return Marketing.builder()
-                .marketing1(marketing1)
-                .updateAt1(updateAt1)
-                .marketing2(marketing2)
-                .updateAt2(updateAt2)
-                .marketing3(marketing3)
-                .updateAt3(updateAt3)
-                .build();
-    }
+
+
+
+
+
 }
