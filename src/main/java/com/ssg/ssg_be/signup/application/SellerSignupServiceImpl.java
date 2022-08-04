@@ -26,14 +26,19 @@ public class SellerSignupServiceImpl implements SellerSignupService {
             throw new BaseException(POST_EXISTS_LOGIN_ID);
         }
 
-        // 휴대폰 번호 중복 검사
-        if(sellerRepository.existsByPhone(sellerDtoReq.getPhone())) {
-            throw new BaseException(POST_EXISTS_PHONE);
+        // 이메일 중복 검사
+        if(sellerRepository.existsByEmail(sellerDtoReq.getEmail())) {
+            throw new BaseException(POST_EXISTS_EMAIL);
         }
 
         // 법인 번호 중복 검사
         if(sellerRepository.existsByCorporationNumber(sellerDtoReq.getCorporationNumber())) {
             throw new BaseException(POST_SELLERS_EXISTS_CORPORATION_NUM);
+        }
+
+        // 휴대폰 번호 중복 검사
+        if(sellerRepository.existsByPhone(sellerDtoReq.getPhone())) {
+            throw new BaseException(POST_EXISTS_PHONE);
         }
 
         try {

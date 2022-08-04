@@ -27,8 +27,15 @@ public class Seller extends BaseTimeEntity {
     private String name;
 
     @Column(nullable = false, unique = true)
-    private String phone;
+    private String email;
+
+    @Column(nullable = false)
+    private String corporationName; // 법인명
 
     @Column(nullable = false, unique = true)
-    private String corporationNumber;
+    private String corporationNumber;   // 법인 사업자등록번호
+
+    @Column(nullable = false, unique = true)
+    private String phone;
+
 }

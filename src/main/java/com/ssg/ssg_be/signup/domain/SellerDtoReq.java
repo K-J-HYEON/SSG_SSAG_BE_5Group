@@ -7,16 +7,20 @@ public class SellerDtoReq {
     private String loginId;
     private String loginPwd;
     private String name;
-    private String phone;
+    private String email;
+    private String corporationName;
     private String corporationNumber;
+    private String phone;
 
     public Seller toEntity() {
         return Seller.builder()
                 .loginId(loginId)
                 .loginPwd(loginPwd)
                 .name(name)
-                .phone(phone)
+                .email(email)
+                .corporationName(corporationName)
                 .corporationNumber(corporationNumber)
+                .phone(phone)
                 .build();
     }
 }
