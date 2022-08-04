@@ -8,7 +8,6 @@ import com.ssg.ssg_be.signup.infrastucture.MarketingRepository;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
@@ -28,6 +27,24 @@ public class UserSignupServiceImpl implements UserSignupService {
     @Override
     public void addUser(UserDtoReq userDtoReq) throws BaseException {
 
+
+        // 아이디 중복 검사
+        if(userRepository.existsByLoginId(userDtoReq.getLoginId())) {
+            throw new BaseException(POST_EXISTS_LOGIN_ID);
+        }
+
+        System.out.println();
+
+        // 이메일 중복 검사
+        if(userRepository.existsByEmail(userDtoReq.getEmail())) {
+            throw new BaseException(POST_EXISTS_EMAIL);
+        }
+
+        // 휴대폰 번호 중복 검사
+        if(userRepository.existsByPhone(userDtoReq.getPhone())) {
+            throw new BaseException(POST_EXISTS_PHONE);
+        }
+
         User user = userDtoReq.toEntity();
 
         try {
@@ -35,9 +52,6 @@ public class UserSignupServiceImpl implements UserSignupService {
         } catch (Exception exception) {
             throw new BaseException(USER_INSERT_FAILED);
         }
-
-        System.out.println(userDtoReq.getMarketing1());
-        System.out.println(userDtoReq.getUpdateAt1());
 
         MarketingDtoReq marketingDtoReq = new MarketingDtoReq(user, userDtoReq.getMarketing1(), userDtoReq.getUpdateAt1(), userDtoReq.getMarketing2(), userDtoReq.getUpdateAt2(), userDtoReq.getMarketing3(), userDtoReq.getUpdateAt3());
 

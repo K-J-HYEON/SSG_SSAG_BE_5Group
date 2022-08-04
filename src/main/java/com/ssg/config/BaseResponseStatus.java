@@ -13,6 +13,10 @@ public enum BaseResponseStatus {
     /**
      * 2000: Request 오류
      * **/
+    // Common
+    POST_EXISTS_LOGIN_ID(false,2000,"중복된 아이디입니다."),
+    POST_EXISTS_PHONE(false,2001,"중복된 휴대폰 번호입니다."),
+    POST_EXISTS_EMAIL(false,2002,"중복된 이메일입니다."),
 
 
     /**
