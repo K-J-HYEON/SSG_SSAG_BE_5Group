@@ -1,17 +1,21 @@
 package com.ssg.ssg_be.signup.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Marketing {
 
     @Id
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long marketingId;
 
-    @MapsId
     @OneToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;

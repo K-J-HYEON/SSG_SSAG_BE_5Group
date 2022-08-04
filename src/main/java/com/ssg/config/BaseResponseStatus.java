@@ -28,14 +28,14 @@ public enum BaseResponseStatus {
      * 3000: Response 오류
      * **/
 
-
-
     /**
      * 4000: Database 오류
      * **/
     // Common
     DATABASE_ERROR(false, 4000, "데이터베이스 연결에 실패하였습니다."),
 
+    // User
+    USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다.");
 
     // Seller
     SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다.");
@@ -44,6 +44,7 @@ public enum BaseResponseStatus {
     private final boolean isSuccess;
     private final int code;
     private final String message;
+
 
     BaseResponseStatus(boolean isSuccess, int code, String message) {
         this.isSuccess = isSuccess;
