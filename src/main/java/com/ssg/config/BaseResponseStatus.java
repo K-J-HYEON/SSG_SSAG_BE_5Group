@@ -35,7 +35,7 @@ public enum BaseResponseStatus {
     DATABASE_ERROR(false, 4000, "데이터베이스 연결에 실패하였습니다."),
 
     // User
-    USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다.");
+    USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),
 
     // Seller
     SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다.");
