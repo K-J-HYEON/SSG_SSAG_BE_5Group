@@ -8,7 +8,7 @@ public class SellerDtoReq {
     private String loginPwd;
     private String name;
     private String phone;
-    private String corporation_number;
+    private String corporationNumber;
 
     public Seller toEntity() {
         return Seller.builder()
@@ -16,7 +16,7 @@ public class SellerDtoReq {
                 .loginPwd(loginPwd)
                 .name(name)
                 .phone(phone)
-                .corporation_number(corporation_number)
+                .corporationNumber(corporationNumber)
                 .build();
     }
 }

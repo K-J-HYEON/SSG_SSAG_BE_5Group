@@ -3,7 +3,6 @@ package com.ssg.ssg_be.signup.domain;
 import com.ssg.config.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -18,7 +17,7 @@ public class Seller extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sellerId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String loginId;
 
     @Column(nullable = false)
@@ -27,9 +26,9 @@ public class Seller extends BaseTimeEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String phone;
 
-    @Column(nullable = false)
-    private String corporation_number;
+    @Column(nullable = false, unique = true)
+    private String corporationNumber;
 }

@@ -20,6 +20,22 @@ public class SellerSignupServiceImpl implements SellerSignupService {
 
     @Override
     public void addSeller(SellerDtoReq sellerDtoReq) throws BaseException {
+
+        // 아이디 중복 검사
+        if(sellerRepository.existsByLoginId(sellerDtoReq.getLoginId())) {
+            throw new BaseException(POST_EXISTS_LOGIN_ID);
+        }
+
+        // 휴대폰 번호 중복 검사
+        if(sellerRepository.existsByPhone(sellerDtoReq.getPhone())) {
+            throw new BaseException(POST_EXISTS_PHONE);
+        }
+
+        // 법인 번호 중복 검사
+        if(sellerRepository.existsByCorporationNumber(sellerDtoReq.getCorporationNumber())) {
+            throw new BaseException(POST_SELLERS_EXISTS_CORPORATION_NUM);
+        }
+
         try {
             sellerRepository.save(sellerDtoReq.toEntity());
         } catch (Exception exception) {
