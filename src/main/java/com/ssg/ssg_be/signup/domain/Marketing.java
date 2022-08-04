@@ -1,11 +1,15 @@
 package com.ssg.ssg_be.signup.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Marketing {
 
     @Id
