@@ -26,9 +26,10 @@ public class Product extends BaseTimeEntity {
     private String name;
 
     @Column(nullable = false)
-    private int count;
+    private int product_number;
 
-    private int rate;
+    @Column(nullable = false)
+    private int count;
 
     @Column(nullable = false)
     private int deliveryFee;

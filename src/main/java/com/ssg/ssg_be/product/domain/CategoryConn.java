@@ -3,23 +3,26 @@ package com.ssg.ssg_be.product.domain;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
-public class CategorySs {
+public class CategoryConn {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categorySsId;
+    private Long categoryConnId;
 
     @ManyToOne
     @JoinColumn(name = "productId", nullable = false)
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "categorySId", nullable = false)
-    private CategoryS categoryS;
+    @JoinColumn(name = "categoryS")
+    private Category category;
 
-    @Column(nullable = false)
-    private String name;
+    private LocalDateTime createAt;
+
+    private LocalDateTime updateAt;
+
 }

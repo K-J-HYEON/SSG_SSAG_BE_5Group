@@ -25,7 +25,7 @@ public enum BaseResponseStatus {
 
 
     /**
-     * 3000: Response 오류
+     * 3000: Response 오류x
      * **/
 
     /**
