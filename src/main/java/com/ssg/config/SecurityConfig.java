@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @AllArgsConstructor
@@ -23,15 +24,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/users/**").hasRole("USER")
-                .antMatchers("/sellers/**").hasRole("SELLER")
-                .antMatchers("/managers/**").hasRole("MANAGER")
-                .antMatchers("/common-users").permitAll()
-                .antMatchers("/non-users").permitAll()
+//                .antMatchers("/users/**").hasRole("USER")
+//                .antMatchers("/sellers/**").hasRole("SELLER")
+//                .antMatchers("/managers/**").hasRole("MANAGER")
+                .antMatchers("/", "/**").permitAll()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
                         UsernamePasswordAuthenticationFilter.class)
