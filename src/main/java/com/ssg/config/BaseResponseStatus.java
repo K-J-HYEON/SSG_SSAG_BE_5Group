@@ -25,8 +25,9 @@ public enum BaseResponseStatus {
 
 
     /**
-     * 3000: Response 오류x
+     * 3000: Response 오류
      * **/
+    NO_LOOKUP_VALUE(false, 3002, "조회된 데이터가 없습니다."),
 
     /**
      * 4000: Database 오류
@@ -38,7 +39,11 @@ public enum BaseResponseStatus {
     USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),
 
     // Seller
-    SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다.");
+    SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다."),
+
+
+    // Product
+    FAILED_TO_RETRIEVE_PRODUCT(false, 4017, "상품 조회에 실패했습니다.");
 
 
     private final boolean isSuccess;
