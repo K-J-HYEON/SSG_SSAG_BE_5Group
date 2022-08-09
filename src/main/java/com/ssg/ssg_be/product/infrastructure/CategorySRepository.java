@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CategorySRepository extends JpaRepository<CategoryS, Long> {
-    List<CategorySDtoRes> findByNameContains(String searchWord);
+    List<CategorySDtoRes> findByNameContains(Long categorySId);
 }

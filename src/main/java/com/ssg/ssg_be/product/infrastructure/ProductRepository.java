@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<ProductDtoRes> findByNameContains(String searchWord);
+    List<ProductDtoRes> findByNameContains(Long productId);
 }

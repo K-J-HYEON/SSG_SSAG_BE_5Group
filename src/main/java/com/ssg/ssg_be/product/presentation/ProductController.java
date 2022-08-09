@@ -27,9 +27,9 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/product")
-    public BaseResponse<List<CategoryDtoRes>> retrieveProductList(@PathVariable String products) {
+    public BaseResponse<List<CategoryDtoRes>> retrieveProductList() {
         try {
-            List<CategoryDtoRes> CategoryDtoRes = productServiceImpl.retrieveProductList(products);
+            List<CategoryDtoRes> CategoryDtoRes = productServiceImpl.retrieveProductList();
             return new BaseResponse<>(CategoryDtoRes);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -49,7 +49,7 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/product/{productId}/{small}")
-    public BaseResponse<List<CategorySDtoRes>> retrieveProductListDetailS(@PathVariable String small) {
+    public BaseResponse<List<CategorySDtoRes>> retrieveProductListDetailS(@PathVariable String productId, @PathVariable String small) {
         try {
             List<CategorySDtoRes> CategorySDtoRes = productServiceImpl.retrieveProductListDetailS(small);
             return new BaseResponse<>(CategorySDtoRes);

@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface CategoryMRepository extends JpaRepository<CategoryM, Long> {
-    List<CategoryMDtoRes> findByNameContains(String searchWord);
+    List<CategoryMDtoRes> findByNameContains(Long categoryMId);
 }

@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class CategorySDtoRes {
-    private int categorySId;
     private int categoryMId;
     private String name;
 }

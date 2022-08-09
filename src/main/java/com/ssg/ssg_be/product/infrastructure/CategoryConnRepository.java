@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface CategoryConnRepository extends JpaRepository<CategoryConn, Long> {
-    List<CategoryConnDtoRes> findByNameContains(String searchWord);
+    List<CategoryConnDtoRes> findByNameContains(Long categoryConnId);
 }

@@ -8,8 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class CategorySDto {
-
-    private int categorySId;
     private int categoryMId;
     private String name;
 
