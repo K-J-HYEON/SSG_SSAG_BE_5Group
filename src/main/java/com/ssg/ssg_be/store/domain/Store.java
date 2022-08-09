@@ -5,6 +5,7 @@ import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.paymentmethod.domain.PaymentMethod;
 import com.ssg.ssg_be.signup.domain.Seller;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Store extends BaseTimeEntity {
 
     @Id
