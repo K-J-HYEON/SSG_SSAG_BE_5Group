@@ -1,18 +1,16 @@
 package com.ssg.ssg_be.product.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.config.BaseResponse;
 import com.ssg.config.BaseResponseStatus;
-import com.ssg.ssg_be.product.domain.Product;
-import com.ssg.ssg_be.product.domain.ProductDto;
-import com.ssg.ssg_be.product.domain.ProductDtoRes;
+import com.ssg.ssg_be.product.domain.*;
 import com.ssg.ssg_be.product.infrastructure.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
+import static com.ssg.config.BaseResponseStatus.CATEGORY_RETRIEVE_FAILED;
+import static com.ssg.config.BaseResponseStatus.SEARCH_RETRIEVE_FAILED;
 
 @Service
 public class ProductServiceImpl {
@@ -25,7 +23,7 @@ public class ProductServiceImpl {
     private final CategoryConnRepository categoryConnRepository;
 
 
-    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository, CategoryMRepository categoryMRepository, CategorySRepository categorySRepository, CategoryConnRepository categoryConnRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository, CategoryMRepository categoryMRepository, CategorySRepository categorySRepository, CategoryConnRepository categoryConnRepository, BaseResponseStatus baseResponseStatus) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.categoryMRepository = categoryMRepository;
@@ -33,31 +31,38 @@ public class ProductServiceImpl {
         this.categoryConnRepository = categoryConnRepository;
     }
 
-    public Optional<Product> retrieveProduct(Long productId) throws BaseException {
+    public List<ProductDtoRes> retrieveSearch(String name) throws BaseException {
         try {
-            Optional<Product> productDto = productRepository.findById(productId);
-            if (productDto == null) {
-                throw new BaseException(BaseResponseStatus.NO_LOOKUP_VALUE);
-            }
-            return productDto;
+            return productRepository.findByNameContains(name);
         } catch (Exception exception) {
-            throw new BaseException(BaseResponseStatus.FAILED_TO_RETRIEVE_PRODUCT);
+            throw new BaseException(SEARCH_RETRIEVE_FAILED);
         }
     }
 
-
-    // 상품 목록 조회(카테고리)
-    // 뭔가 이상함 고쳐야함
-    public Optional<Product> retrieveProductList(Long productId) throws BaseException {
+    public List<CategoryDtoRes> retrieveProductList(String categoryId) throws BaseException {
         try {
-            Optional<Product> productDto = productRepository.findById(productId);
-            if (productDto == null) {
-                throw new BaseException(BaseResponseStatus.NO_LOOKUP_VALUE);
-            }
-            return productDto;
+            return categoryRepository.findByNameContains(categoryId);
         } catch (Exception exception) {
-            throw new BaseException(BaseResponseStatus.FAILED_TO_RETRIEVE_PRODUCT);
+            throw new BaseException(CATEGORY_RETRIEVE_FAILED);
         }
     }
+
+    public List<CategoryMDtoRes> retrieveProductListDetail(String categoryMId) throws BaseException {
+        try {
+            return categoryMRepository.findByNameContains(categoryMId);
+        } catch (Exception exception) {
+            throw new BaseException(CATEGORY_RETRIEVE_FAILED);
+        }
+    }
+
+    public List<CategorySDtoRes> retrieveProductListDetailS(String categorySId) throws BaseException {
+        try {
+            return categorySRepository.findByNameContains(categorySId);
+        } catch (Exception exception) {
+            throw new BaseException(CATEGORY_RETRIEVE_FAILED);
+        }
+    }
+
+    // 소분류에서 아이템으로 넘어가는 단계 구현은 파라미터 두개를 받아서 넘기는 과정인지 어떻게 넘기는지 의문
 
 }

@@ -1,57 +1,62 @@
 package com.ssg.ssg_be.product.presentation;
 
-
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
-import com.ssg.ssg_be.product.application.ProductService;
 import com.ssg.ssg_be.product.application.ProductServiceImpl;
-import com.ssg.ssg_be.product.domain.Product;
-import com.ssg.ssg_be.product.domain.ProductDtoRes;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ssg.ssg_be.product.domain.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/comm-users")
 public class ProductController {
 
-    private final ProductService productService;
-    private final ProductServiceImpl productServiceImpl;
+    private ProductServiceImpl productServiceImpl;
 
-    @Autowired
-    public ProductController(ProductService productService, ProductServiceImpl productServiceImpl ) {
-        this.productService = productService;
-        this.productServiceImpl = productServiceImpl;
-    }
-
-    // 상품 검색
     @ResponseBody
-    @GetMapping("/product/{productSearch}")
-    public BaseResponse<ProductDtoRes> retrieveProduct(@PathVariable String productSearch) {
+    @GetMapping("/product/{searchWord}")
+    public BaseResponse<List<ProductDtoRes>> retrieveSearch(@PathVariable String searchWord) {
         try {
-            Optional<Product> productDtoRes = productServiceImpl.retrieveProduct();
+            List<ProductDtoRes> productDtoRes = productServiceImpl.retrieveSearch(searchWord);
             return new BaseResponse<>(productDtoRes);
-
         } catch (BaseException exception) {
-            return new BaseResponse<>((exception.getStatus()));
+            return new BaseResponse<>(exception.getStatus());
         }
     }
 
-    // 카테고리 클릭했을 때 => 대분류 중분류 소분류 순으로
-    // 상품 목록 조회(카테고리)
     @ResponseBody
-    @GetMapping("/product/{productid}")
-    public BaseResponse<ProductDtoRes> retrieveProductList(@PathVariable String productid) {
+    @GetMapping("/product")
+    public BaseResponse<List<CategoryDtoRes>> retrieveProductList(@PathVariable String products) {
         try {
-            Optional<Product> productDtoRes = productServiceImpl.retrieveProduct();
-            return new BaseResponse<>(productDtoRes);
+            List<CategoryDtoRes> CategoryDtoRes = productServiceImpl.retrieveProductList(products);
+            return new BaseResponse<>(CategoryDtoRes);
         } catch (BaseException exception) {
-            return new BaseResponse<>((exception.getStatus()));
+            return new BaseResponse<>(exception.getStatus());
         }
     }
 
-    // 상품 상세 조회(카테고리)
+    @ResponseBody
+    @GetMapping("/product/{productId}")
+    public BaseResponse<List<CategoryMDtoRes>> retrieveProductListDetail(@PathVariable String productId) {
+        try {
+            List<CategoryMDtoRes> CategoryMDtoRes = productServiceImpl.retrieveProductListDetail(productId);
+            return new BaseResponse<>(CategoryMDtoRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
 
+    @ResponseBody
+    @GetMapping("/product/{productId}/{small}")
+    public BaseResponse<List<CategorySDtoRes>> retrieveProductListDetailS(@PathVariable String small) {
+        try {
+            List<CategorySDtoRes> CategorySDtoRes = productServiceImpl.retrieveProductListDetailS(small);
+            return new BaseResponse<>(CategorySDtoRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
 }
+
+

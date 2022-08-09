@@ -39,11 +39,14 @@ public enum BaseResponseStatus {
     USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),
 
     // Seller
-    SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다."),
+    SELLER_INSERT_FAILED(false, 4002, "판매자 회원가입에 실패하였습니다."),
 
 
     // Product
-    FAILED_TO_RETRIEVE_PRODUCT(false, 4017, "상품 조회에 실패했습니다.");
+    SEARCH_RETRIEVE_FAILED(false, 4017, "상품 조회에 실패했습니다."),
+
+    CATEGORY_RETRIEVE_FAILED(false, 4018, "카테고리 조회에 실패했습니다.");
+
 
 
     private final boolean isSuccess;
