@@ -4,8 +4,7 @@
 Notion Page : https://www.notion.so/BE-1cff0da6bc7842108b59e32a71ac48af
 
 
-# 3 ~ 4 Week
-# Developing Process 
+# 3 ~ 4 Week Developing Process 
 
 # End
 #### 요구사항 정의서 && API 정의서 리스트업
