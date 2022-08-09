@@ -26,7 +26,8 @@ public enum BaseResponseStatus {
 
     /**
      * 3000: Response 오류
-     * **/
+     **/
+    NO_LOOKUP_VALUE(false, 3002, "조회된 데이터가 없습니다."),
 
     /**
      * 4000: Database 오류
@@ -36,6 +37,10 @@ public enum BaseResponseStatus {
 
     // User
     USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),
+    CART_INSERT_FAILED(false, 4002, "장바구니 담기에 실패하였습니다."),
+    CART_RETRIEVE_FAILED(false, 4003, "장바구니 조회에 실패하였습니다."),
+    CART_DELETE_FAILED(false, 4004, "장바구니 삭제에 실패하였습니다."),
+    CART_UPDATE_FAILED(false, 4005, "장바구니 수정에 실패하였습니다."),
 
     // Seller
     SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다.");
