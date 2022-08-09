@@ -1,8 +1,10 @@
 package com.ssg.ssg_be.signup.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssg.config.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,7 +13,9 @@ import java.sql.Timestamp;
 @Entity
 @NoArgsConstructor
 @Builder
+@Getter
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class User extends BaseTimeEntity {
 
     @Id
