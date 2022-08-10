@@ -6,15 +6,15 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class CategoryM {
+public class SmallCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryMId;
+    private Long smallCategoryId;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId", nullable = false)
-    private Category category;
+    @JoinColumn(nullable = false)
+    private MediumCategory mediumCategory;
 
     @Column(nullable = false)
     private String name;

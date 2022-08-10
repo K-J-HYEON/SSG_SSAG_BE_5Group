@@ -6,11 +6,11 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Category {
+public class LargeCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
+    private Long largeCategoryId;
 
     @Column(nullable = false)
     private String name;

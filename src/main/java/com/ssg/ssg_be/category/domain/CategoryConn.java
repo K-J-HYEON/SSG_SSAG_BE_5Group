@@ -1,29 +1,33 @@
 package com.ssg.ssg_be.category.domain;
 
+import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.product.domain.Product;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
-public class CategoryConn {
+public class CategoryConn extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryConnId;
 
     @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
+    @JoinColumn(nullable = false)
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "categoryS")
-    private Category category;
+    @JoinColumn(nullable = false)
+    private SmallCategory smallCategory;
 
-    private LocalDateTime createAt;
+    @JoinColumn(nullable = false)
+    private Long mediumCategoryId;
 
-    private LocalDateTime updateAt;
+    @JoinColumn(nullable = false)
+    private Long largeCategoryId;
 
 }

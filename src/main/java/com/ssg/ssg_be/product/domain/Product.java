@@ -2,11 +2,13 @@ package com.ssg.ssg_be.product.domain;
 
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.store.domain.Store;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class Product extends BaseTimeEntity {
 
@@ -25,7 +27,7 @@ public class Product extends BaseTimeEntity {
     private String name;
 
     @Column(nullable = false)
-    private int product_number;
+    private int productNumber;
 
     @Column(nullable = false)
     private int count;
@@ -43,8 +45,8 @@ public class Product extends BaseTimeEntity {
 
     private int sale;
 
-    private Timestamp sale_start_date;
+    private Timestamp saleStartDate;
 
-    private Timestamp sale_end_date;
+    private Timestamp saleEndDate;
 
 }
