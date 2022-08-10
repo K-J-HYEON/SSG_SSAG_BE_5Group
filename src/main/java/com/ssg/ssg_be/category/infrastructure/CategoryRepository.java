@@ -1,7 +1,7 @@
-package com.ssg.ssg_be.product.infrastructure;
+package com.ssg.ssg_be.category.infrastructure;
 
-import com.ssg.ssg_be.product.domain.Category;
-import com.ssg.ssg_be.product.domain.CategoryDtoRes;
+import com.ssg.ssg_be.category.domain.Category;
+import com.ssg.ssg_be.category.domain.CategoryDtoRes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

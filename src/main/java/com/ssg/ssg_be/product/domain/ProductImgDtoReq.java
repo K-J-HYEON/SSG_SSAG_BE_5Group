@@ -7,10 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class CategorySDto {
-    private int categoryMId;
-    private String name;
-
-
-
+public class ProductImgDtoReq {
+    private int reviewId;
+    private String originName;
+    private String saveName;
+    private String path;
 }

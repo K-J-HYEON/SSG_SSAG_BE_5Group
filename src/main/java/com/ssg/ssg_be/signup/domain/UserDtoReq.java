@@ -1,8 +1,6 @@
 package com.ssg.ssg_be.signup.domain;
 
-import lombok.Builder;
 import lombok.Getter;
-import org.yaml.snakeyaml.error.Mark;
 
 import java.sql.Timestamp;
 
@@ -24,7 +22,7 @@ public class UserDtoReq {
     public User toEntity() {
         return User.builder()
                 .loginId(loginId)
-                .loginPwd(email)
+                .loginPwd(loginPwd)
                 .name(name)
                 .email(email)
                 .phone(phone)

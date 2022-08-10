@@ -1,5 +1,6 @@
-package com.ssg.ssg_be.product.domain;
+package com.ssg.ssg_be.category.domain;
 
+import com.ssg.ssg_be.product.domain.Product;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

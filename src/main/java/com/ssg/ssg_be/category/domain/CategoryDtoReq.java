@@ -1,4 +1,4 @@
-package com.ssg.ssg_be.product.domain;
+package com.ssg.ssg_be.category.domain;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class CategoryMDtoRes {
-    private int categoryId;
+public class CategoryDtoReq {
     private String name;
 }

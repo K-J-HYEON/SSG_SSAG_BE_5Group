@@ -2,6 +2,13 @@ package com.ssg.ssg_be.product.application;
 
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponseStatus;
+import com.ssg.ssg_be.category.domain.CategoryDtoRes;
+import com.ssg.ssg_be.category.domain.CategoryMDtoRes;
+import com.ssg.ssg_be.category.domain.CategorySDtoRes;
+import com.ssg.ssg_be.category.infrastructure.CategoryConnRepository;
+import com.ssg.ssg_be.category.infrastructure.CategoryMRepository;
+import com.ssg.ssg_be.category.infrastructure.CategoryRepository;
+import com.ssg.ssg_be.category.infrastructure.CategorySRepository;
 import com.ssg.ssg_be.product.domain.*;
 import com.ssg.ssg_be.product.infrastructure.*;
 import org.springframework.beans.factory.annotation.Autowired;
