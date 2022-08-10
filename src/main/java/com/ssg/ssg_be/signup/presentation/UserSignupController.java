@@ -25,7 +25,7 @@ public class UserSignupController {
     }
 
     @PostMapping("/signup")
-    private BaseResponse<String> addUser(@RequestBody UserDtoReq userDtoReq) {
+    public BaseResponse<String> addUser(@RequestBody UserDtoReq userDtoReq) {
         String result = "";
 
         try {

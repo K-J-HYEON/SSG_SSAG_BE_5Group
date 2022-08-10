@@ -22,7 +22,7 @@ public class SellerSignupController {
     }
 
     @PostMapping("/signup")
-    private BaseResponse<String> addSeller(@RequestBody SellerDtoReq sellerDtoReq) {
+    public BaseResponse<String> addSeller(@RequestBody SellerDtoReq sellerDtoReq) {
         String result = "";
 
         try {
