@@ -2,7 +2,6 @@ package com.ssg.ssg_be.qnaanswer.domain;
 
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.qna.domain.Qna;
-import com.ssg.ssg_be.review.domain.Review;
 import com.ssg.ssg_be.signup.domain.Seller;
 
 import javax.persistence.*;
