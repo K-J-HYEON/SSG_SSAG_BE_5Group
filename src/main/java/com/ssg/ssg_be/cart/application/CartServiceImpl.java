@@ -45,11 +45,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<CartDtoRes> retrieveCart(Long userId) throws BaseException {
-
-        User user = userRepository.getById(userId);
-
         try {
-            return cartRepository.findByUser(user);
+            return cartRepository.findByUserUserId(userId);
         } catch (Exception exception) {
             throw new BaseException(CART_RETRIEVE_FAILED);
         }
