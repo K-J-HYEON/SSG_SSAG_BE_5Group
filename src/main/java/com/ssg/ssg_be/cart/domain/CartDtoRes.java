@@ -6,6 +6,5 @@ import com.ssg.ssg_be.signup.domain.User;
 public interface CartDtoRes {
     Long getCartId();
     Product getProduct();
-    User getUser();
     int getCount();
 }
