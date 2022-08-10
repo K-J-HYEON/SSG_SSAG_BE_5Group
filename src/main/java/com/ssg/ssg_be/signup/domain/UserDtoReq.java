@@ -1,8 +1,6 @@
 package com.ssg.ssg_be.signup.domain;
 
-import lombok.Builder;
 import lombok.Getter;
-import org.yaml.snakeyaml.error.Mark;
 
 import java.sql.Timestamp;
 
@@ -30,10 +28,5 @@ public class UserDtoReq {
                 .phone(phone)
                 .build();
     }
-
-
-
-
-
 
 }
