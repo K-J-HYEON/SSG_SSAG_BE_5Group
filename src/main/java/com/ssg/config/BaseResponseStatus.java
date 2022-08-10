@@ -41,7 +41,13 @@ public enum BaseResponseStatus {
     USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),
 
     // Seller
-    SELLER_INSERT_FAILED(false, 4002, "판매자 회원가입에 실패하였습니다.");
+    SELLER_INSERT_FAILED(false, 4002, "판매자 회원가입에 실패하였습니다."),
+
+    /**
+     * 5000: S3 오류
+     * **/
+    // Common
+    TRANSLATE_FILE_FAILED(false, 5000, "파일 변환에 실패하였습니다.");
 
 
     private final boolean isSuccess;
