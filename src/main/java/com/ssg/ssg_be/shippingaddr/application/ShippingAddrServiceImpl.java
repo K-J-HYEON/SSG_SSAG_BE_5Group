@@ -40,10 +40,9 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
 
     @Override
     public List<ShippingAddrDtoRes> retrieveShippingAddr(Long userId) throws BaseException {
-        User user = userRepository.getById(userId);
 
         try {
-            return shippingAddrRepository.findByUser(user);
+            return shippingAddrRepository.findByUserUserId(userId);
         } catch (Exception exception) {
             throw new BaseException(SHIPPING_ADDR_RETRIEVE_FAILED);
         }
