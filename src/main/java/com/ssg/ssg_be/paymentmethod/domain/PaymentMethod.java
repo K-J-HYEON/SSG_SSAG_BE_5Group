@@ -4,11 +4,15 @@ package com.ssg.ssg_be.paymentmethod.domain;
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentMethod extends BaseTimeEntity {
@@ -28,5 +32,5 @@ public class PaymentMethod extends BaseTimeEntity {
     private String cardCompany;
 
     @Column(nullable = false)
-    private int cardNumber;
+    private String cardNumber;
 }
