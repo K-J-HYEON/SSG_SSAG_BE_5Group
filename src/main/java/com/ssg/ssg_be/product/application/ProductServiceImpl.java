@@ -6,9 +6,7 @@ import com.ssg.ssg_be.product.domain.*;
 import com.ssg.ssg_be.product.infrastructure.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 import static com.ssg.config.BaseResponseStatus.CATEGORY_RETRIEVE_FAILED;
 import static com.ssg.config.BaseResponseStatus.SEARCH_RETRIEVE_FAILED;
 
@@ -63,5 +61,4 @@ public class ProductServiceImpl {
     }
 
     // 소분류에서 아이템으로 넘어가는 단계 구현은 파라미터 두개를 받아서 넘기는 과정인지 어떻게 넘기는지 의문 / 상품 검색 단계에서 이미 상품을 찾는 코드 구현함
-
 }
