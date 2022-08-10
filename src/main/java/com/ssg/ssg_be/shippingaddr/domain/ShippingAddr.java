@@ -2,12 +2,15 @@ package com.ssg.ssg_be.shippingaddr.domain;
 
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.signup.domain.User;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Builder
 public class ShippingAddr extends BaseTimeEntity {
 
     @Id

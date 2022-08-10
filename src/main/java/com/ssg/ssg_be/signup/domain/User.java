@@ -1,6 +1,5 @@
 package com.ssg.ssg_be.signup.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssg.config.BaseTimeEntity;
 import lombok.AllArgsConstructor;
