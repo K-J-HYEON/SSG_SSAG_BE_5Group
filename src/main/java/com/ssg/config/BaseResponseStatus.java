@@ -38,7 +38,13 @@ public enum BaseResponseStatus {
     USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),
 
     // Seller
-    SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다.");
+    SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다."),
+
+
+    // Wish
+    WISH_INSERT_FAILED(false, 4011, "좋아요 누르기에 실패하였습니다."),
+    WISH_RETRIEVE_FAILED(false, 4012, "좋아요 조회에 실패하였습니다."),
+    WISH_DELETE_FAILED(false, 4013, "좋아요 삭제에 실패하였습니다.");
 
 
     private final boolean isSuccess;

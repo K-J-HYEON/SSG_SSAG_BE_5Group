@@ -2,7 +2,6 @@ package com.ssg.ssg_be.store.domain;
 
 
 import com.ssg.config.BaseTimeEntity;
-import com.ssg.ssg_be.paymentmethod.domain.PaymentMethod;
 import com.ssg.ssg_be.signup.domain.Seller;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
