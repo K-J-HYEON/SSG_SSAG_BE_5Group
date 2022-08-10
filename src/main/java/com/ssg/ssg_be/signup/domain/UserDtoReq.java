@@ -24,7 +24,7 @@ public class UserDtoReq {
     public User toEntity() {
         return User.builder()
                 .loginId(loginId)
-                .loginPwd(email)
+                .loginPwd(loginPwd)
                 .name(name)
                 .email(email)
                 .phone(phone)
