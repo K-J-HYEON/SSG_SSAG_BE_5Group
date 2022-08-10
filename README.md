@@ -15,7 +15,7 @@ Notion Page : https://www.notion.so/BE-1cff0da6bc7842108b59e32a71ac48af
 #### 카테고리 범위 설정
 #### 장바구니, 배송지 CRUD 구현
 #### Spring Security 기본 code 구현
-#### 
+#### Wish CRD API 구현
 
 
 
