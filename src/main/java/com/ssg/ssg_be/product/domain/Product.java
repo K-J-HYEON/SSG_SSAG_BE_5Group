@@ -16,10 +16,6 @@ public class Product extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    @ManyToOne
-    @JoinColumn(name = "storeId", nullable = false)
-    private Store store;
-
     @Column(nullable = false)
     private int price;
 
@@ -27,7 +23,7 @@ public class Product extends BaseTimeEntity {
     private String name;
 
     @Column(nullable = false)
-    private int productNumber;
+    private String productNumber;
 
     @Column(nullable = false)
     private int count;
@@ -35,10 +31,8 @@ public class Product extends BaseTimeEntity {
     @Column(nullable = false)
     private int deliveryFee;
 
-    @Column(nullable = false)
     private String color;
 
-    @Column(nullable = false)
     private String size;
 
     private Timestamp expirationDate;
@@ -48,5 +42,14 @@ public class Product extends BaseTimeEntity {
     private Timestamp saleStartDate;
 
     private Timestamp saleEndDate;
+
+    @Column(nullable = false)
+    private String imgOriginName;
+
+    @Column(nullable = false)
+    private String imgSaveName;
+
+    @Column(nullable = false)
+    private String imgPath;
 
 }
