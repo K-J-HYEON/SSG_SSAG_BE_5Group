@@ -2,6 +2,7 @@ package com.ssg.ssg_be.signup.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssg.config.BaseTimeEntity;
+import com.ssg.ssg_be.memberInfo.domain.UserMemberInfoDtoRes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,4 +52,13 @@ public class User extends BaseTimeEntity {
     @Column(columnDefinition = "tinyint(1) default 0")
     private int status; // 회원 상태
 
+    public UserMemberInfoDtoRes toDto() {
+        return UserMemberInfoDtoRes.builder()
+                .userId(userId)
+                .loginId(loginId)
+                .name(name)
+                .phone(phone)
+                .email(email)
+                .build();
+    }
 }

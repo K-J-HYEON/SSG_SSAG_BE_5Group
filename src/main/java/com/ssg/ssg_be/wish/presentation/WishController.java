@@ -3,7 +3,6 @@ package com.ssg.ssg_be.wish.presentation;
 
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
-import com.ssg.ssg_be.cart.application.CartServicve;
 import com.ssg.ssg_be.wish.application.WishServive;
 import com.ssg.ssg_be.wish.domain.WishDtoReq;
 import com.ssg.ssg_be.wish.domain.WishDtoRes;

@@ -46,7 +46,7 @@ public class WishServiceImpl implements WishServive {
     @Override
     public List<WishDtoRes> retrieveWish(Long userId) throws BaseException {
         try {
-            return wishRepository.findByUserUserId(userId);
+            return wishRepository.findByUserId(userId);
         } catch (Exception exception) {
             throw new BaseException(WISH_RETRIEVE_FAILED);
         }

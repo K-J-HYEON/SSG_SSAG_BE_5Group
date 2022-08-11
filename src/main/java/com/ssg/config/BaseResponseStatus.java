@@ -48,15 +48,17 @@ public enum BaseResponseStatus {
     PAYMENT_METHOD_INSERT_FAILED(false, 4040, "결제수단 추가에 실패하였습니다."),
     PAYMENT_METHOD_RETRIEVE_FAILED(false, 4041, "결제수단 조회에 실패하였습니다."),
     PAYMENT_METHOD_DELETE_FAILED(false, 4042, "결제수단 삭제에 실패하였습니다."),
+    USER_RETRIEVE_FAILED(false, 4043, "회원정보 조회에 실패했습니다."),
 
     // Seller
     SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다."),
+    SELLER_RETRIEVE_FAILED(false, 4011, "판매자 회원정보 조회에 실패하였습니다."),
 
 
     // Wish
-    WISH_INSERT_FAILED(false, 4011, "좋아요 누르기에 실패하였습니다."),
-    WISH_RETRIEVE_FAILED(false, 4012, "좋아요 조회에 실패하였습니다."),
-    WISH_DELETE_FAILED(false, 4013, "좋아요 삭제에 실패하였습니다.");
+    WISH_INSERT_FAILED(false, 4012, "좋아요 누르기에 실패하였습니다."),
+    WISH_RETRIEVE_FAILED(false, 4013, "좋아요 조회에 실패하였습니다."),
+    WISH_DELETE_FAILED(false, 4014, "좋아요 삭제에 실패하였습니다.");
 
 
     private final boolean isSuccess;
