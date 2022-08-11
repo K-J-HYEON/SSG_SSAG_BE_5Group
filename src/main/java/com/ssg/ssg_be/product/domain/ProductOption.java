@@ -1,27 +1,35 @@
 package com.ssg.ssg_be.product.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @NoArgsConstructor
-public class ProductImg {
+public class ProductOption {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productImgId;
+    private Long productOptionId;
 
     @ManyToOne
     @JoinColumn(name = "productId", nullable = false)
     private Product product;
 
-    @Column(nullable = false)
-    private String originName;
+    @ManyToOne
+    @JoinColumn(name = "sizeId", nullable = false)
+    private Size size;
+
+    @ManyToOne
+    @JoinColumn(name = "colorId", nullable = false)
+    private Color color;
 
     @Column(nullable = false)
-    private String saveName;
+    private String modelNumber;
 
     @Column(nullable = false)
-    private String path;
+    private int stock;
+
 }

@@ -34,6 +34,9 @@ public enum BaseResponseStatus {
      * **/
     // Common
     DATABASE_ERROR(false, 4000, "데이터베이스 연결에 실패하였습니다."),
+    SEARCH_RETRIEVE_FAILED(false, 4017, "상품 검색에 실패했습니다."),
+    PRODUCT_RETRIEVE_FAILED(false, 4018, "상품 조회에 실패했습니다."),
+    CATEGORY_RETRIEVE_FAILED(false, 4019, "카테고리 조회에 실패했습니다."),
 
     // User
     USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),
@@ -41,6 +44,9 @@ public enum BaseResponseStatus {
     CART_RETRIEVE_FAILED(false, 4003, "장바구니 조회에 실패하였습니다."),
     CART_DELETE_FAILED(false, 4004, "장바구니 삭제에 실패하였습니다."),
     CART_UPDATE_FAILED(false, 4005, "장바구니 수정에 실패하였습니다."),
+    WISH_INSERT_FAILED(false, 4011, "좋아요 누르기에 실패하였습니다."),
+    WISH_RETRIEVE_FAILED(false, 4012, "좋아요 조회에 실패하였습니다."),
+    WISH_DELETE_FAILED(false, 4013, "좋아요 삭제에 실패하였습니다.");
     SHIPPING_ADDR_INSERT_FAILED(false, 4030, "배송지 추가에 실패하였습니다."),
     SHIPPING_ADDR_RETRIEVE_FAILED(false, 4031, "배송지 조회에 실패하였습니다."),
     SHIPPING_ADDR_UPDATE_FAILED(false, 4032, "배송지 수정에 실패하였습니다."),
@@ -50,13 +56,14 @@ public enum BaseResponseStatus {
     PAYMENT_METHOD_DELETE_FAILED(false, 4042, "결제수단 삭제에 실패하였습니다."),
 
     // Seller
+    SELLER_INSERT_FAILED(false, 4002, "판매자 회원가입에 실패하였습니다."),
     SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다."),
 
-
-    // Wish
-    WISH_INSERT_FAILED(false, 4011, "좋아요 누르기에 실패하였습니다."),
-    WISH_RETRIEVE_FAILED(false, 4012, "좋아요 조회에 실패하였습니다."),
-    WISH_DELETE_FAILED(false, 4013, "좋아요 삭제에 실패하였습니다.");
+    /**
+     * 5000: S3 오류
+     * **/
+    // Common
+    TRANSLATE_FILE_FAILED(false, 5000, "파일 변환에 실패하였습니다.");
 
 
     private final boolean isSuccess;

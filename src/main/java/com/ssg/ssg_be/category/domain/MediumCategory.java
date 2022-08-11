@@ -1,4 +1,4 @@
-package com.ssg.ssg_be.product.domain;
+package com.ssg.ssg_be.category.domain;
 
 import lombok.NoArgsConstructor;
 
@@ -6,15 +6,15 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class CategoryM {
+public class MediumCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryMId;
+    private Long mediumCategoryId;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId", nullable = false)
-    private Category category;
+    @JoinColumn(nullable = false)
+    private LargeCategory largeCategory;
 
     @Column(nullable = false)
     private String name;
