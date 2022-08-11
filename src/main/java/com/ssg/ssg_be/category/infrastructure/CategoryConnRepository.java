@@ -10,7 +10,9 @@ import java.util.List;
 @Repository
 public interface CategoryConnRepository extends JpaRepository<CategoryConn, Long> {
 
+    List<CategoryProductDtoRes> findAllBy();
     List<CategoryProductDtoRes> findByMediumCategoryId(Long mediumCategoryId);
     List<CategoryProductDtoRes> findBySmallCategorySmallCategoryId(Long smallCategoryId);
     List<CategoryProductDtoRes> findByLargeCategoryId(Long largeCategoryId);
+
 }

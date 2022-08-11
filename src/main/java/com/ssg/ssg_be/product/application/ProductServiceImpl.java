@@ -1,6 +1,7 @@
 package com.ssg.ssg_be.product.application;
 
 import com.ssg.config.BaseException;
+import com.ssg.ssg_be.category.domain.CategoryConn;
 import com.ssg.ssg_be.category.infrastructure.CategoryConnRepository;
 import com.ssg.ssg_be.product.domain.*;
 import com.ssg.ssg_be.review.domain.ReviewTotalDto;
@@ -23,6 +24,15 @@ public class ProductServiceImpl implements ProductService {
     public ProductServiceImpl(CategoryConnRepository categoryConnRepository, ReviewRepository reviewRepository) {
         this.categoryConnRepository = categoryConnRepository;
         this.reviewRepository = reviewRepository;
+    }
+
+    @Override
+    public List<ProductDtoRes> retrieveAllProduct() throws BaseException {
+        try {
+            return retrieveProductAndReview(categoryConnRepository.findAllBy());
+        } catch(Exception exception) {
+            throw new BaseException(SEARCH_RETRIEVE_FAILED);
+        }
     }
 
     @Override
