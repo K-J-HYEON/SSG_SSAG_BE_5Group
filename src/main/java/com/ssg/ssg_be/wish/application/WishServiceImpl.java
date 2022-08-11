@@ -29,7 +29,6 @@ public class WishServiceImpl implements WishServive {
         this.productRepository = productRepository;
     }
 
-
     @Override
     public void createWish(WishDtoReq wishDtoReq) throws BaseException {
         try {

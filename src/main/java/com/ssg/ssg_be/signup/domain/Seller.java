@@ -1,10 +1,10 @@
 package com.ssg.ssg_be.signup.domain;
 
 import com.ssg.config.BaseTimeEntity;
+import com.ssg.ssg_be.memberInfo.domain.SellerMemberInfoDtoRes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
@@ -37,5 +37,15 @@ public class Seller extends BaseTimeEntity {
 
     @Column(nullable = false, unique = true)
     private String phone;
+
+    public SellerMemberInfoDtoRes toDto() {
+        return SellerMemberInfoDtoRes.builder()
+                .sellerId(sellerId)
+                .loginId(loginId)
+                .name(name)
+                .phone(phone)
+                .email(email)
+                .build();
+    }
 
 }
