@@ -46,7 +46,7 @@ public enum BaseResponseStatus {
     CART_UPDATE_FAILED(false, 4005, "장바구니 수정에 실패하였습니다."),
     WISH_INSERT_FAILED(false, 4011, "좋아요 누르기에 실패하였습니다."),
     WISH_RETRIEVE_FAILED(false, 4012, "좋아요 조회에 실패하였습니다."),
-    WISH_DELETE_FAILED(false, 4013, "좋아요 삭제에 실패하였습니다.");
+    WISH_DELETE_FAILED(false, 4013, "좋아요 삭제에 실패하였습니다."),
     SHIPPING_ADDR_INSERT_FAILED(false, 4030, "배송지 추가에 실패하였습니다."),
     SHIPPING_ADDR_RETRIEVE_FAILED(false, 4031, "배송지 조회에 실패하였습니다."),
     SHIPPING_ADDR_UPDATE_FAILED(false, 4032, "배송지 수정에 실패하였습니다."),
@@ -56,7 +56,6 @@ public enum BaseResponseStatus {
     PAYMENT_METHOD_DELETE_FAILED(false, 4042, "결제수단 삭제에 실패하였습니다."),
 
     // Seller
-    SELLER_INSERT_FAILED(false, 4002, "판매자 회원가입에 실패하였습니다."),
     SELLER_INSERT_FAILED(false, 4010, "판매자 회원가입에 실패하였습니다."),
 
     /**

@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 public class Store extends BaseTimeEntity {
 
     @Id
