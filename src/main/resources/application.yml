@@ -11,8 +11,8 @@ spring:
             ddl-auto: update
     servlet:
         multipart:
-            max-file-size: 200MB  #최대 파일 사이즈를 200MB로 지정
-            max-request-size: 200MB
+            max-file-size: 50MB  #최대 파일 사이즈를 50MB로 지정
+            max-request-size: 500MB
 
     profiles:
         include: aws, db

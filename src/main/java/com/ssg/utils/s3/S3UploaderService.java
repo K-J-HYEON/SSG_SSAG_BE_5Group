@@ -4,8 +4,8 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.ssg.config.BaseException;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +16,6 @@ import java.util.UUID;
 import static com.ssg.config.BaseResponseStatus.TRANSLATE_FILE_FAILED;
 
 @Slf4j
-@RequiredArgsConstructor
 @Service
 public class S3UploaderService {
 
@@ -25,7 +24,12 @@ public class S3UploaderService {
     @Value("${cloud.aws.s3.bucket}")
     public String bucket;
 
-    public String upload(MultipartFile multipartFile, String bucket, String dirName) throws BaseException {
+    @Autowired
+    public S3UploaderService(AmazonS3Client amazonS3Client) {
+        this.amazonS3Client = amazonS3Client;
+    }
+
+    public String upload(MultipartFile multipartFile, String dirName) throws BaseException {
         try {
             File uploadFile = convert(multipartFile);
             return upload(uploadFile, bucket, dirName);
@@ -37,7 +41,7 @@ public class S3UploaderService {
     // S3로 파일 업로드하기
     private String upload(File uploadFile, String bucket, String dirName) {
         String fileName = dirName + "/" + UUID.randomUUID() + uploadFile.getName(); // S3에 저장된 파일 이름
-        String uploadImageUrl = putS3(uploadFile, bucket, fileName); // s3로 업로드
+        String uploadImageUrl = putS3(uploadFile, bucket, fileName); // S3로 업로드
         removeNewFile(uploadFile);
         return uploadImageUrl;
     }

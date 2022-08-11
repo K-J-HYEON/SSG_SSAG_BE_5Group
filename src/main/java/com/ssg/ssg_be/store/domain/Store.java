@@ -1,15 +1,17 @@
 package com.ssg.ssg_be.store.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ssg.config.BaseTimeEntity;
-import com.ssg.ssg_be.paymentmethod.domain.PaymentMethod;
 import com.ssg.ssg_be.signup.domain.Seller;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Store extends BaseTimeEntity {
@@ -19,18 +21,18 @@ public class Store extends BaseTimeEntity {
     @Column(nullable = false)
     private Long storeId;
 
-    @Column(nullable = false)
-    private String grade;
+    @OneToOne
+    @JoinColumn(name = "sellerId", nullable = false)
+    @JsonIgnore
+    private Seller seller;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private int state;
+    private String grade;
 
-    // sell 엔티티 넣어서 반영
-    // 비식별자 OneToOne 매핑인데 어떻게 해결해야 할지 고민중
-    @OneToOne
-    @JoinColumn(name = "sellerId", nullable = false)
-    private Seller seller;
+    @JsonIgnore
+    @Column(nullable = false)
+    private int state;
 }

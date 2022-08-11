@@ -1,17 +1,18 @@
 package com.ssg.ssg_be.product.domain;
 
-import com.ssg.ssg_be.product.domain.Product;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @NoArgsConstructor
-public class ProductImg {
+public class DetailImg {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productImgId;
+    private Long detailImgId;
 
     @ManyToOne
     @JoinColumn(name = "productId", nullable = false)
@@ -25,4 +26,7 @@ public class ProductImg {
 
     @Column(nullable = false)
     private String path;
+
+    @Column(nullable = false)
+    private int priority;
 }

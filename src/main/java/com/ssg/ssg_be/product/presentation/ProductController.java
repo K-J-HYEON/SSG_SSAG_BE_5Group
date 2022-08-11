@@ -4,8 +4,11 @@ import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.product.application.ProductService;
 import com.ssg.ssg_be.product.domain.CategoryProductDtoRes;
+import com.ssg.ssg_be.product.domain.ProductDtoRes;
+import com.ssg.utils.s3.S3UploaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -14,19 +17,21 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private final S3UploaderService s3UploaderService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, S3UploaderService s3UploaderService) {
         this.productService = productService;
+        this.s3UploaderService = s3UploaderService;
     }
 
     @ResponseBody
     @GetMapping("/product/medium/{mediumCategoryId}")
-    public BaseResponse<List<CategoryProductDtoRes>> retrieveMediumCategoryProduct(@PathVariable Long mediumCategoryId) {
+    public BaseResponse<List<ProductDtoRes>> retrieveMediumCategoryProduct(@PathVariable Long mediumCategoryId) {
 
         try {
-            List<CategoryProductDtoRes> categoryProductDtoRes = productService.retrieveMediumCategoryProduct(mediumCategoryId);
-            return new BaseResponse<>(categoryProductDtoRes);
+            List<ProductDtoRes> product = productService.retrieveMediumCategoryProduct(mediumCategoryId);
+            return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
@@ -34,11 +39,11 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/product/small/{smallCategoryId}")
-    public BaseResponse<List<CategoryProductDtoRes>> retrieveSmallCategoryProduct(@PathVariable Long smallCategoryId) {
+    public BaseResponse<List<ProductDtoRes>> retrieveSmallCategoryProduct(@PathVariable Long smallCategoryId) {
 
         try {
-            List<CategoryProductDtoRes> categoryProductDtoRes = productService.retrieveSmallCategoryProduct(smallCategoryId);
-            return new BaseResponse<>(categoryProductDtoRes);
+            List<ProductDtoRes> product = productService.retrieveSmallCategoryProduct(smallCategoryId);
+            return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
@@ -46,11 +51,21 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/product/large/{largeCategoryId}")
-    public BaseResponse<List<CategoryProductDtoRes>> retrieveLargeCategoryProduct(@PathVariable Long largeCategoryId) {
+    public BaseResponse<List<ProductDtoRes>> retrieveLargeCategoryProduct(@PathVariable Long largeCategoryId) {
 
         try {
-            List<CategoryProductDtoRes> categoryProductDtoRes = productService.retrieveLargeCategoryProduct(largeCategoryId);
-            return new BaseResponse<>(categoryProductDtoRes);
+            List<ProductDtoRes> product = productService.retrieveLargeCategoryProduct(largeCategoryId);
+            return new BaseResponse<>(product);
+        } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @PostMapping("/images")
+    public BaseResponse<String> upload(@RequestParam("images") MultipartFile multipartFile) {
+        try {
+            String result = s3UploaderService.upload(multipartFile, "product");
+            return new BaseResponse<>(result);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
