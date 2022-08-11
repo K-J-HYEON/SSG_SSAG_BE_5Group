@@ -23,7 +23,7 @@ public class UserMemberInfoController {
     public BaseResponse<UserMemberInfoDtoRes> retrieveUserMember(@PathVariable Long userId) {
         try {
             UserMemberInfoDtoRes userRetrieveDtoRes = userRetrieveService.retrieveUserMember(userId);
-            return new BaseResponse(userRetrieveDtoRes);
+            return new BaseResponse<>(userRetrieveDtoRes);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
