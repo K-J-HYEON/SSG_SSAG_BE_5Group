@@ -29,7 +29,6 @@ public class WishServiceImpl implements WishServive {
         this.productRepository = productRepository;
     }
 
-
     @Override
     public void createWish(WishDtoReq wishDtoReq) throws BaseException {
         try {
@@ -46,7 +45,7 @@ public class WishServiceImpl implements WishServive {
     @Override
     public List<WishDtoRes> retrieveWish(Long userId) throws BaseException {
         try {
-            return wishRepository.findByUserId(userId);
+            return wishRepository.findByUserUserId(userId);
         } catch (Exception exception) {
             throw new BaseException(WISH_RETRIEVE_FAILED);
         }

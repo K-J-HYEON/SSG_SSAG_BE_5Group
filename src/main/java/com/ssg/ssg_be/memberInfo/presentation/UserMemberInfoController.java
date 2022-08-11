@@ -19,8 +19,8 @@ public class UserMemberInfoController {
     }
 
     @ResponseBody
-    @GetMapping("/info")
-    public BaseResponse<UserMemberInfoDtoRes> retrieveUserMember(Long userId) {
+    @GetMapping("/info/{userId}")
+    public BaseResponse<UserMemberInfoDtoRes> retrieveUserMember(@PathVariable Long userId) {
         try {
             UserMemberInfoDtoRes userRetrieveDtoRes = userRetrieveService.retrieveUserMember(userId);
             return new BaseResponse(userRetrieveDtoRes);

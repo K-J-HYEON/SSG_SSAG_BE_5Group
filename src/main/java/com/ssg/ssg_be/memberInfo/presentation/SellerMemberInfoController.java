@@ -5,12 +5,11 @@ import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.memberInfo.application.SellerMemberInfoService;
 import com.ssg.ssg_be.memberInfo.domain.SellerMemberInfoDtoRes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+// get => PathVariable 꼭 넣어주기
 
 @RestController
 @RequestMapping("/sellers")
@@ -24,8 +23,8 @@ public class SellerMemberInfoController {
     }
 
     @ResponseBody
-    @GetMapping("/info")
-    public BaseResponse<List<SellerMemberInfoDtoRes>> retrieveSellerMember(Long sellerId) {
+    @GetMapping("/info/{sellerId}")
+    public BaseResponse<List<SellerMemberInfoDtoRes>> retrieveSellerMember(@PathVariable Long sellerId) {
         try {
             SellerMemberInfoDtoRes sellerRetrieveDtoRes = sellerRetrieveService.retrieveSellerMember(sellerId);
             return new BaseResponse(sellerRetrieveDtoRes);
