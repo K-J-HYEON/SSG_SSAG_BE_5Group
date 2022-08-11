@@ -34,8 +34,9 @@ public enum BaseResponseStatus {
      * **/
     // Common
     DATABASE_ERROR(false, 4000, "데이터베이스 연결에 실패하였습니다."),
-    SEARCH_RETRIEVE_FAILED(false, 4017, "상품 조회에 실패했습니다."),
-    CATEGORY_RETRIEVE_FAILED(false, 4018, "카테고리 조회에 실패했습니다."),
+    SEARCH_RETRIEVE_FAILED(false, 4017, "상품 검색에 실패했습니다."),
+    PRODUCT_RETRIEVE_FAILED(false, 4018, "상품 조회에 실패했습니다."),
+    CATEGORY_RETRIEVE_FAILED(false, 4019, "카테고리 조회에 실패했습니다."),
 
     // User
     USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),

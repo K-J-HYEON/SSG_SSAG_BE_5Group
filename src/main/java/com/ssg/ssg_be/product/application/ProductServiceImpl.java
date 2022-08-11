@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             return retrieveProductAndReview(categoryConnRepository.findAllBy());
         } catch(Exception exception) {
-            throw new BaseException(SEARCH_RETRIEVE_FAILED);
+            throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
 
@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             return retrieveProductAndReview(categoryConnRepository.findByMediumCategoryId(mediumCategoryId));
         } catch(Exception exception) {
-            throw new BaseException(SEARCH_RETRIEVE_FAILED);
+            throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
 
@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             return retrieveProductAndReview(categoryConnRepository.findBySmallCategorySmallCategoryId(smallCategoryId));
         } catch(Exception exception) {
-            throw new BaseException(SEARCH_RETRIEVE_FAILED);
+            throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
 
@@ -60,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             return retrieveProductAndReview(categoryConnRepository.findByLargeCategoryId(largeCategoryId));
         } catch(Exception exception) {
-            throw new BaseException(SEARCH_RETRIEVE_FAILED);
+            throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
 
