@@ -14,5 +14,6 @@ public interface CategoryConnRepository extends JpaRepository<CategoryConn, Long
     List<CategoryProductDtoRes> findByMediumCategoryId(Long mediumCategoryId);
     List<CategoryProductDtoRes> findBySmallCategorySmallCategoryId(Long smallCategoryId);
     List<CategoryProductDtoRes> findByLargeCategoryId(Long largeCategoryId);
+    List<CategoryProductDtoRes> findByProductNameContains(String searchWord);
 
 }

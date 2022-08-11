@@ -68,6 +68,18 @@ public class ProductController {
         }
     }
 
+    @ResponseBody
+    @GetMapping("/products/search/{searchWord}")
+    public BaseResponse<List<ProductDtoRes>> retrieveSearch(@PathVariable String searchWord) {
+
+        try {
+            List<ProductDtoRes> product = productService.retrieveSearch(searchWord);
+            return new BaseResponse<>(product);
+        } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
 }
 
 

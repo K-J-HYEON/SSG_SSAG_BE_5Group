@@ -1,7 +1,6 @@
 package com.ssg.ssg_be.product.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.category.domain.CategoryConn;
 import com.ssg.ssg_be.category.infrastructure.CategoryConnRepository;
 import com.ssg.ssg_be.product.domain.*;
 import com.ssg.ssg_be.review.domain.ReviewTotalDto;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.ssg.config.BaseResponseStatus.SEARCH_RETRIEVE_FAILED;
+import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -60,6 +59,16 @@ public class ProductServiceImpl implements ProductService {
 
         try {
             return retrieveProductAndReview(categoryConnRepository.findByLargeCategoryId(largeCategoryId));
+        } catch(Exception exception) {
+            throw new BaseException(SEARCH_RETRIEVE_FAILED);
+        }
+    }
+
+    @Override
+    public List<ProductDtoRes> retrieveSearch(String searchWord) throws BaseException {
+
+        try {
+            return retrieveProductAndReview(categoryConnRepository.findByProductNameContains(searchWord));
         } catch(Exception exception) {
             throw new BaseException(SEARCH_RETRIEVE_FAILED);
         }
