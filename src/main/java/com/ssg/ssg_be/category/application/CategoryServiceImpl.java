@@ -53,7 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
                 categoryDtoResList.add(CategoryDtoRes.builder()
                         .largeCategoryId(lc.getLargeCategoryId())
                         .title(lc.getTitle())
-                        .mediumCategoryDtoRes(mediumCategoryListList)
+                        .mediumCategoryList(mediumCategoryListList)
                         .build()
                 );
             }

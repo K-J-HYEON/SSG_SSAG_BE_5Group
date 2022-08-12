@@ -14,5 +14,5 @@ public class CategoryDtoRes {
     private Long largeCategoryId;
     private String title;
 
-    private List<MediumCategoryList> mediumCategoryDtoRes;
+    private List<MediumCategoryList> mediumCategoryList;
 }
