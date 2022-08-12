@@ -25,7 +25,7 @@ public class ThumbnailImg {
     private String saveName;
 
     @Column(nullable = false)
-    private String path;
+    private String imgUrl;
 
     @Column(nullable = false)
     private int priority;

@@ -39,7 +39,7 @@ public class Product extends BaseTimeEntity {
     private String imgSaveName;
 
     @Column(nullable = false)
-    private String imgPath;
+    private String imgUrl;
 
     @ManyToOne
     @JoinColumn(name = "storeId", nullable = false)

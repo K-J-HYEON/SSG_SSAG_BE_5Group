@@ -23,5 +23,5 @@ public class ReviewImg{
     private String saveName;
 
     @Column(nullable = false)
-    private String path;
+    private String imgUrl;
 }
