@@ -1,10 +1,12 @@
 package com.ssg.ssg_be.category.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class LargeCategory {
 
@@ -13,5 +15,5 @@ public class LargeCategory {
     private Long largeCategoryId;
 
     @Column(nullable = false)
-    private String name;
+    private String title;
 }

@@ -1,10 +1,12 @@
 package com.ssg.ssg_be.category.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class SmallCategory {
 
@@ -17,5 +19,5 @@ public class SmallCategory {
     private MediumCategory mediumCategory;
 
     @Column(nullable = false)
-    private String name;
+    private String smallCategoryTitle;
 }
