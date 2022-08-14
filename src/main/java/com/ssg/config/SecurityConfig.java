@@ -31,18 +31,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
+        httpSecurity.csrf().disable();
+        httpSecurity.httpBasic().disable()
                 .authorizeRequests()
-//                .antMatchers("/users/**").hasRole("USER")
-//                .antMatchers("/sellers/**").hasRole("SELLER")
-//                .antMatchers("/managers/**").hasRole("MANAGER")
+//                .antMatchers("/users/**").authenticated()
+//                .antMatchers("/sellers/**").access("hasRole('SELLER')")
+//                .antMatchers("/managers/**").access("hasRole('MANAGER')")
                 .antMatchers("/", "/**").permitAll()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
                         UsernamePasswordAuthenticationFilter.class)
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
-
 
 }

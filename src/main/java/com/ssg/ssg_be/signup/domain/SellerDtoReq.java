@@ -1,8 +1,10 @@
 package com.ssg.ssg_be.signup.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class SellerDtoReq {
     private String loginId;
     private String loginPwd;

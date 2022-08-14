@@ -1,13 +1,15 @@
 package com.ssg.ssg_be.signup.domain;
 
-import lombok.Builder;
+import com.ssg.config.Role;
 import lombok.Getter;
-import org.yaml.snakeyaml.error.Mark;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
 @Getter
+@Setter
 public class UserDtoReq {
+
     private String loginId;
     private String loginPwd;
     private String name;
@@ -24,10 +26,11 @@ public class UserDtoReq {
     public User toEntity() {
         return User.builder()
                 .loginId(loginId)
-                .loginPwd(email)
+                .loginPwd(loginPwd)
                 .name(name)
                 .email(email)
                 .phone(phone)
+                .userRole(Role.USER)
                 .build();
     }
 

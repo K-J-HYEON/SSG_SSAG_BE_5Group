@@ -34,6 +34,7 @@ public enum BaseResponseStatus {
     // Common
     DATABASE_ERROR(false, 4000, "데이터베이스 연결에 실패하였습니다."),
     LOGIN_FAILED(false, 4020, "로그인에 실패하였습니다."),
+    JWT_CREATE_FAILED(false, 4021, "토큰 생성에 실패하였습니다."),
 
     // User
     USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),

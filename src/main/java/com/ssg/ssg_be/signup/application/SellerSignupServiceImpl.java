@@ -4,6 +4,7 @@ import com.ssg.config.BaseException;
 import com.ssg.ssg_be.signup.domain.SellerDtoReq;
 import com.ssg.ssg_be.signup.infrastucture.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import static com.ssg.config.BaseResponseStatus.*;
@@ -12,10 +13,12 @@ import static com.ssg.config.BaseResponseStatus.*;
 public class SellerSignupServiceImpl implements SellerSignupService {
 
     private final SellerRepository sellerRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public SellerSignupServiceImpl(SellerRepository sellerRepository) {
+    public SellerSignupServiceImpl(SellerRepository sellerRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.sellerRepository = sellerRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -42,6 +45,7 @@ public class SellerSignupServiceImpl implements SellerSignupService {
         }
 
         try {
+            sellerDtoReq.setLoginPwd(bCryptPasswordEncoder.encode(sellerDtoReq.getLoginPwd()));
             sellerRepository.save(sellerDtoReq.toEntity());
         } catch (Exception exception) {
             throw new BaseException(SELLER_INSERT_FAILED);

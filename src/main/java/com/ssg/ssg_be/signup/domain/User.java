@@ -1,8 +1,10 @@
 package com.ssg.ssg_be.signup.domain;
 
 import com.ssg.config.BaseTimeEntity;
+import com.ssg.config.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ import java.sql.Timestamp;
 @Entity
 @NoArgsConstructor
 @Builder
+@Getter
 @AllArgsConstructor
 public class User extends BaseTimeEntity {
 
@@ -46,5 +49,8 @@ public class User extends BaseTimeEntity {
     //0: 활동 중인 사용자(일반 상태), 1: N개월 이상 미접속 사용자, 2: 정지된 사용자
     @Column(columnDefinition = "tinyint(1) default 0")
     private int status; // 회원 상태
+
+    @Enumerated(EnumType.STRING)
+    private Role userRole;
 
 }
