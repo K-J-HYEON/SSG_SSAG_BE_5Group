@@ -32,8 +32,13 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void createCart(CartDtoReq cartDtoReq) throws BaseException {
+        User user = userRepository.findByUserId(cartDtoReq.getUserId()).orElseThrow(()->new BaseException(NO_EXIST_USER));
+
+        if(cartRepository.existsByProduct_ProductId(cartDtoReq.getProductId())) {
+            throw new BaseException(POST_EXISTS_CART);
+        }
+
         try {
-            User user = userRepository.getById(cartDtoReq.getUserId());
             Product product = productRepository.getById(cartDtoReq.getProductId());
 
             cartRepository.save(cartDtoReq.toEntity(product, user));

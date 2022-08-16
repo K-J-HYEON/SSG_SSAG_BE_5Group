@@ -17,6 +17,7 @@ public enum BaseResponseStatus {
     POST_EXISTS_LOGIN_ID(false,2000,"중복된 아이디입니다."),
     POST_EXISTS_PHONE(false,2001,"중복된 휴대폰 번호입니다."),
     POST_EXISTS_EMAIL(false,2002,"중복된 이메일입니다."),
+    POST_EXISTS_CART(false,2003,"이미 장바구니에 있는 상품입니다."),
 
     /**
      * 3000: Response 오류
@@ -25,6 +26,7 @@ public enum BaseResponseStatus {
     FAILED_TO_LOGIN(false,3000,"없는 아이디거나 비밀번호가 틀렸습니다."),
     NO_LOOKUP_VALUE(false, 3001, "조회된 데이터가 없습니다."),
     JWT_CREATE_FAILED(false, 3002, "토큰 생성에 실패하였습니다."),
+    NO_EXIST_USER(false, 3003, "존재하지 않는 유저 정보입니다."),
 
     /**
      * 4000: Database 오류
