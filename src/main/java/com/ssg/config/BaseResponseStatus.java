@@ -41,6 +41,8 @@ public enum BaseResponseStatus {
     USER_INSERT_FAILED(false, 4010, "사용자 회원가입에 실패하였습니다."),
     USER_RETRIEVE_FAILED(false, 4011, "회원정보 조회에 실패했습니다."),
     USER_UPDATE_FAILED(false, 4012, "회원정보 변경에 실패했습니다."),
+    PASSWORD_RETRIEVE_FAILED(false, 4013, "비밀번호 조회에 실패했습니다."),
+    PASSWORD_UPDATE_FAILED(false, 4014, "비밀번호 변경에 실패했습니다."),
     CART_INSERT_FAILED(false, 4020, "장바구니 담기에 실패하였습니다."),
     CART_RETRIEVE_FAILED(false, 4021, "장바구니 조회에 실패하였습니다."),
     CART_DELETE_FAILED(false, 4022, "장바구니 삭제에 실패하였습니다."),
