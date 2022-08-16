@@ -43,4 +43,6 @@ public class UserMemberInfoController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
+
+
 }
