@@ -26,7 +26,9 @@ public enum BaseResponseStatus {
 
     /**
      * 3000: Response 오류
-     **/
+     * **/
+    // Common
+    FAILED_TO_LOGIN(false,3000,"없는 아이디거나 비밀번호가 틀렸습니다."),
     NO_LOOKUP_VALUE(false, 3002, "조회된 데이터가 없습니다."),
 
     /**
@@ -37,6 +39,7 @@ public enum BaseResponseStatus {
     SEARCH_RETRIEVE_FAILED(false, 4017, "상품 검색에 실패했습니다."),
     PRODUCT_RETRIEVE_FAILED(false, 4018, "상품 조회에 실패했습니다."),
     CATEGORY_RETRIEVE_FAILED(false, 4019, "카테고리 조회에 실패했습니다."),
+    JWT_CREATE_FAILED(false, 4020, "토큰 생성에 실패하였습니다."),
 
     // User
     USER_INSERT_FAILED(false, 4001, "사용자 회원가입에 실패하였습니다."),

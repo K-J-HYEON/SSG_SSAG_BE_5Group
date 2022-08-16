@@ -7,6 +7,7 @@ import com.ssg.ssg_be.signup.domain.UserDtoReq;
 import com.ssg.ssg_be.signup.infrastucture.MarketingRepository;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import static com.ssg.config.BaseResponseStatus.*;
@@ -17,11 +18,13 @@ public class UserSignupServiceImpl implements UserSignupService {
     private final UserRepository userRepository;
 
     private final MarketingRepository marketingRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UserSignupServiceImpl(UserRepository userRepository, MarketingRepository marketingRepository) {
+    public UserSignupServiceImpl(UserRepository userRepository, MarketingRepository marketingRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.marketingRepository = marketingRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -33,8 +36,6 @@ public class UserSignupServiceImpl implements UserSignupService {
             throw new BaseException(POST_EXISTS_LOGIN_ID);
         }
 
-        System.out.println();
-
         // 이메일 중복 검사
         if(userRepository.existsByEmail(userDtoReq.getEmail())) {
             throw new BaseException(POST_EXISTS_EMAIL);
@@ -45,6 +46,7 @@ public class UserSignupServiceImpl implements UserSignupService {
             throw new BaseException(POST_EXISTS_PHONE);
         }
 
+        userDtoReq.setLoginPwd(bCryptPasswordEncoder.encode(userDtoReq.getLoginPwd()));
         User user = userDtoReq.toEntity();
 
         try {
@@ -53,7 +55,8 @@ public class UserSignupServiceImpl implements UserSignupService {
             throw new BaseException(USER_INSERT_FAILED);
         }
 
-        MarketingDtoReq marketingDtoReq = new MarketingDtoReq(user, userDtoReq.getMarketing1(), userDtoReq.getUpdateAt1(), userDtoReq.getMarketing2(), userDtoReq.getUpdateAt2(), userDtoReq.getMarketing3(), userDtoReq.getUpdateAt3());
+        MarketingDtoReq marketingDtoReq = new MarketingDtoReq(user, userDtoReq.getMarketing1(), userDtoReq.getUpdateAt1(),
+                userDtoReq.getMarketing2(), userDtoReq.getUpdateAt2(), userDtoReq.getMarketing3(), userDtoReq.getUpdateAt3());
 
         try {
             marketingRepository.save(marketingDtoReq.toMarketingEntity());

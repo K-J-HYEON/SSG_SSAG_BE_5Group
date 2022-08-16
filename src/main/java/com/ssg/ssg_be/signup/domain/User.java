@@ -2,6 +2,7 @@ package com.ssg.ssg_be.signup.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssg.config.BaseTimeEntity;
+import com.ssg.config.Role;
 import com.ssg.ssg_be.memberInfo.domain.UserMemberInfoDtoRes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,6 +52,9 @@ public class User extends BaseTimeEntity {
     //0: 활동 중인 사용자(일반 상태), 1: N개월 이상 미접속 사용자, 2: 정지된 사용자
     @Column(columnDefinition = "tinyint(1) default 0")
     private int status; // 회원 상태
+
+    @Enumerated(EnumType.STRING)
+    private Role userRole;
 
     public UserMemberInfoDtoRes toDto() {
         return UserMemberInfoDtoRes.builder()

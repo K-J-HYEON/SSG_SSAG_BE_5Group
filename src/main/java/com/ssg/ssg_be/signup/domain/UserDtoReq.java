@@ -1,11 +1,15 @@
 package com.ssg.ssg_be.signup.domain;
 
+import com.ssg.config.Role;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
 @Getter
+@Setter
 public class UserDtoReq {
+
     private String loginId;
     private String loginPwd;
     private String name;
@@ -26,6 +30,7 @@ public class UserDtoReq {
                 .name(name)
                 .email(email)
                 .phone(phone)
+                .userRole(Role.USER)
                 .build();
     }
 
