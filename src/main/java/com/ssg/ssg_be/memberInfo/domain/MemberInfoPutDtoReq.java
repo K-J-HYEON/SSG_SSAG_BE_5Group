@@ -4,7 +4,7 @@ import com.ssg.ssg_be.signup.domain.User;
 import lombok.Getter;
 
 @Getter
-public class UserMemberInfoPutDtoReq {
+public class MemberInfoPutDtoReq {
 
     private Long userId;
     private String newPassword;

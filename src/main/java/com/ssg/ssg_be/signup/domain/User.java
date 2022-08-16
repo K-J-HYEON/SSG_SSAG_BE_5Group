@@ -3,7 +3,7 @@ package com.ssg.ssg_be.signup.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.config.Role;
-import com.ssg.ssg_be.memberInfo.domain.UserMemberInfoDtoRes;
+import com.ssg.ssg_be.memberInfo.domain.MemberInfoDtoRes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -56,8 +56,8 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Role userRole;
 
-    public UserMemberInfoDtoRes toDto() {
-        return UserMemberInfoDtoRes.builder()
+    public MemberInfoDtoRes toDto() {
+        return MemberInfoDtoRes.builder()
                 .userId(userId)
                 .loginId(loginId)
                 .name(name)

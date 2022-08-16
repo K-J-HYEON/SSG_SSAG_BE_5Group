@@ -4,9 +4,7 @@ import com.ssg.config.BaseException;
 import com.ssg.config.Role;
 import com.ssg.ssg_be.login.domain.LoginDtoReq;
 import com.ssg.ssg_be.login.domain.LoginUserDtoReq;
-import com.ssg.ssg_be.signup.domain.Seller;
 import com.ssg.ssg_be.signup.domain.User;
-import com.ssg.ssg_be.signup.infrastucture.SellerRepository;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import com.ssg.utils.jwt.JwtTokenProvider;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.Optional;
 
 import static com.ssg.config.BaseResponseStatus.*;
 

@@ -7,7 +7,7 @@ import lombok.Getter;
 // toEntity, toDto 변환방법
 @Builder
 @Getter
-public class UserMemberInfoDtoRes {
+public class MemberInfoDtoRes {
     private Long userId;
     private String loginId;
     private String name;

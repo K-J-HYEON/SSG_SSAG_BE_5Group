@@ -3,7 +3,7 @@ package com.ssg.ssg_be.signup.presentation;
 
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
-import com.ssg.ssg_be.signup.application.UserSignupService;
+import com.ssg.ssg_be.signup.application.SignupService;
 import com.ssg.ssg_be.signup.domain.UserDtoReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/users")
-public class UserSignupController {
+public class SignupController {
 
-    private final UserSignupService userSignupService;
+    private final SignupService signupService;
 
     @Autowired
-    public UserSignupController(UserSignupService userSignupService) {
-        this.userSignupService = userSignupService;
+    public SignupController(SignupService signupService) {
+        this.signupService = signupService;
     }
 
     @PostMapping("/signup")
@@ -27,7 +27,7 @@ public class UserSignupController {
         String result = "";
 
         try {
-            userSignupService.addUser(userDtoReq);
+            signupService.addUser(userDtoReq);
             result = "회원가입에 성공했습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {

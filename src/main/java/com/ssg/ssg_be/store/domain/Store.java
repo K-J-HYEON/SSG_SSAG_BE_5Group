@@ -3,7 +3,6 @@ package com.ssg.ssg_be.store.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ssg.config.BaseTimeEntity;
-import com.ssg.ssg_be.signup.domain.Seller;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +19,6 @@ public class Store extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long storeId;
-
-    @OneToOne
-    @JoinColumn(name = "sellerId", nullable = false)
-    @JsonIgnore
-    private Seller seller;
 
     @Column(nullable = false)
     private String name;

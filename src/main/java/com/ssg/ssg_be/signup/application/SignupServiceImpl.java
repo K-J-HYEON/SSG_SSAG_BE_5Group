@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
-public class UserSignupServiceImpl implements UserSignupService {
+public class SignupServiceImpl implements SignupService {
 
     private final UserRepository userRepository;
 
@@ -21,7 +21,7 @@ public class UserSignupServiceImpl implements UserSignupService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UserSignupServiceImpl(UserRepository userRepository, MarketingRepository marketingRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public SignupServiceImpl(UserRepository userRepository, MarketingRepository marketingRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.marketingRepository = marketingRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
