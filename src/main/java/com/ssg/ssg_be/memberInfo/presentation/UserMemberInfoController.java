@@ -35,7 +35,6 @@ public class UserMemberInfoController {
     @PutMapping("/info")
     public BaseResponse<String> updateMemberInfo(@RequestBody UserMemberInfoPutDtoReq userMemberInfoPutDtoReq) {
         String result = "";
-
         try {
             userUpdateService.updateUserMember(userMemberInfoPutDtoReq);
             result = "회원정보를 변경하였습니다.";

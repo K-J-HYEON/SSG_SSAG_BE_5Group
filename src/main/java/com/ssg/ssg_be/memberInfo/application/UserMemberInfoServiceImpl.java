@@ -8,6 +8,8 @@ import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
@@ -33,9 +35,10 @@ public class UserMemberInfoServiceImpl implements UserMemberInfoService {
     @Override
     public void updateUserMember(UserMemberInfoPutDtoReq userMemberInfoPutDtoReq) throws BaseException {
         try {
-            User user = userRepository.getById(userMemberInfoPutDtoReq.getNewPassword());
-//            userRepository.save(userMemberInfoPutDtoReq.toEntity(user));
-            userRepository.findById(userId);
+            User user = userRepository.findByUserId(userMemberInfoPutDtoReq.getUserId()).orElseThrow(() ->
+                new BaseException(USER_RETRIEVE_FAILED)
+            );
+            userRepository.save(userMemberInfoPutDtoReq.toEntity(user));
         } catch (Exception exception) {
             throw new BaseException(USER_UPDATE_FAILED);
         }

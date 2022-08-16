@@ -6,13 +6,23 @@ import lombok.Getter;
 @Getter
 public class UserMemberInfoPutDtoReq {
 
+    private Long userId;
     private String newPassword;
     private String phone;
     private String email;
 
-    public UserMemberInfoDtoReq toEntity(User user) {
-        return UserMemberInfoDtoReq.builder()
-                .newPassword(newPassword)
+    public User toEntity(User user) {
+        return User.builder()
+                .userId(userId)
+                .loginId(user.getLoginId())
+                .loginPwd(newPassword)
+                .name(user.getName())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .grade(user.getGrade())
+                .userType(user.getUserType())
+                .loginDate(user.getLoginDate())
+                .status(user.getStatus())
                 .phone(phone)
                 .email(email)
                 .build();
