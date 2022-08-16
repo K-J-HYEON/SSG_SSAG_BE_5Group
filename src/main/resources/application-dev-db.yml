@@ -1,6 +1,0 @@
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://ssgssag.c6wdnggbxhjq.ap-northeast-2.rds.amazonaws.com:3306/sssgssagDB?serverTimezone=Asia/Seoul
-    username: ssgssag
-    password: tmrtkr12!

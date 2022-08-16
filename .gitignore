@@ -64,8 +64,8 @@ out/
 ## logs 폴더 바로 안, 또는 그 안의 다른 폴더(들) 안의 debug.log
 #logs/**/debug.log
 
-application-db.yml
 application-aws.yml
 application-secret.yml
-application-dev.yml
-application-prod.yml
+application-dev-db.yml
+application-local-db.yml
+application-prod-db.yml
