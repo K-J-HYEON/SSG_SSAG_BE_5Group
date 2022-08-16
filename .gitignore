@@ -65,3 +65,5 @@ out/
 #logs/**/debug.log
 
 application-secret.yml
+application-aws.yml
+application-db.yml
