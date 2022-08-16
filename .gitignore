@@ -66,3 +66,4 @@ out/
 
 application-db.yml
 application-aws.yml
+application-secret.yml
