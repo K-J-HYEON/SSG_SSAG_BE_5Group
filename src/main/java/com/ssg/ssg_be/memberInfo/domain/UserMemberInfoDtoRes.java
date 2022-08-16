@@ -13,5 +13,4 @@ public class UserMemberInfoDtoRes {
     private String name;
     private String phone;
     private String email;
-
 }

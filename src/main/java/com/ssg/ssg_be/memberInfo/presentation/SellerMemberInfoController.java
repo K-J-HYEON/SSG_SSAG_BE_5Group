@@ -6,10 +6,7 @@ import com.ssg.ssg_be.memberInfo.application.SellerMemberInfoService;
 import com.ssg.ssg_be.memberInfo.domain.SellerMemberInfoDtoRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
-// get => PathVariable 꼭 넣어주기
 
 @RestController
 @RequestMapping("/sellers")
@@ -32,4 +29,8 @@ public class SellerMemberInfoController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
+
+//    @ResponseBody
+//    @PutMapping("/info")
+//    public BaseResponse<String>
 }

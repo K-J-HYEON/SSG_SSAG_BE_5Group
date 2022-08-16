@@ -9,10 +9,6 @@ public class SellerMemberInfoDtoRes {
     private String name;
     private String phone;
     private String email;
-
-
-
-
 }
 
 
