@@ -1,6 +1,7 @@
 package com.ssg.ssg_be.signup.domain;
 
 import com.ssg.config.BaseTimeEntity;
+import com.ssg.config.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

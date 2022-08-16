@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.signup.domain;
 
+import com.ssg.config.Role;
 import lombok.Getter;
 import lombok.Setter;
 

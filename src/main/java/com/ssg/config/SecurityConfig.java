@@ -34,10 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable();
         httpSecurity.httpBasic().disable()
                 .authorizeRequests()
-//                .antMatchers("/users/**").authenticated()
-//                .antMatchers("/sellers/**").access("hasRole('SELLER')")
-//                .antMatchers("/managers/**").access("hasRole('MANAGER')")
-                .antMatchers("/", "/**").permitAll()
+                .antMatchers("/users/**").authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
                         UsernamePasswordAuthenticationFilter.class)

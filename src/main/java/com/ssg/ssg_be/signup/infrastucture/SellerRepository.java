@@ -4,6 +4,8 @@ import com.ssg.ssg_be.signup.domain.Seller;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface SellerRepository extends JpaRepository<Seller, Long> {
     boolean existsByLoginId(String loginId);
@@ -11,5 +13,5 @@ public interface SellerRepository extends JpaRepository<Seller, Long> {
     boolean existsByCorporationNumber(String corporationNumber);
     boolean existsByPhone(String phone);
 
-    Seller findByLoginId(String loginId);
+    Optional<Seller> findByLoginId(String loginId);
 }

@@ -2,7 +2,7 @@ package com.ssg.ssg_be.login.presentation;
 
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
-import com.ssg.ssg_be.login.application.UserLoginService;
+import com.ssg.ssg_be.login.application.LoginService;
 import com.ssg.ssg_be.login.domain.LoginDtoReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
-public class UserLoginController {
+@RequestMapping("/comm-users")
+public class LoginController {
 
-    private final UserLoginService userLoginService;
+    private final LoginService loginService;
 
     @Autowired
-    public UserLoginController(UserLoginService userLoginService) {
-        this.userLoginService = userLoginService;
+    public LoginController(LoginService loginService) {
+        this.loginService = loginService;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login/user")
     public BaseResponse<String> userLogin(@RequestBody LoginDtoReq loginDtoReq) {
         String token = "";
 
         try {
-            token = userLoginService.userLogin(loginDtoReq);
+            token = loginService.userLogin(loginDtoReq);
             return new BaseResponse<>(token);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
