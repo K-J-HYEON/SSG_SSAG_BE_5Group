@@ -1,6 +1,5 @@
 package com.ssg.ssg_be.wish.presentation;
 
-
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.wish.application.WishServive;
