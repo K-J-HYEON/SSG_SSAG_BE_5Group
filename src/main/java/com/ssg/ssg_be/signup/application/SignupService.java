@@ -5,4 +5,5 @@ import com.ssg.ssg_be.signup.domain.UserDtoReq;
 
 public interface SignupService {
     void addUser(UserDtoReq userDtoReq) throws BaseException;
+    void checkUserId(String loginId) throws BaseException;
 }

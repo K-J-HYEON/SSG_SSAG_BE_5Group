@@ -32,9 +32,7 @@ public class SignupServiceImpl implements SignupService {
 
 
         // 아이디 중복 검사
-        if(userRepository.existsByLoginId(userDtoReq.getLoginId())) {
-            throw new BaseException(POST_EXISTS_LOGIN_ID);
-        }
+        checkUserId(userDtoReq.getLoginId());
 
         // 이메일 중복 검사
         if(userRepository.existsByEmail(userDtoReq.getEmail())) {
@@ -62,6 +60,13 @@ public class SignupServiceImpl implements SignupService {
             marketingRepository.save(marketingDtoReq.toMarketingEntity());
         } catch (Exception exception) {
             throw new BaseException(USER_INSERT_FAILED);
+        }
+    }
+
+    @Override
+    public void checkUserId(String loginId) throws BaseException {
+        if(userRepository.existsByLoginId(loginId)) {
+            throw new BaseException(POST_EXISTS_LOGIN_ID);
         }
     }
 }
