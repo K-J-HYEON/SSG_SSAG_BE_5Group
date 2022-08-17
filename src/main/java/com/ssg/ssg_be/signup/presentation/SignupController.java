@@ -32,17 +32,17 @@ public class SignupController {
         }
     }
 
-//    @GetMapping("/signup/overlap/{checkId}")
-//    public BaseResponse<String> checkUserId(@PathVariable String checkId) {
-//        String result = "";
-//
-//        try {
-//            signupService.addUser(userDtoReq);
-//            result = "회원가입에 성공했습니다.";
-//            return new BaseResponse<>(result);
-//        } catch (BaseException exception) {
-//            return new BaseResponse<>(exception.getStatus());
-//        }
-//    }
+    @GetMapping("/signup/overlap/{checkId}")
+    public BaseResponse<String> checkUserId(@PathVariable String checkId) {
+        String result = "";
+
+        try {
+            signupService.checkUserId(checkId);
+            result = "사용할 수 있는 아이디입니다.";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
 
 }
