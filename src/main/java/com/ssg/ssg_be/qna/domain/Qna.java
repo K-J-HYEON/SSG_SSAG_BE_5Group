@@ -13,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Qna extends BaseTimeEntity {
 
     @Id
