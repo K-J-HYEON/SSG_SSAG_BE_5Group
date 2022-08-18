@@ -3,9 +3,11 @@ package com.ssg.ssg_be.shippingaddr.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.shippingaddr.application.ShippingAddrService;
+import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrDefaultPutDtoReq;
 import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrDtoReq;
 import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrDtoRes;
 import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrPutDtoReq;
+import com.ssg.utils.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +18,12 @@ import java.util.List;
 public class ShippingAddrController {
 
     private final ShippingAddrService shippingAddrService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public ShippingAddrController(ShippingAddrService shippingAddrService) {
+    public ShippingAddrController(ShippingAddrService shippingAddrService, JwtTokenProvider jwtTokenProvider) {
         this.shippingAddrService = shippingAddrService;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @PostMapping("/shipping-addr")
@@ -63,6 +67,21 @@ public class ShippingAddrController {
         try {
             shippingAddrService.updateShippingAddr(shippingAddrPutDtoReq);
             result = "배송지 변경에 성공하였습니다.";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @PutMapping("/shipping-addr/default")
+    public BaseResponse<String> updateDefaultShippingAddr(@RequestBody ShippingAddrDefaultPutDtoReq shippingAddrDefaultPutDtoReq) {
+        String result = "";
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
+
+        try {
+            shippingAddrService.updateDefaultShippingAddr(shippingAddrDefaultPutDtoReq, userId);
+            result = "기본 배송지 변경에 성공하였습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
