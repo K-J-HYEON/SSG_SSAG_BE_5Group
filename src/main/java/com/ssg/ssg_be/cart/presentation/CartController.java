@@ -20,7 +20,7 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @PostMapping("/lists")
+    @PostMapping("/carts")
     public BaseResponse<String> addCart(@RequestBody CartDtoReq cartDtoReq) {
         String result = "";
 
@@ -37,7 +37,7 @@ public class CartController {
     }
 
     @ResponseBody
-    @GetMapping("/lists/{userId}")
+    @GetMapping("/carts/{userId}")
     public BaseResponse<List<CartDtoRes>> retrieveCart(@PathVariable Long userId) {
         try {
             List<CartDtoRes> cartDtoRes = cartService.retrieveCart(userId);
@@ -47,7 +47,7 @@ public class CartController {
         }
     }
 
-    @DeleteMapping("/lists/{cartId}")
+    @DeleteMapping("/carts/{cartId}")
     public BaseResponse<String> deleteCart(@PathVariable Long cartId) {
         String result = "";
 
@@ -60,7 +60,7 @@ public class CartController {
         }
     }
 
-    @PutMapping("/lists/count")
+    @PutMapping("/carts/count")
     public BaseResponse<String> updateCartCount(@RequestBody CartCountPatchDtoReq cartCountPatchDtoReq) {
         String result = "";
 
@@ -74,7 +74,7 @@ public class CartController {
     }
 
     @ResponseBody
-    @PutMapping("/lists/option")
+    @PutMapping("/carts/option")
     public BaseResponse<CartOptionPatchDtoRes> updateCartOption(@RequestBody CartOptionPatchDtoReq cartOptionPatchDtoReq) {
 
         try {
