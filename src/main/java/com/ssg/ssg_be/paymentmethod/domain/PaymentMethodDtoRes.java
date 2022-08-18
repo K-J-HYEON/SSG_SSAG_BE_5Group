@@ -4,4 +4,5 @@ public interface PaymentMethodDtoRes {
     Long getPaymentId();
     String getCardCompany();
     String getCardNumber();
+    CardImg getCardImg();
 }
