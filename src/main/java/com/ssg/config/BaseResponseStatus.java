@@ -55,6 +55,7 @@ public enum BaseResponseStatus {
     SHIPPING_ADDR_RETRIEVE_FAILED(false, 4041, "배송지 조회에 실패하였습니다."),
     SHIPPING_ADDR_UPDATE_FAILED(false, 4042, "배송지 수정에 실패하였습니다."),
     SHIPPING_ADDR_DELETE_FAILED(false, 4043, "배송지 삭제에 실패하였습니다."),
+    SHIPPING_ADDR_DEFAULT_UPDATE_FAILED(false, 4044, "기본 배송지 변경에 실패하였습니다."),
     PAYMENT_METHOD_INSERT_FAILED(false, 4050, "결제수단 추가에 실패하였습니다."),
     PAYMENT_METHOD_RETRIEVE_FAILED(false, 4051, "결제수단 조회에 실패하였습니다."),
     PAYMENT_METHOD_DELETE_FAILED(false, 4052, "결제수단 삭제에 실패하였습니다."),
