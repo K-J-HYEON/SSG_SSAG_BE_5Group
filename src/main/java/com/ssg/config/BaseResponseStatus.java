@@ -18,6 +18,7 @@ public enum BaseResponseStatus {
     POST_EXISTS_PHONE(false,2001,"중복된 휴대폰 번호입니다."),
     POST_EXISTS_EMAIL(false,2002,"중복된 이메일입니다."),
     POST_EXISTS_CART(false,2003,"이미 장바구니에 있는 상품입니다."),
+    POST_EXISTS_QNA(false,2004,"중복된 문의&답변 입니다."),
 
     /**
      * 3000: Response 오류
@@ -57,6 +58,10 @@ public enum BaseResponseStatus {
     PAYMENT_METHOD_INSERT_FAILED(false, 4050, "결제수단 추가에 실패하였습니다."),
     PAYMENT_METHOD_RETRIEVE_FAILED(false, 4051, "결제수단 조회에 실패하였습니다."),
     PAYMENT_METHOD_DELETE_FAILED(false, 4052, "결제수단 삭제에 실패하였습니다."),
+    QNA_INSERT_FAILED(false, 4053, "문의답변에 실패했습니다."),
+    QNA_RETRIEVE_FAILED(false, 4054, "문의답변에 조회에 실패했습니다."),
+    QNA_DELETE_FAILED(false, 4055, "문의답변에 삭제에 실패했습니다."),
+    QNA_UPDATE_FAILED(false, 4056, "문의답변에 수정에 실패했습니다."),
 
     /**
      * 5000: S3 오류

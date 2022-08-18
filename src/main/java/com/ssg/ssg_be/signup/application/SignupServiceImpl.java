@@ -69,4 +69,6 @@ public class SignupServiceImpl implements SignupService {
             throw new BaseException(POST_EXISTS_LOGIN_ID);
         }
     }
+
+
 }
