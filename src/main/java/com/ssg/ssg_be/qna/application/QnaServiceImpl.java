@@ -41,15 +41,13 @@ public class QnaServiceImpl implements QnaService {
     }
 
     @Override
-    public List<QnaDtoRes> retrieveQna(Long userId) throws BaseException {
+    public List<QnaDtoRes> retrieveQna(Long productId) throws BaseException {
         try {
-            return qnaRepository.findByUserUserId(userId);
+            return qnaRepository.findByProductProductId(productId);
         } catch (Exception exception) {
             throw new BaseException(QNA_RETRIEVE_FAILED);
         }
     }
-
-
 
     @Override
     public void deleteQna(Long qnaId) throws BaseException {
@@ -69,6 +67,15 @@ public class QnaServiceImpl implements QnaService {
 
         } catch (Exception exception) {
             throw new BaseException(QNA_UPDATE_FAILED);
+        }
+    }
+
+    @Override
+    public List<QnaDtoRes> retrieveMyQna(Long userId) throws BaseException {
+        try {
+            return qnaRepository.findByUserUserId(userId);
+        } catch (Exception exception) {
+            throw new BaseException(QNA_RETRIEVE_FAILED);
         }
     }
 }

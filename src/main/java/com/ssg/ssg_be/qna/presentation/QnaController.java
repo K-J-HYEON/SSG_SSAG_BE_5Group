@@ -35,10 +35,21 @@ public class QnaController {
     }
 
     @ResponseBody
-    @GetMapping("/qna")
-    public BaseResponse<List<QnaDtoRes>> retrieveQna(Long qnaId) {
+    @GetMapping("/qna/{productId}")
+    public BaseResponse<List<QnaDtoRes>> retrieveQna(@PathVariable Long productId) {
         try {
-            List<QnaDtoRes> qnaDtoRes = qnaService.retrieveQna(qnaId);
+            List<QnaDtoRes> qnaDtoRes = qnaService.retrieveQna(productId);
+            return new BaseResponse<>(qnaDtoRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/qna/user/{userId}")
+    public BaseResponse<List<QnaDtoRes>> retrieveMyQna(@PathVariable Long userId) {
+        try {
+            List<QnaDtoRes> qnaDtoRes = qnaService.retrieveMyQna(userId);
             return new BaseResponse<>(qnaDtoRes);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -70,15 +81,4 @@ public class QnaController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
-
-//    @ResponseBody
-//    @GetMapping("/qna/{user}")
-//    public BaseResponse<List<QnaDtoRes>> retrieveQna(Long qnaId) {
-//        try {
-//            List<QnaDtoRes> qnaDtoRes = qnaService.retrieveQna(qnaId);
-//            return new BaseResponse<>(qnaDtoRes);
-//        } catch (BaseException exception) {
-//            return new BaseResponse<>(exception.getStatus());
-//        }
-//    }
 }

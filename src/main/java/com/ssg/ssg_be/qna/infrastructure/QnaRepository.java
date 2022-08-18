@@ -13,19 +13,7 @@ import java.util.List;
 
 @Repository
 public interface QnaRepository extends JpaRepository<Qna, Long> {
-    List<QnaDtoRes> findByUserUserId(Long userId);
+    List<QnaDtoRes> findByProductProductId(Long productId);
     boolean existByQna_QnaId(Long qnaId);
-
-    List<Qna> findByMyId(Long userId);
-
-//    @ResponseBody
-//    @GetMapping("/qna")
-//    public BaseResponse<List<QnaDtoRes>> retrieveQna(Long qnaId) {
-//        try {
-//            List<QnaDtoRes> qnaDtoRes = qnaService.retrieveQna(qnaId);
-//            return new BaseResponse<>(qnaDtoRes);
-//        } catch (BaseException exception) {
-//            return new BaseResponse<>(exception.getStatus());
-//        }
-//    }
+    List<QnaDtoRes> findByUserUserId(Long userId);
 }
