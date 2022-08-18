@@ -11,6 +11,7 @@ public interface ShippingAddrService {
 
     void createShippingAddr(ShippingAddrDtoReq shippingAddrDtoReq) throws BaseException;
     List<ShippingAddrDtoRes> retrieveShippingAddr(Long userId) throws BaseException;
+    ShippingAddrDtoRes retrieveBasicShippingAddr(Long userId) throws BaseException;
     void updateShippingAddr(ShippingAddrPutDtoReq shippingAddrPutDtoReq) throws BaseException;
     void deleteShippingAddr(Long addrId) throws BaseException;
 
