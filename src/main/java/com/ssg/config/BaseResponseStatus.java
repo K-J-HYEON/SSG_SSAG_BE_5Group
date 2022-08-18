@@ -64,6 +64,7 @@ public enum BaseResponseStatus {
     QNA_RETRIEVE_FAILED(false, 4054, "문의답변에 조회에 실패했습니다."),
     QNA_DELETE_FAILED(false, 4055, "문의답변에 삭제에 실패했습니다."),
     QNA_UPDATE_FAILED(false, 4056, "문의답변에 수정에 실패했습니다."),
+    REVIEW_INSERT_FAILED(false, 4057, "리뷰작성에 실패했습니다."),
 
     /**
      * 5000: S3 오류

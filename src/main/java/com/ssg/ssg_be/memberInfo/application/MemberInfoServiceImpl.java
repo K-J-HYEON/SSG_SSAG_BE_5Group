@@ -58,6 +58,4 @@ public class MemberInfoServiceImpl implements MemberInfoService {
             throw new BaseException(PASSWORD_UPDATE_FAILED);
         }
     }
-
-
 }
