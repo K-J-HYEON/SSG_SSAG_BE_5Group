@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 public class PaymentMethodDtoReq {
 
-    private Long userId;
     private String cardCompany;
     private String cardNumber;
 

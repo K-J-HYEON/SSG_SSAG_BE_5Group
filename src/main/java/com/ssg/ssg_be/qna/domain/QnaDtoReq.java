@@ -8,7 +8,6 @@ import lombok.Getter;
 public class QnaDtoReq {
 
     private Long productId;
-    private Long userId;
     private int type;
     private String title;
     private String content;

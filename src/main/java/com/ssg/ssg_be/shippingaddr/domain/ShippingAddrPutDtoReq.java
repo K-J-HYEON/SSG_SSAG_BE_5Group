@@ -7,7 +7,6 @@ import lombok.Getter;
 public class ShippingAddrPutDtoReq {
 
     private Long addrId;
-    private Long userId;
     private String addrName;    // 주소 별칭
     private String recipient;   // 받는 분
     private String phone;

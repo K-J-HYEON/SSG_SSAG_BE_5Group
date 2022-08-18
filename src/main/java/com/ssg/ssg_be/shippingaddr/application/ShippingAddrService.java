@@ -10,10 +10,10 @@ import java.util.List;
 
 public interface ShippingAddrService {
 
-    void createShippingAddr(ShippingAddrDtoReq shippingAddrDtoReq) throws BaseException;
+    void createShippingAddr(ShippingAddrDtoReq shippingAddrDtoReq, Long userId) throws BaseException;
     List<ShippingAddrDtoRes> retrieveShippingAddr(Long userId) throws BaseException;
     ShippingAddrDtoRes retrieveBasicShippingAddr(Long userId) throws BaseException;
-    void updateShippingAddr(ShippingAddrPutDtoReq shippingAddrPutDtoReq) throws BaseException;
+    void updateShippingAddr(ShippingAddrPutDtoReq shippingAddrPutDtoReq, Long userId) throws BaseException;
     void updateDefaultShippingAddr(ShippingAddrDefaultPutDtoReq shippingAddrDefaultPutDtoReq, Long userId) throws BaseException;
     void deleteShippingAddr(Long addrId) throws BaseException;
 

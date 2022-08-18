@@ -7,7 +7,6 @@ import lombok.Getter;
 public class CartOptionPatchDtoReq {
 
     private Long cartId;
-    private Long userId;
     private Long productOptionId;
     private Long colorId;
     private Long sizeId;

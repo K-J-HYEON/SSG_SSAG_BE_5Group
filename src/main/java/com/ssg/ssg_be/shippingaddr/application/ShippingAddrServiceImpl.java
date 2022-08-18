@@ -26,9 +26,9 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
     }
 
     @Override
-    public void createShippingAddr(ShippingAddrDtoReq shippingAddrDtoReq) throws BaseException {
+    public void createShippingAddr(ShippingAddrDtoReq shippingAddrDtoReq, Long userId) throws BaseException {
 
-        User user = userRepository.getById(shippingAddrDtoReq.getUserId());
+        User user = userRepository.getById(userId);
 
         try {
             shippingAddrRepository.save(shippingAddrDtoReq.toEntity(user));
@@ -57,10 +57,10 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
     }
 
     @Override
-    public void updateShippingAddr(ShippingAddrPutDtoReq shippingAddrPutDtoReq) throws BaseException {
+    public void updateShippingAddr(ShippingAddrPutDtoReq shippingAddrPutDtoReq, Long userId) throws BaseException {
 
         try {
-            User user = userRepository.getById(shippingAddrPutDtoReq.getUserId());
+            User user = userRepository.getById(userId);
             ShippingAddr shippingAddr = shippingAddrRepository.getById(shippingAddrPutDtoReq.getAddrId());
 
             shippingAddrRepository.save(shippingAddrPutDtoReq.toEntity(user, shippingAddr.getAddrDefault()));

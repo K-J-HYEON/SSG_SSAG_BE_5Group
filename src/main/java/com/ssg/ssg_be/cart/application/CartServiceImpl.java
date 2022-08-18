@@ -30,16 +30,16 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public boolean createCart(CartDtoReq cartDtoReq) throws BaseException {
-        User user = userRepository.findByUserId(cartDtoReq.getUserId()).orElseThrow(()->new BaseException(NO_EXIST_USER));
+    public boolean createCart(CartDtoReq cartDtoReq, Long userId) throws BaseException {
+        User user = userRepository.findByUserId(userId).orElseThrow(()->new BaseException(NO_EXIST_USER));
         boolean isOverlap = false;
 
         try {
             ProductOption productOption = productOptionRepository.getById(cartDtoReq.getProductOptionId());
 
             // 장바구니에 해당 옵션이 이미 존재하는 경우, 수량만 더해 줌. 존재하지 않는 경우는 해당 옵션을 장바구니에 새로 추가
-            if(cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(cartDtoReq.getUserId(), cartDtoReq.getProductOptionId())) {
-                Cart cart = cartRepository.findByUserUserIdAndProductOption_ProductOptionId(cartDtoReq.getUserId(), cartDtoReq.getProductOptionId());
+            if(cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(userId, cartDtoReq.getProductOptionId())) {
+                Cart cart = cartRepository.findByUserUserIdAndProductOption_ProductOptionId(userId, cartDtoReq.getProductOptionId());
 
                 cartDtoReq.setCount(cartDtoReq.getCount()+cart.getCount());
                 cartRepository.save(cartDtoReq.toOriginEntity(user, productOption, cart.getCartId()));
@@ -86,7 +86,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional(rollbackFor = BaseException.class)
-    public CartOptionPatchDtoRes updateCartOption(CartOptionPatchDtoReq cartOptionPatchDtoReq) throws BaseException {
+    public CartOptionPatchDtoRes updateCartOption(CartOptionPatchDtoReq cartOptionPatchDtoReq, Long userId) throws BaseException {
         Cart cart = cartRepository.getById(cartOptionPatchDtoReq.getCartId());
 
         ProductOption productOption = productOptionRepository.getById(cartOptionPatchDtoReq.getProductOptionId());
@@ -100,8 +100,8 @@ public class CartServiceImpl implements CartService {
         }
 
         try {
-            if(cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(cartOptionPatchDtoReq.getUserId(), newProductOption.getProductOptionId())) {
-                Cart overlapCart = cartRepository.findByUserUserIdAndProductOption_ProductOptionId(cartOptionPatchDtoReq.getUserId(), newProductOption.getProductOptionId());
+            if(cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(userId, newProductOption.getProductOptionId())) {
+                Cart overlapCart = cartRepository.findByUserUserIdAndProductOption_ProductOptionId(userId, newProductOption.getProductOptionId());
 
                 cartRepository.save(Cart.builder()
                             .cartId(overlapCart.getCartId())
