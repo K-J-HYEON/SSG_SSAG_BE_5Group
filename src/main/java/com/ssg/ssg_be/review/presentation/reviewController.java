@@ -1,6 +1,5 @@
 package com.ssg.ssg_be.review.presentation;
 
-
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.review.application.ReviewService;
@@ -41,7 +40,4 @@ public class reviewController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
-
-
-
 }
