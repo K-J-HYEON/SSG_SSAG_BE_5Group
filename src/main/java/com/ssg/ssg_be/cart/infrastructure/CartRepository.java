@@ -2,7 +2,6 @@ package com.ssg.ssg_be.cart.infrastructure;
 
 import com.ssg.ssg_be.cart.domain.Cart;
 import com.ssg.ssg_be.cart.domain.CartDtoRes;
-import com.ssg.ssg_be.signup.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +11,7 @@ import java.util.List;
 public interface CartRepository extends JpaRepository<Cart, Long> {
     List<CartDtoRes> findByUserUserId(Long userId);
 
-    boolean existsByProduct_ProductId(Long productId);
+    boolean existsByUserUserIdAndProductOption_ProductOptionId(Long userId, Long productOptionId);
+
+    Cart findByUserUserIdAndProductOption_ProductOptionId(Long userId, Long productOptionId);
 }

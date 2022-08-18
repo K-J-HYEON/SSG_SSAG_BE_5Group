@@ -17,7 +17,6 @@ public enum BaseResponseStatus {
     POST_EXISTS_LOGIN_ID(false,2000,"중복된 아이디입니다."),
     POST_EXISTS_PHONE(false,2001,"중복된 휴대폰 번호입니다."),
     POST_EXISTS_EMAIL(false,2002,"중복된 이메일입니다."),
-    POST_EXISTS_CART(false,2003,"이미 장바구니에 있는 상품입니다."),
 
     /**
      * 3000: Response 오류
@@ -46,7 +45,9 @@ public enum BaseResponseStatus {
     CART_INSERT_FAILED(false, 4020, "장바구니 담기에 실패하였습니다."),
     CART_RETRIEVE_FAILED(false, 4021, "장바구니 조회에 실패하였습니다."),
     CART_DELETE_FAILED(false, 4022, "장바구니 삭제에 실패하였습니다."),
-    CART_UPDATE_FAILED(false, 4023, "장바구니 수정에 실패하였습니다."),
+    CART_COUNT_UPDATE_FAILED(false, 4023, "장바구니 수량 수정에 실패하였습니다."),
+    CART_OPTION_UPDATE_FAILED(false, 4024, "장바구니 옵션 수정에 실패하였습니다."),
+    OPTION_RETRIEVE_FAILED(false, 4025, "옵션 조회에 실패하였습니다."),
     WISH_INSERT_FAILED(false, 4030, "좋아요 누르기에 실패하였습니다."),
     WISH_RETRIEVE_FAILED(false, 4031, "좋아요 조회에 실패하였습니다."),
     WISH_DELETE_FAILED(false, 4032, "좋아요 삭제에 실패하였습니다."),

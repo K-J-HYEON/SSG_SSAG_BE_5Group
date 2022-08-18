@@ -3,9 +3,7 @@ package com.ssg.ssg_be.cart.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.cart.application.CartService;
-import com.ssg.ssg_be.cart.domain.CartDtoReq;
-import com.ssg.ssg_be.cart.domain.CartDtoRes;
-import com.ssg.ssg_be.cart.domain.CartPatchDtoReq;
+import com.ssg.ssg_be.cart.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +25,11 @@ public class CartController {
         String result = "";
 
         try {
-            cartService.createCart(cartDtoReq);
-            result = "장바구니 추가에 성공하였습니다.";
+            if(cartService.createCart(cartDtoReq)) {
+                result = "이미 추가된 옵션입니다.";
+            } else {
+                result = "장바구니 추가에 성공하였습니다.";
+            }
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -59,14 +60,25 @@ public class CartController {
         }
     }
 
-    @PutMapping("/lists")
-    public BaseResponse<String> updateCart(@RequestBody CartPatchDtoReq cartPatchDtoReq) {
+    @PutMapping("/lists/count")
+    public BaseResponse<String> updateCartCount(@RequestBody CartCountPatchDtoReq cartCountPatchDtoReq) {
         String result = "";
 
         try {
-            cartService.updateCart(cartPatchDtoReq);
-            result = "장바구니 아이템을 수정했습니다.";
+            cartService.updateCartCount(cartCountPatchDtoReq);
+            result = "장바구니 아이템 수량을 수정했습니다.";
             return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @PutMapping("/lists/option")
+    public BaseResponse<CartOptionPatchDtoRes> updateCartOption(@RequestBody CartOptionPatchDtoReq cartOptionPatchDtoReq) {
+
+        try {
+            return new BaseResponse<>(cartService.updateCartOption(cartOptionPatchDtoReq));
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
