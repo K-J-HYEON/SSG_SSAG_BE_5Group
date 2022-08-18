@@ -3,7 +3,6 @@ package com.ssg.ssg_be.shippingaddr.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.shippingaddr.application.ShippingAddrService;
-import com.ssg.ssg_be.shippingaddr.domain.ShippingAddr;
 import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrDtoReq;
 import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrDtoRes;
 import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrPutDtoReq;
@@ -42,6 +41,16 @@ public class ShippingAddrController {
         try {
             List<ShippingAddrDtoRes> shippingAddrDtoRes = shippingAddrService.retrieveShippingAddr(userId);
             return new BaseResponse<>(shippingAddrDtoRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/shipping-addr/default/{userId}")
+    public BaseResponse<ShippingAddrDtoRes> retrieveBasicShippingAddr(@PathVariable Long userId) {
+        try {
+            return new BaseResponse<>(shippingAddrService.retrieveBasicShippingAddr(userId));
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
