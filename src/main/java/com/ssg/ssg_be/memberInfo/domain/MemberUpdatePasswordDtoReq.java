@@ -26,6 +26,7 @@ public class MemberUpdatePasswordDtoReq {
                 .status(user.getStatus())
                 .phone(user.getPhone())
                 .email(user.getEmail())
+                .userRole(user.getUserRole())
                 .build();
     }
 }

@@ -7,26 +7,22 @@ import com.ssg.ssg_be.signup.domain.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface QnaDtoRes {
     Long getQnaId();
-    User getUser();
-    Product getProduct();
 
     int getType();
     String getTitle();
     String getContent();
+    int getSecret();
+    LocalDateTime getCreateAt();
+    LocalDateTime getUpdateAt();
     int getAnswerStatus();
 
-//    @ResponseBody
-//    @GetMapping("/qna")
-//    public BaseResponse<List<QnaDtoRes>> retrieveQna(Long qnaId) {
-//        try {
-//            List<QnaDtoRes> qnaDtoRes = qnaService.retrieveQna(qnaId);
-//            return new BaseResponse<>(qnaDtoRes);
-//        } catch (BaseException exception) {
-//            return new BaseResponse<>(exception.getStatus());
-//        }
-//    }
+    Long getUserUserId();
+    String getUserLoginId();
+
 }

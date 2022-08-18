@@ -24,6 +24,7 @@ public class MemberInfoPutDtoReq {
                 .status(user.getStatus())
                 .phone(phone)
                 .email(email)
+                .userRole(user.getUserRole())
                 .build();
     }
 }
