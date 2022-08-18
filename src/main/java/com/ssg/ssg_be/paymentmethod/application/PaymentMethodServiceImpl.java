@@ -1,8 +1,10 @@
 package com.ssg.ssg_be.paymentmethod.application;
 
 import com.ssg.config.BaseException;
+import com.ssg.ssg_be.paymentmethod.domain.CardImg;
 import com.ssg.ssg_be.paymentmethod.domain.PaymentMethodDtoReq;
 import com.ssg.ssg_be.paymentmethod.domain.PaymentMethodDtoRes;
+import com.ssg.ssg_be.paymentmethod.infrastucture.CardImgRepository;
 import com.ssg.ssg_be.paymentmethod.infrastucture.PaymentMethodRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
@@ -18,20 +20,23 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
     private final PaymentMethodRepository paymentMethodRepository;
     private final UserRepository userRepository;
+    private final CardImgRepository cardImgRepository;
 
     @Autowired
-    public PaymentMethodServiceImpl(PaymentMethodRepository paymentMethodRepository, UserRepository userRepository) {
+    public PaymentMethodServiceImpl(PaymentMethodRepository paymentMethodRepository, UserRepository userRepository, CardImgRepository cardImgRepository) {
         this.paymentMethodRepository = paymentMethodRepository;
         this.userRepository = userRepository;
+        this.cardImgRepository = cardImgRepository;
     }
 
     @Override
     public void createPaymentMethod(PaymentMethodDtoReq paymentMethodDtoReq) throws BaseException {
 
         User user = userRepository.getById(paymentMethodDtoReq.getUserId());
+        CardImg cardImg = cardImgRepository.findByCardCompany(paymentMethodDtoReq.getCardCompany());
 
         try {
-            paymentMethodRepository.save(paymentMethodDtoReq.toEntity(user));
+            paymentMethodRepository.save(paymentMethodDtoReq.toEntity(user, cardImg));
         } catch(Exception exception) {
             throw new BaseException(PAYMENT_METHOD_INSERT_FAILED);
         }

@@ -10,11 +10,12 @@ public class PaymentMethodDtoReq {
     private String cardCompany;
     private String cardNumber;
 
-    public PaymentMethod toEntity(User user) {
+    public PaymentMethod toEntity(User user, CardImg cardImg) {
         return PaymentMethod.builder()
                 .user(user)
                 .cardCompany(cardCompany)
                 .cardNumber(cardNumber)
+                .cardImg(cardImg)
                 .build();
     }
 }
