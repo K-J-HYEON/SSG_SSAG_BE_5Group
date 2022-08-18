@@ -30,9 +30,9 @@ public class WishServiceImpl implements WishServive {
     }
 
     @Override
-    public void createWish(WishDtoReq wishDtoReq) throws BaseException {
+    public void createWish(WishDtoReq wishDtoReq, Long userId) throws BaseException {
         try {
-            User user = userRepository.getById(wishDtoReq.getUserId());
+            User user = userRepository.getById(userId);
             Product product = productRepository.getById(wishDtoReq.getProductId());
 
             wishRepository.save(wishDtoReq.toEntity(product, user));

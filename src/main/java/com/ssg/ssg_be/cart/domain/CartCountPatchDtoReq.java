@@ -8,7 +8,6 @@ import lombok.Getter;
 public class CartCountPatchDtoReq {
 
     private Long cartId;
-    private Long userId;
     private int count;
 
     public Cart toEntity(User user, ProductOption productOption) {

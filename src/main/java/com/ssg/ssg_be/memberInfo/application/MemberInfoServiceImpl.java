@@ -34,9 +34,9 @@ public class MemberInfoServiceImpl implements MemberInfoService {
     }
 
     @Override
-    public void updateUserMember(MemberInfoPutDtoReq memberInfoPutDtoReq) throws BaseException {
+    public void updateUserMember(MemberInfoPutDtoReq memberInfoPutDtoReq, Long userId) throws BaseException {
         try {
-            User user = userRepository.findByUserId(memberInfoPutDtoReq.getUserId()).orElseThrow(() ->
+            User user = userRepository.findByUserId(userId).orElseThrow(() ->
                 new BaseException(USER_RETRIEVE_FAILED)
             );
             userRepository.save(memberInfoPutDtoReq.toEntity(user));
@@ -46,9 +46,9 @@ public class MemberInfoServiceImpl implements MemberInfoService {
     }
 
     @Override
-    public void updateUserPassword(MemberUpdatePasswordDtoReq memberUpdatePasswordDtoReq) throws BaseException {
+    public void updateUserPassword(MemberUpdatePasswordDtoReq memberUpdatePasswordDtoReq, Long userId) throws BaseException {
         try {
-            User user = userRepository.findByUserId(memberUpdatePasswordDtoReq.getUserId()).orElseThrow(() ->
+            User user = userRepository.findByUserId(userId).orElseThrow(() ->
                     new BaseException(PASSWORD_RETRIEVE_FAILED)
             );
 

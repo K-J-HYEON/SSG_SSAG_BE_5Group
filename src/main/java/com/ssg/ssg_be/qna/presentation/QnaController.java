@@ -6,6 +6,7 @@ import com.ssg.ssg_be.qna.application.QnaService;
 import com.ssg.ssg_be.qna.domain.QnaDtoReq;
 import com.ssg.ssg_be.qna.domain.QnaDtoRes;
 import com.ssg.ssg_be.qna.domain.QnaPatchDtoReq;
+import com.ssg.utils.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -15,18 +16,22 @@ import java.util.List;
 public class QnaController {
 
     private final QnaService qnaService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public QnaController(QnaService qnaService) {
+    public QnaController(QnaService qnaService, JwtTokenProvider jwtTokenProvider) {
         this.qnaService = qnaService;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @PostMapping("/qna")
     public BaseResponse<String> addQna(@RequestBody QnaDtoReq qnaDtoReq) {
         String result = "";
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            qnaService.createQna(qnaDtoReq);
+            qnaService.createQna(qnaDtoReq, userId);
             result = "상품문의 생성에 성공하였습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
@@ -46,8 +51,11 @@ public class QnaController {
     }
 
     @ResponseBody
-    @GetMapping("/qna/user/{userId}")
-    public BaseResponse<List<QnaDtoRes>> retrieveMyQna(@PathVariable Long userId) {
+    @GetMapping("/qna/user")
+    public BaseResponse<List<QnaDtoRes>> retrieveMyQna() {
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
+
         try {
             List<QnaDtoRes> qnaDtoRes = qnaService.retrieveMyQna(userId);
             return new BaseResponse<>(qnaDtoRes);
@@ -69,12 +77,14 @@ public class QnaController {
         }
     }
 
-    @PutMapping("/qna/{qnaId}")
+    @PutMapping("/qna")
     public BaseResponse<String> updateQna(@RequestBody QnaPatchDtoReq qnaPatchDtoReq) {
         String result = "";
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            qnaService.updateQna(qnaPatchDtoReq);
+            qnaService.updateQna(qnaPatchDtoReq, userId);
             result = "상품문의를 수정했습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {

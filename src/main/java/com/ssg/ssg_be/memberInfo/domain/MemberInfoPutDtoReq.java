@@ -6,13 +6,12 @@ import lombok.Getter;
 @Getter
 public class MemberInfoPutDtoReq {
 
-    private Long userId;
     private String phone;
     private String email;
 
     public User toEntity(User user) {
         return User.builder()
-                .userId(userId)
+                .userId(user.getUserId())
                 .loginId(user.getLoginId())
                 .loginPwd(user.getLoginPwd())
                 .name(user.getName())

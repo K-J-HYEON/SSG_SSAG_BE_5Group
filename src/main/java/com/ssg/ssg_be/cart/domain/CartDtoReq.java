@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 public class CartDtoReq {
 
-    private Long userId;
     private Long productOptionId;
     private int count;
 

@@ -28,10 +28,12 @@ public class ShippingAddrController {
 
     @PostMapping("/shipping-addr")
     public BaseResponse<String> createShippingAddr(@RequestBody ShippingAddrDtoReq shippingAddrDtoReq) {
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
         String result = "";
 
         try {
-            shippingAddrService.createShippingAddr(shippingAddrDtoReq);
+            shippingAddrService.createShippingAddr(shippingAddrDtoReq, userId);
             result = "배송지 추가에 성공했습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
@@ -40,8 +42,11 @@ public class ShippingAddrController {
     }
 
     @ResponseBody
-    @GetMapping("/shipping-addr/{userId}")
-    public BaseResponse<List<ShippingAddrDtoRes>> retrieveShippingAddr(@PathVariable Long userId) {
+    @GetMapping("/shipping-addr")
+    public BaseResponse<List<ShippingAddrDtoRes>> retrieveShippingAddr() {
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
+
         try {
             List<ShippingAddrDtoRes> shippingAddrDtoRes = shippingAddrService.retrieveShippingAddr(userId);
             return new BaseResponse<>(shippingAddrDtoRes);
@@ -51,8 +56,11 @@ public class ShippingAddrController {
     }
 
     @ResponseBody
-    @GetMapping("/shipping-addr/default/{userId}")
-    public BaseResponse<ShippingAddrDtoRes> retrieveBasicShippingAddr(@PathVariable Long userId) {
+    @GetMapping("/shipping-addr/default")
+    public BaseResponse<ShippingAddrDtoRes> retrieveBasicShippingAddr() {
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
+
         try {
             return new BaseResponse<>(shippingAddrService.retrieveBasicShippingAddr(userId));
         } catch (BaseException exception) {
@@ -63,9 +71,11 @@ public class ShippingAddrController {
     @PutMapping("/shipping-addr")
     public BaseResponse<String> updateShippingAddr(@RequestBody ShippingAddrPutDtoReq shippingAddrPutDtoReq) {
         String result = "";
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            shippingAddrService.updateShippingAddr(shippingAddrPutDtoReq);
+            shippingAddrService.updateShippingAddr(shippingAddrPutDtoReq, userId);
             result = "배송지 변경에 성공하였습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
