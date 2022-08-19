@@ -27,9 +27,9 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public void createReview(ReviewDtoReq reviewDtoReq) throws BaseException {
-        User user = userRepository.findByUserId(reviewDtoReq.getUserId()).orElseThrow(() -> new BaseException(NO_EXIST_USER));
-//        User user = userRepository.findByUserId(userId).orElseThrow(() -> new BaseException(NO_EXIST_USER));
+    public void createReview(ReviewDtoReq reviewDtoReq, Long userId) throws BaseException {
+//        User user = userRepository.findByUserId(reviewDtoReq.getUserId()).orElseThrow(() -> new BaseException(NO_EXIST_USER));
+        User user = userRepository.findByUserId(userId).orElseThrow(() -> new BaseException(NO_EXIST_USER));
         try {
             Product product = productRepository.getById(reviewDtoReq.getProductId());
             reviewRepository.save(reviewDtoReq.toEntity(product, user));

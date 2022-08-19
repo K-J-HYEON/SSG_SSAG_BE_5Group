@@ -33,7 +33,7 @@ public class reviewController {
         String result = "";
 
         try {
-            reviewService.createReview(reviewDtoReq);
+            reviewService.createReview(reviewDtoReq, userId);
             result = "리뷰 생성에 성공하였습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {

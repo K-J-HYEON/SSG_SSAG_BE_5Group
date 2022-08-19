@@ -8,7 +8,6 @@ import lombok.Getter;
 public class ReviewDtoReq {
 
     private Long productId;
-    private Long userId;
     private String content;
     private int score;
 

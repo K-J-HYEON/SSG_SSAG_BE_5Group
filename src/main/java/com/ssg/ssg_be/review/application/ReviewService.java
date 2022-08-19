@@ -5,5 +5,5 @@ import com.ssg.ssg_be.review.domain.ReviewDtoReq;
 
 public interface ReviewService {
 
-    void createReview(ReviewDtoReq reviewDtoReq) throws BaseException;
+    void createReview(ReviewDtoReq reviewDtoReq, Long userId) throws BaseException;
 }

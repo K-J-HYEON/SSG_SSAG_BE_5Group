@@ -6,7 +6,6 @@ import com.ssg.ssg_be.signup.domain.User;
 public class ReviewPatchDtoReq {
 
     private Long reviewId;
-    private Long userId;
     private Long productId;
 
     private String content;
