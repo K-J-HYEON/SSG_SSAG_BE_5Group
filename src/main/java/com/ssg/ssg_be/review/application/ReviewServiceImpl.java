@@ -41,45 +41,40 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewDtoRes> retrieveReview(Long reviewId) throws BaseException {
-        return null;
+    public List<ReviewDtoRes> retrieveReview(Long productId) throws BaseException {
+        try {
+            return reviewRepository.findByProductProductId(productId);
+        } catch (Exception exception) {
+            throw new BaseException(REVIEW_RETRIEVE_FAILED);
+        }
     }
 
     @Override
     public List<ReviewDtoRes> retrieveMyReview(Long userId) throws BaseException {
-        return null;
+        try {
+            return reviewRepository.findByUserUserId(userId);
+        } catch (Exception exception) {
+            throw new BaseException(REVIEW_RETRIEVE_FAILED);
+        }
     }
 
     @Override
     public void deleteReview(Long reviewId) throws BaseException {
-
+        try {
+            reviewRepository.deleteById(reviewId);
+        } catch (Exception exception) {
+            throw new BaseException(REVIEW_DELETE_FAILED);
+        }
     }
 
     @Override
     public void updateReview(ReviewPatchDtoReq reviewPatchDtoReq) throws BaseException {
-
+        try {
+            User user = userRepository.getById(reviewPatchDtoReq.getUserId());
+            Product product = productRepository.getById(reviewPatchDtoReq.getProductId());
+            reviewRepository.save(reviewPatchDtoReq.toEntity(product, user));
+        } catch (Exception exception) {
+            throw new BaseException(REVIEW_UPDATE_FAILED);
+        }
     }
-
-//    @Override
-//    public List<ReviewDtoRes> retrieveReview(Long productId) throws BaseException {
-//        try {
-//            return reviewRepository.existsByProduct_ProductId(productId);
-//        } catch (Exception exception) {
-//            throw new BaseException(REVIEW_RETRIEVE_FAILED);
-//        }
-//    }
-//
-//    @Override
-//    public List<ReviewDtoRes> retrieveMyReview(Long userId) throws BaseException {
-//        return null;
-//    }
-//
-//    @Override
-//    public void deleteReview(Long reviewId) throws BaseException {
-//
-//    }
-//
-//    @Override
-//    public void updateReview(ReviewPatchDtoReq reviewPatchDtoReq) throws BaseException {
-//    }
 }

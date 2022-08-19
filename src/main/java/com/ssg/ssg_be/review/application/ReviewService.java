@@ -15,7 +15,7 @@ public interface ReviewService {
     List<ReviewDtoRes> retrieveMyReview(Long userId) throws BaseException;
 
     void deleteReview(Long reviewId) throws BaseException;
-
     void updateReview(ReviewPatchDtoReq reviewPatchDtoReq) throws BaseException;
+
 
 }

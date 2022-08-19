@@ -43,9 +43,23 @@ public class ReviewController {
 
     @ResponseBody
     @GetMapping("/revierw/{reviewId}")
-    public BaseResponse<String> retrieveReview(@PathVariable Long reviewId) {
+    public BaseResponse<List<ReviewDtoRes>> retrieveReview(@PathVariable Long reviewId) {
         try {
-            List<ReviewDtoRes> reviewDtoRes = reviewService.
+            List<ReviewDtoRes> reviewDtoRes = reviewService.retrieveReview(reviewId);
+            return new BaseResponse<>(reviewDtoRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/review")
+    public BaseException<List<ReviewDtoRes>> retrieveMyReview(Long userId) {
+        try {
+            List<ReviewDtoRes> reviewDtoRes = reviewService.retrieveMyReview(userId);
+            return new BaseException<>(ReviewDtoRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
         }
     }
 
