@@ -3,6 +3,7 @@ package com.ssg.ssg_be.product.application;
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.category.infrastructure.CategoryConnRepository;
 import com.ssg.ssg_be.product.domain.*;
+import com.ssg.ssg_be.product.infrastructure.ProductRepository;
 import com.ssg.ssg_be.review.domain.ReviewTotalDto;
 import com.ssg.ssg_be.review.infrastructure.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,13 @@ public class ProductServiceImpl implements ProductService {
 
     private final CategoryConnRepository categoryConnRepository;
     private final ReviewRepository reviewRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public ProductServiceImpl(CategoryConnRepository categoryConnRepository, ReviewRepository reviewRepository) {
+    public ProductServiceImpl(CategoryConnRepository categoryConnRepository, ReviewRepository reviewRepository, ProductRepository productRepository) {
         this.categoryConnRepository = categoryConnRepository;
         this.reviewRepository = reviewRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -72,6 +75,27 @@ public class ProductServiceImpl implements ProductService {
         } catch(Exception exception) {
             throw new BaseException(SEARCH_RETRIEVE_FAILED);
         }
+    }
+
+    @Override
+    public ProductInfoDtoRes retrieveProductBasic(Long productId) throws BaseException {
+        //TODO #1 : 상품 사진 조회
+
+        //TODO #2 : 상품 기본 정보 조회(상품명, 가격, 할인율, 가게명)
+
+        //TODO #3 : 리뷰 개수 조회
+
+
+        return null;
+    }
+
+    @Override
+    public ProductDetailInfoDtoRes retrieveProductDetail(Long productId) throws BaseException {
+        //TODO #4 : 상품 번호 조회
+
+        //TODO #5 : 상세 이미지 조회
+
+        return null;
     }
 
     public List<ProductDtoRes> retrieveProductAndReview(List<CategoryProductDtoRes> products) {
