@@ -4,16 +4,16 @@ import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.review.application.ReviewService;
 import com.ssg.ssg_be.review.domain.ReviewDtoReq;
+import com.ssg.ssg_be.review.domain.ReviewDtoRes;
 import com.ssg.utils.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-public class reviewController {
+public class ReviewController {
 
     private final ReviewService reviewService;
     private final JwtTokenProvider jwtTokenProvider;
@@ -21,7 +21,7 @@ public class reviewController {
 
 
     @Autowired
-    public reviewController(ReviewService reviewService, JwtTokenProvider jwtTokenProvider) {
+    public ReviewController(ReviewService reviewService, JwtTokenProvider jwtTokenProvider) {
         this.reviewService = reviewService;
         this.jwtTokenProvider = jwtTokenProvider;
     }
@@ -30,7 +30,7 @@ public class reviewController {
     public BaseResponse<String> addReview(@RequestBody ReviewDtoReq reviewDtoReq) {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
-        String result = "";
+        String result;
 
         try {
             reviewService.createReview(reviewDtoReq, userId);
@@ -40,4 +40,13 @@ public class reviewController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
+
+    @ResponseBody
+    @GetMapping("/revierw/{reviewId}")
+    public BaseResponse<String> retrieveReview(@PathVariable Long reviewId) {
+        try {
+            List<ReviewDtoRes> reviewDtoRes = reviewService.
+        }
+    }
+
 }

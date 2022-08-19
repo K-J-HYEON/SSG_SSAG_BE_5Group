@@ -3,6 +3,8 @@ import com.ssg.config.BaseException;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.product.infrastructure.ProductRepository;
 import com.ssg.ssg_be.review.domain.ReviewDtoReq;
+import com.ssg.ssg_be.review.domain.ReviewDtoRes;
+import com.ssg.ssg_be.review.domain.ReviewPatchDtoReq;
 import com.ssg.ssg_be.review.infrastructure.ReviewRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
@@ -37,4 +39,47 @@ public class ReviewServiceImpl implements ReviewService {
             throw new BaseException(REVIEW_INSERT_FAILED);
         }
     }
+
+    @Override
+    public List<ReviewDtoRes> retrieveReview(Long reviewId) throws BaseException {
+        return null;
+    }
+
+    @Override
+    public List<ReviewDtoRes> retrieveMyReview(Long userId) throws BaseException {
+        return null;
+    }
+
+    @Override
+    public void deleteReview(Long reviewId) throws BaseException {
+
+    }
+
+    @Override
+    public void updateReview(ReviewPatchDtoReq reviewPatchDtoReq) throws BaseException {
+
+    }
+
+//    @Override
+//    public List<ReviewDtoRes> retrieveReview(Long productId) throws BaseException {
+//        try {
+//            return reviewRepository.existsByProduct_ProductId(productId);
+//        } catch (Exception exception) {
+//            throw new BaseException(REVIEW_RETRIEVE_FAILED);
+//        }
+//    }
+//
+//    @Override
+//    public List<ReviewDtoRes> retrieveMyReview(Long userId) throws BaseException {
+//        return null;
+//    }
+//
+//    @Override
+//    public void deleteReview(Long reviewId) throws BaseException {
+//
+//    }
+//
+//    @Override
+//    public void updateReview(ReviewPatchDtoReq reviewPatchDtoReq) throws BaseException {
+//    }
 }
