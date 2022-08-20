@@ -30,7 +30,7 @@ public class QnaServiceImpl implements QnaService {
     }
 
     @Override
-    public void createQna(QnaDtoReq qnaDtoReq) throws BaseException {
+    public void createQna(QnaDtoReq qnaDtoReq, Long userId) throws BaseException {
         User user = userRepository.findByUserId(qnaDtoReq.getUserId()).orElseThrow(() -> new BaseException(NO_EXIST_USER));
         try {
             Product product = productRepository.getById(qnaDtoReq.getProductId());

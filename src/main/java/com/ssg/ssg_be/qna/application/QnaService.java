@@ -8,7 +8,7 @@ import com.ssg.ssg_be.qna.domain.QnaPatchDtoReq;
 import java.util.List;
 
 public interface QnaService {
-    boolean createQna(QnaDtoReq qnaDtoReq, Long userId) throws BaseException;
+    void createQna(QnaDtoReq qnaDtoReq, Long userId) throws BaseException;
 
     List<QnaDtoRes> retrieveQna(Long qnaId) throws BaseException;
     List<QnaDtoRes> retrieveMyQna(Long userId) throws BaseException;

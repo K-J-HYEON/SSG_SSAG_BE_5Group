@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 public interface ReviewDtoRes {
     Long getReviewId();
 
-    String getContent();
     int getScore();
+    String getContent();
 
     LocalDateTime getCreateAt();
     LocalDateTime getUpdateAt();

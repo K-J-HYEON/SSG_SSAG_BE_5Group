@@ -32,11 +32,8 @@ public class QnaController {
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            if(qnaService.createQna(qnaDtoReq, userId)) {
-                result = "이미 생성한 상품문의입니다.";
-            } else {
-                result = "상품문의 생성에 성공하였습니다.";
-            }
+            qnaService.createQna(qnaDtoReq, userId);
+            result = "상품문의 생성에 성공하였습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());

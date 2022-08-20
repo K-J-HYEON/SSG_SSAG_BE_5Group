@@ -5,10 +5,10 @@ import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.review.application.ReviewService;
 import com.ssg.ssg_be.review.domain.ReviewDtoReq;
 import com.ssg.ssg_be.review.domain.ReviewDtoRes;
+import com.ssg.ssg_be.review.domain.ReviewPatchDtoReq;
 import com.ssg.utils.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,8 +17,6 @@ public class ReviewController {
 
     private final ReviewService reviewService;
     private final JwtTokenProvider jwtTokenProvider;
-
-
 
     @Autowired
     public ReviewController(ReviewService reviewService, JwtTokenProvider jwtTokenProvider) {
@@ -42,7 +40,7 @@ public class ReviewController {
     }
 
     @ResponseBody
-    @GetMapping("/revierw/{reviewId}")
+    @GetMapping("/review/{reviewId}")
     public BaseResponse<List<ReviewDtoRes>> retrieveReview(@PathVariable Long reviewId) {
         try {
             List<ReviewDtoRes> reviewDtoRes = reviewService.retrieveReview(reviewId);
@@ -53,14 +51,42 @@ public class ReviewController {
     }
 
     @ResponseBody
-    @GetMapping("/review")
-    public BaseException<List<ReviewDtoRes>> retrieveMyReview(Long userId) {
+    @GetMapping("/review/user")
+    public BaseResponse<List<ReviewDtoRes>> retrieveMyReview() {
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
+
         try {
             List<ReviewDtoRes> reviewDtoRes = reviewService.retrieveMyReview(userId);
-            return new BaseException<>(ReviewDtoRes);
+            return new BaseResponse<>(reviewDtoRes);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
 
+    @DeleteMapping("/review")
+    public BaseResponse<String> deleteReview(@RequestBody ReviewDtoReq reviewDtoReq, Long reviewId) {
+        String result = "";
+
+        try {
+            reviewService.deleteReview(reviewId);
+            result = "리뷰를 삭제했습니다.";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @PutMapping("/review")
+    public BaseResponse<String> updateReview(@RequestBody ReviewPatchDtoReq reviewPatchDtoReq) {
+        String result = "";
+
+        try {
+            reviewService.updateReview(reviewPatchDtoReq);
+            result = "리뷰를 수정했습니다.";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
 }
