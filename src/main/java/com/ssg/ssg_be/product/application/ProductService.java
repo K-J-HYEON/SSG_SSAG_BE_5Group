@@ -14,7 +14,6 @@ public interface ProductService {
     List<ProductDtoRes> retrieveSearch(String searchWord) throws BaseException;
     ProductInfoDtoRes retrieveProductBasic(Long productId) throws BaseException;
     List<DetailImgDtoRes> retrieveProductDetail(Long productId) throws BaseException;
-
-
+    List<ProductOptionDtoRes> retrieveProductOption(Long productId) throws BaseException;
 
 }

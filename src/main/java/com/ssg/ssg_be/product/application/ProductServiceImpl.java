@@ -5,6 +5,7 @@ import com.ssg.ssg_be.category.infrastructure.CategoryConnRepository;
 import com.ssg.ssg_be.product.domain.*;
 import com.ssg.ssg_be.product.infrastructure.DetailImgRepository;
 import com.ssg.ssg_be.product.infrastructure.ProductImgRepository;
+import com.ssg.ssg_be.product.infrastructure.ProductOptionRepository;
 import com.ssg.ssg_be.product.infrastructure.ProductRepository;
 import com.ssg.ssg_be.review.domain.ReviewTotalDto;
 import com.ssg.ssg_be.review.infrastructure.ReviewRepository;
@@ -24,14 +25,16 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductImgRepository productImgRepository;
     private final DetailImgRepository detailImgRepository;
+    private final ProductOptionRepository productOptionRepository;
 
     @Autowired
-    public ProductServiceImpl(CategoryConnRepository categoryConnRepository, ReviewRepository reviewRepository, ProductRepository productRepository, ProductImgRepository productImgRepository, DetailImgRepository detailImgRepository) {
+    public ProductServiceImpl(CategoryConnRepository categoryConnRepository, ReviewRepository reviewRepository, ProductRepository productRepository, ProductImgRepository productImgRepository, DetailImgRepository detailImgRepository, ProductOptionRepository productOptionRepository) {
         this.categoryConnRepository = categoryConnRepository;
         this.reviewRepository = reviewRepository;
         this.productRepository = productRepository;
         this.productImgRepository = productImgRepository;
         this.detailImgRepository = detailImgRepository;
+        this.productOptionRepository = productOptionRepository;
     }
 
     @Override
@@ -133,8 +136,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<DetailImgDtoRes> retrieveProductDetail(Long productId) throws BaseException {
 
-        //TODO #4 : 상세 이미지 조회
-
         try {
             List<DetailImg> detailImgs = detailImgRepository.findByProductProductIdOrderByPriority(productId);
             List<DetailImgDtoRes> detailImgDtoRes = new ArrayList<>();
@@ -152,6 +153,24 @@ public class ProductServiceImpl implements ProductService {
         } catch(Exception exception) {
             throw new BaseException(PRODUCT_IMG_RETRIEVE_FAILED);
         }
+    }
+
+    @Override
+    public List<ProductOptionDtoRes> retrieveProductOption(Long productId) throws BaseException {
+
+        List<ProductOption> productOption = productOptionRepository.findByProductProductId(productId);
+        List<ProductOptionDtoRes> productOptionDtoRes = new ArrayList<>();
+
+        productOption.forEach(p -> productOptionDtoRes.add(ProductOptionDtoRes.builder()
+                .productOptionId(p.getProductOptionId())
+                .size(p.getSize())
+                .color(p.getColor())
+                .modelNumber(p.getModelNumber())
+                .stock(p.getStock())
+                .build())
+        );
+
+        return productOptionDtoRes;
     }
 
     public List<ProductDtoRes> retrieveProductAndReview(List<CategoryProductDtoRes> products) {
