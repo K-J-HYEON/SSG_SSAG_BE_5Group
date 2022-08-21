@@ -70,7 +70,16 @@ public enum BaseResponseStatus {
      * 5000: S3 오류
      * **/
     // Common
-    TRANSLATE_FILE_FAILED(false, 5000, "파일 변환에 실패하였습니다.");
+    TRANSLATE_FILE_FAILED(false, 5000, "파일 변환에 실패하였습니다."),
+
+
+    /**
+     * 6000: SMS 오류
+     * **/
+    // Common
+    OBJECT_TO_JSON_FAILED(false, 6000, "JSON 변환에 실패하였습니다."),
+    CREATE_URI_FAILED(false, 6001, "URI 생성에 실패하였습니다."),
+    CREATE_SIGNATURE_FAILED(false, 60021, "서명 생성에 실패하였습니다.");
 
 
     private final boolean isSuccess;
