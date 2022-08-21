@@ -158,19 +158,23 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductOptionDtoRes> retrieveProductOption(Long productId) throws BaseException {
 
-        List<ProductOption> productOption = productOptionRepository.findByProductProductId(productId);
-        List<ProductOptionDtoRes> productOptionDtoRes = new ArrayList<>();
+        try {
+            List<ProductOption> productOption = productOptionRepository.findByProductProductId(productId);
+            List<ProductOptionDtoRes> productOptionDtoRes = new ArrayList<>();
 
-        productOption.forEach(p -> productOptionDtoRes.add(ProductOptionDtoRes.builder()
-                .productOptionId(p.getProductOptionId())
-                .size(p.getSize())
-                .color(p.getColor())
-                .modelNumber(p.getModelNumber())
-                .stock(p.getStock())
-                .build())
-        );
+            productOption.forEach(p -> productOptionDtoRes.add(ProductOptionDtoRes.builder()
+                    .productOptionId(p.getProductOptionId())
+                    .size(p.getSize())
+                    .color(p.getColor())
+                    .modelNumber(p.getModelNumber())
+                    .stock(p.getStock())
+                    .build())
+            );
 
-        return productOptionDtoRes;
+            return productOptionDtoRes;
+        } catch(Exception exception) {
+            throw new BaseException(OPTION_RETRIEVE_FAILED);
+        }
     }
 
     public List<ProductDtoRes> retrieveProductAndReview(List<CategoryProductDtoRes> products) {
