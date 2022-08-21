@@ -19,6 +19,8 @@ public enum BaseResponseStatus {
     POST_EXISTS_EMAIL(false,2002,"중복된 이메일입니다."),
     POST_EXISTS_CART(false,2003,"이미 장바구니에 있는 상품입니다."),
     POST_EXISTS_QNA(false,2004,"중복된 문의&답변 입니다."),
+    AUTH_NUM_IS_NULL(false,2005,"인증번호가 비어 있습니다."),
+    INVALID_PHONE_NUM(false,2006,"유효하지 않은 전화번호 형식입니다."),
 
     /**
      * 3000: Response 오류
@@ -72,7 +74,16 @@ public enum BaseResponseStatus {
      * 5000: S3 오류
      * **/
     // Common
-    TRANSLATE_FILE_FAILED(false, 5000, "파일 변환에 실패하였습니다.");
+    TRANSLATE_FILE_FAILED(false, 5000, "파일 변환에 실패하였습니다."),
+
+
+    /**
+     * 6000: SMS 오류
+     * **/
+    // Common
+    OBJECT_TO_JSON_FAILED(false, 6000, "JSON 변환에 실패하였습니다."),
+    CREATE_URI_FAILED(false, 6001, "URI 생성에 실패하였습니다."),
+    CREATE_SIGNATURE_FAILED(false, 6002, "서명 생성에 실패하였습니다.");
 
 
     private final boolean isSuccess;
