@@ -26,4 +26,7 @@ public class ProductImg {
 
     @Column(nullable = false)
     private String imgUrl;
+
+    @Column(nullable = false)
+    private int priority;
 }

@@ -92,7 +92,7 @@ public class ProductServiceImpl implements ProductService {
         // 상품 사진 조회
         List<ProductImgDtoRes> productImgDtoRes = new ArrayList<>();
         try {
-            List<ProductImg> productImgs = productImgRepository.findByProductProductId(productId);
+            List<ProductImg> productImgs = productImgRepository.findByProductProductIdOrderByPriority(productId);
 
             productImgs.forEach(productImg -> productImgDtoRes.add(ProductImgDtoRes.builder()
                     .productImgId(productImg.getProductImgId())
