@@ -3,7 +3,10 @@ package com.ssg.ssg_be.product.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.product.application.ProductService;
+import com.ssg.ssg_be.product.domain.DetailImgDtoRes;
 import com.ssg.ssg_be.product.domain.ProductDtoRes;
+import com.ssg.ssg_be.product.domain.ProductInfoDtoRes;
+import com.ssg.ssg_be.product.domain.ProductOptionDtoRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,6 +82,39 @@ public class ProductController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
+
+    @ResponseBody
+    @GetMapping("/products/info/{productId}")
+    public BaseResponse<ProductInfoDtoRes> retrieveProductBasic(@PathVariable Long productId) {
+        try {
+            ProductInfoDtoRes product = productService.retrieveProductBasic(productId);
+            return new BaseResponse<>(product);
+        } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/products/detail-info/{productId}")
+    public BaseResponse<List<DetailImgDtoRes>> retrieveProductDetail(@PathVariable Long productId) {
+        try {
+            List<DetailImgDtoRes> product = productService.retrieveProductDetail(productId);
+            return new BaseResponse<>(product);
+        } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @GetMapping("/products/options/{productId}")
+    public BaseResponse<List<ProductOptionDtoRes>> retrieveProductOption(@PathVariable Long productId) {
+        try {
+            List<ProductOptionDtoRes> product = productService.retrieveProductOption(productId);
+            return new BaseResponse<>(product);
+        } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
 }
 
 

@@ -1,10 +1,7 @@
 package com.ssg.ssg_be.product.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.product.domain.CategoryProductDtoRes;
-import com.ssg.ssg_be.product.domain.Product;
-import com.ssg.ssg_be.product.domain.ProductDtoRes;
-import com.ssg.ssg_be.review.domain.ReviewTotalDto;
+import com.ssg.ssg_be.product.domain.*;
 
 import java.util.List;
 
@@ -15,6 +12,8 @@ public interface ProductService {
     List<ProductDtoRes> retrieveSmallCategoryProduct(Long smallCategoryId) throws BaseException;
     List<ProductDtoRes> retrieveLargeCategoryProduct(Long largeCategoryId) throws BaseException;
     List<ProductDtoRes> retrieveSearch(String searchWord) throws BaseException;
-
+    ProductInfoDtoRes retrieveProductBasic(Long productId) throws BaseException;
+    List<DetailImgDtoRes> retrieveProductDetail(Long productId) throws BaseException;
+    List<ProductOptionDtoRes> retrieveProductOption(Long productId) throws BaseException;
 
 }
