@@ -12,4 +12,5 @@ public class ProductImgDtoRes {
     private String originName;
     private String saveName;
     private String imgUrl;
+    private int priority;
 }

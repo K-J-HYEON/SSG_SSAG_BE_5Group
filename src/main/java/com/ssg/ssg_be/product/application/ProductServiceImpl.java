@@ -99,6 +99,7 @@ public class ProductServiceImpl implements ProductService {
                     .originName(productImg.getOriginName())
                     .saveName(productImg.getSaveName())
                     .imgUrl(productImg.getImgUrl())
+                    .priority(productImg.getPriority())
                     .build()
             ));
         } catch(Exception exception) {
