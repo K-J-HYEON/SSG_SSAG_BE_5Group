@@ -42,7 +42,6 @@ public class OrderList extends BaseTimeEntity {
     @Column(nullable = false)
     private String zipCode;
 
-    @Column(nullable = false)
     private String shippingMsg;
 
 }
