@@ -49,6 +49,7 @@ public class OrderList extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "orderList")
     @JsonManagedReference
+    @Builder.Default
     private List<Orders> orders = new ArrayList<>();
 
 }

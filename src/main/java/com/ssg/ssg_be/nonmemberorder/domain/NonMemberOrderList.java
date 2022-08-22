@@ -1,22 +1,23 @@
-package com.ssg.ssg_be.order.domain;
+package com.ssg.ssg_be.nonmemberorder.domain;
 
 import com.ssg.config.BaseTimeEntity;
-import com.ssg.ssg_be.product.domain.Product;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@AllArgsConstructor
 @NoArgsConstructor
-public class NonMemberOrder extends BaseTimeEntity {
+@Builder
+public class NonMemberOrderList extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long NonMemberId;
-
-    @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
-    private Product product;
+    private Long nonMemberOrderListId;
 
     @Column(nullable = false)
     private String name;
@@ -29,4 +30,9 @@ public class NonMemberOrder extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String streetAddr;
+
+    @Column(nullable = false)
+    private String zipCode;
+
+    private String shippingMsg;
 }
