@@ -3,6 +3,8 @@ package com.ssg.ssg_be.signup.presentation;
 
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
+import com.ssg.ssg_be.review.domain.ReviewTotalDto;
+import com.ssg.ssg_be.review.infrastructure.ReviewRepository;
 import com.ssg.ssg_be.signup.application.SignupService;
 import com.ssg.ssg_be.signup.domain.UserDtoReq;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class SignupController {
 
     private final SignupService signupService;
+    private final ReviewRepository reviewRepository;
 
     @Autowired
-    public SignupController(SignupService signupService) {
+    public SignupController(SignupService signupService, ReviewRepository reviewRepository) {
         this.signupService = signupService;
+        this.reviewRepository = reviewRepository;
     }
 
     @PostMapping("/signup")
@@ -43,6 +47,12 @@ public class SignupController {
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
+    }
+
+    @GetMapping("/t1")
+    public BaseResponse<ReviewTotalDto> test() {
+        ReviewTotalDto result = reviewRepository.test(5L);
+        return new BaseResponse<>(result);
     }
 
 

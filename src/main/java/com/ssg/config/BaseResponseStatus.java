@@ -69,6 +69,7 @@ public enum BaseResponseStatus {
     QNA_UPDATE_FAILED(false, 4056, "문의답변에 수정에 실패했습니다."),
     PRODUCT_IMG_RETRIEVE_FAILED(false, 4060, "상품 이미지 조회에 실패했습니다."),
     REVIEW_TOTAL_RETRIEVE_FAILED(false, 4061, "리뷰 통계 조회에 실패했습니다."),
+    ORDER_INSERT_FAILED(false, 4062, "주문 추가에 실패하였습니다."),
 
     /**
      * 5000: S3 오류

@@ -1,14 +1,17 @@
 package com.ssg.ssg_be.order.domain;
 
 import com.ssg.config.BaseTimeEntity;
-import com.ssg.ssg_be.product.domain.Product;
-import com.ssg.ssg_be.shippingaddr.domain.ShippingAddr;
-import com.ssg.ssg_be.signup.domain.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Orders extends BaseTimeEntity {
 
@@ -16,26 +19,25 @@ public class Orders extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
-    // 상태값 정하기
-    @Column(columnDefinition = "tinyint(1) default 0")
-    private int orderState;     // 주문 상태
-
-    // 상태값 정하기
-    @Column(columnDefinition = "tinyint(1) default 0")
-    private int shippingState;  // 배송 상태
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private OrderList orderList;
 
     @Column(nullable = false)
-    private String shippingMsg;
+    private Long productOptionId;
 
-    @ManyToOne
-    @JoinColumn(name = "addrId", nullable = false)
-    private ShippingAddr shippingAddr;
+    @Column(nullable = false)
+    private int count;
 
-    @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
-    private Product product;
+    @Column(nullable = false)
+    private int totalPayment;
 
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
+    @Column(columnDefinition = "tinyint(1) default 0")
+    private int orderState;
+
+    @Column(columnDefinition = "tinyint(1) default 0")
+    private int shippingState;
+
+    private int courierCompany;
+    private String waybillNumber;
 }
