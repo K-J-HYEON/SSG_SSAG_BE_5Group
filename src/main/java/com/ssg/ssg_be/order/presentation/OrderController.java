@@ -74,7 +74,7 @@ public class OrderController {
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            orderService.updateOrder(updateDtoReq, userId, "반품");
+            orderService.updateOrder(updateDtoReq, userId, 2);
             result = "반품 신청 되었습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
@@ -89,8 +89,21 @@ public class OrderController {
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            orderService.updateOrder(updateDtoReq, userId, "교환");
+            orderService.updateOrder(updateDtoReq, userId, 3);
             result = "교환 신청되었습니다.";
+            return new BaseResponse<>(result);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @DeleteMapping("/order/{orderId}")
+    public BaseResponse<String> deleteOrder(@PathVariable Long orderId) {
+        String result = "";
+
+        try {
+            orderService.deleteOrder(orderId);
+            result = "주문 내역이 삭제되었습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());

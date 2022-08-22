@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
@@ -129,17 +130,54 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrder(OrderUpdateDtoReq updateDtoReq, Long userId, String type) throws BaseException {
+    public void updateOrder(OrderUpdateDtoReq updateDtoReq, Long userId, int type) throws BaseException {
 
         Orders order = orderRepository.getById(updateDtoReq.getOrderId());
+        LocalDateTime today = LocalDateTime.now();
 
-//        if(order.getShippingState() == 5) {
-//
-//        }
-//
-//        try {
-//        } catch (Exception exception) {
-//            throw new BaseException(ORDER_CHANGE_FAILED);
-//        }
+        if(order.getShippingState() == 5) {
+            LocalDateTime arrivalDate = order.getUpdateAt();
+            LocalDateTime expiryDate = arrivalDate.plusDays(7);
+
+            if(today.isAfter(expiryDate)) {
+                throw new BaseException(OVERDUE_ORDER_CHANGE);
+            }
+        }
+
+        if(order.getOrderState() == 1 || order.getOrderState() == 2 || order.getOrderState() == 3) {
+            throw new BaseException(UNABLE_TO_CHANGE_ORDER);
+        }
+
+        try {
+            orderRepository.save(Orders.builder()
+                    .orderId(order.getOrderId())
+                    .orderList(order.getOrderList())
+                    .productOptionId(order.getProductOptionId())
+                    .count(order.getCount())
+                    .totalPayment(order.getTotalPayment())
+                    .orderState(type)
+                    .shippingState(order.getShippingState())
+                    .courierCompany(order.getCourierCompany())
+                    .waybillNumber(order.getWaybillNumber())
+                    .build());
+        } catch(Exception exception) {
+            throw new BaseException(ORDER_CHANGE_FAILED);
+        }
+
+    }
+
+    @Override
+    public void deleteOrder(Long orderId) throws BaseException {
+        try {
+            Orders order = orderRepository.getById(orderId);
+
+            if(order.getOrderState() == 4 && order.getShippingState() == 5) {
+                orderRepository.deleteById(orderId);
+            } else {
+                throw new BaseException(ORDER_DELETE_FAILED);
+            }
+        } catch (Exception exception) {
+            throw new BaseException(ORDER_DELETE_FAILED);
+        }
     }
 }
