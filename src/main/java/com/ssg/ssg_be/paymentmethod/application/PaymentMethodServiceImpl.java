@@ -30,9 +30,9 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
     }
 
     @Override
-    public void createPaymentMethod(PaymentMethodDtoReq paymentMethodDtoReq) throws BaseException {
+    public void createPaymentMethod(PaymentMethodDtoReq paymentMethodDtoReq, Long userId) throws BaseException {
 
-        User user = userRepository.getById(paymentMethodDtoReq.getUserId());
+        User user = userRepository.getById(userId);
         CardImg cardImg = cardImgRepository.findByCardCompany(paymentMethodDtoReq.getCardCompany());
 
         try {

@@ -7,7 +7,6 @@ import lombok.Getter;
 public class ShippingAddrPutDtoReq {
 
     private Long addrId;
-    private Long userId;
     private String addrName;    // 주소 별칭
     private String recipient;   // 받는 분
     private String phone;
@@ -16,10 +15,7 @@ public class ShippingAddrPutDtoReq {
     private String streetAddr;   // 도로명 주소
     private String lotAddr;      // 지번 주소
 
-    // 0: 기본 배송지 x, 1: 기본 배송지 o
-    private int addrDefault; // 기본 배송지 여부
-
-    public ShippingAddr toEntity(User user) {
+    public ShippingAddr toEntity(User user, int addrDefault) {
         return ShippingAddr.builder()
                 .addrId(addrId)
                 .user(user)

@@ -14,7 +14,7 @@ public interface QnaService {
     List<QnaDtoRes> retrieveMyQna(Long userId) throws BaseException;
 
     void deleteQna(Long qnaId) throws BaseException;
-    void updateQna(QnaPatchDtoReq qnaPatchDtoReq) throws BaseException;
+    void updateQna(QnaPatchDtoReq qnaPatchDtoReq, Long userId) throws BaseException;
 
 
 }

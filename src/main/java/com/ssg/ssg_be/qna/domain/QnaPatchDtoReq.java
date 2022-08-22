@@ -8,7 +8,6 @@ import lombok.Getter;
 public class QnaPatchDtoReq {
 
     private Long qnaId;
-    private Long userId;
     private Long productId;
 
     private int type;

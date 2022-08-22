@@ -7,7 +7,6 @@ import lombok.Getter;
 @Getter
 public class WishDtoReq {
 
-    private Long userId;
     private Long productId;
 
     public Wish toEntity(Product product, User user) {

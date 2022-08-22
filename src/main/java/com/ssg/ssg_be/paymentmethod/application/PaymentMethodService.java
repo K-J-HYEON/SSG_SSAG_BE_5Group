@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PaymentMethodService {
 
-    void createPaymentMethod(PaymentMethodDtoReq paymentMethodDtoReq) throws BaseException;
+    void createPaymentMethod(PaymentMethodDtoReq paymentMethodDtoReq, Long userId) throws BaseException;
     List<PaymentMethodDtoRes> retrievePaymentMethod(Long userId) throws BaseException;
     void deletePaymentMethod(Long paymentId) throws BaseException;
 }

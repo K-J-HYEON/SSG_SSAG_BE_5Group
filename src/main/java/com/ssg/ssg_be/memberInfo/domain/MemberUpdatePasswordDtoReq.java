@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 public class MemberUpdatePasswordDtoReq {
 
-    private Long userId;
     private String newPassword;
 
     public User toEntity(User user) {

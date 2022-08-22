@@ -81,12 +81,14 @@ public class QnaController {
         }
     }
 
-    @PutMapping("/qna/{qnaId}")
+    @PutMapping("/qna")
     public BaseResponse<String> updateQna(@RequestBody QnaPatchDtoReq qnaPatchDtoReq) {
         String result = "";
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            qnaService.updateQna(qnaPatchDtoReq);
+            qnaService.updateQna(qnaPatchDtoReq, userId);
             result = "상품문의를 수정했습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
