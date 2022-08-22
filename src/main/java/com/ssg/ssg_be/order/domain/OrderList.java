@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.order.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -43,5 +46,9 @@ public class OrderList extends BaseTimeEntity {
     private String zipCode;
 
     private String shippingMsg;
+
+    @OneToMany(mappedBy = "orderList")
+    @JsonManagedReference
+    private List<Orders> orders = new ArrayList<>();
 
 }

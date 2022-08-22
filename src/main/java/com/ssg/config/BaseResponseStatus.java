@@ -72,6 +72,7 @@ public enum BaseResponseStatus {
     REVIEW_TOTAL_RETRIEVE_FAILED(false, 4061, "리뷰 통계 조회에 실패했습니다."),
     ORDER_INSERT_FAILED(false, 4062, "주문 추가에 실패하였습니다."),
     REDUCE_STOCK_FAILED(false, 4063, "재고 감소에 실패하였습니다."),
+    ORDER_RETRIEVE_FAILED(false, 4064, "주문 목록 조회에 실패하였습니다."),
 
     /**
      * 5000: S3 오류

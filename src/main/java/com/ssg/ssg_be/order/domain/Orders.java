@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.order.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ssg.config.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,7 @@ public class Orders extends BaseTimeEntity {
     private Long orderId;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(nullable = false)
     private OrderList orderList;
 

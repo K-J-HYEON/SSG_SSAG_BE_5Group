@@ -2,6 +2,7 @@ package com.ssg.ssg_be.order.application;
 
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.cart.infrastructure.CartRepository;
+import com.ssg.ssg_be.order.domain.OrderDtoListRes;
 import com.ssg.ssg_be.order.domain.OrderDtoReq;
 import com.ssg.ssg_be.order.domain.OrderList;
 import com.ssg.ssg_be.order.domain.OrderListDtoReq;
@@ -15,6 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
@@ -77,6 +81,19 @@ public class OrderServiceImpl implements OrderService {
             } catch (Exception exception) {
                 throw new BaseException(CART_DELETE_FAILED);
             }
+        }
+    }
+
+    @Override
+    public List<OrderDtoListRes> retrieveOrders(Long userId) throws BaseException {
+
+        try {
+            List<OrderDtoListRes> orderDtoListRes = orderListRepository.findAllByUserUserId(userId);
+
+            return orderDtoListRes;
+
+        } catch (Exception exception) {
+            throw new BaseException(ORDER_RETRIEVE_FAILED);
         }
     }
 }
