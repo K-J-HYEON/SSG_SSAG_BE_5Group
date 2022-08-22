@@ -1,6 +1,5 @@
 package com.ssg.ssg_be.order.domain;
 
-import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.domain.UserDtoRes;
 
 import java.time.LocalDateTime;
