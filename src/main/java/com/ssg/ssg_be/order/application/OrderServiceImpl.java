@@ -2,10 +2,7 @@ package com.ssg.ssg_be.order.application;
 
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.cart.infrastructure.CartRepository;
-import com.ssg.ssg_be.order.domain.OrderDtoListRes;
-import com.ssg.ssg_be.order.domain.OrderDtoReq;
-import com.ssg.ssg_be.order.domain.OrderList;
-import com.ssg.ssg_be.order.domain.OrderListDtoReq;
+import com.ssg.ssg_be.order.domain.*;
 import com.ssg.ssg_be.order.infrastructure.OrderListRepository;
 import com.ssg.ssg_be.order.infrastructure.OrderRepository;
 import com.ssg.ssg_be.product.domain.ProductOption;
@@ -17,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
@@ -88,12 +84,62 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDtoListRes> retrieveOrders(Long userId) throws BaseException {
 
         try {
-            List<OrderDtoListRes> orderDtoListRes = orderListRepository.findAllByUserUserId(userId);
-
-            return orderDtoListRes;
-
+            return orderListRepository.findAllByUserUserId(userId);
         } catch (Exception exception) {
             throw new BaseException(ORDER_RETRIEVE_FAILED);
         }
+    }
+
+    @Override
+    @Transactional(rollbackFor = BaseException.class)
+    public void cancelOrder(OrderUpdateDtoReq updateDtoReq) throws BaseException {
+
+        Orders order = orderRepository.getById(updateDtoReq.getOrderId());
+
+        if(order.getShippingState() == 0) {
+            try {
+                orderRepository.save(Orders.builder()
+                                .orderId(order.getOrderId())
+                                .orderList(order.getOrderList())
+                                .productOptionId(order.getProductOptionId())
+                                .count(order.getCount())
+                                .totalPayment(order.getTotalPayment())
+                                .orderState(1)
+                                .shippingState(order.getShippingState())
+                                .courierCompany(order.getCourierCompany())
+                                .waybillNumber(order.getWaybillNumber())
+                                .build());
+
+                ProductOption productOption = productOptionRepository.getById(order.getProductOptionId());
+
+                productOptionRepository.save(ProductOption.builder()
+                                .productOptionId(productOption.getProductOptionId())
+                                .product(productOption.getProduct())
+                                .size(productOption.getSize())
+                                .color(productOption.getColor())
+                                .modelNumber(productOption.getModelNumber())
+                                .stock(productOption.getStock()+order.getCount())
+                                .build());
+            } catch (Exception exception) {
+                throw new BaseException(ORDER_CANCEL_FAILED);
+            }
+        } else {
+            throw new BaseException(ALREADY_BEING_PREPARED);
+        }
+    }
+
+    @Override
+    public void updateOrder(OrderUpdateDtoReq updateDtoReq, Long userId, String type) throws BaseException {
+
+        Orders order = orderRepository.getById(updateDtoReq.getOrderId());
+
+//        if(order.getShippingState() == 5) {
+//
+//        }
+//
+//        try {
+//        } catch (Exception exception) {
+//            throw new BaseException(ORDER_CHANGE_FAILED);
+//        }
     }
 }
