@@ -9,6 +9,7 @@ import com.ssg.ssg_be.qna.domain.QnaPatchDtoReq;
 import com.ssg.utils.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -42,6 +43,9 @@ public class QnaController {
     @ResponseBody
     @GetMapping("/qna/{productId}")
     public BaseResponse<List<QnaDtoRes>> retrieveQna(@PathVariable Long productId) {
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
+
         try {
             List<QnaDtoRes> qnaDtoRes = qnaService.retrieveQna(productId);
             return new BaseResponse<>(qnaDtoRes);

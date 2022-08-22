@@ -1,19 +1,16 @@
-package com.ssg.ssg_be.qna.domain;
+package com.ssg.ssg_be.review.domain;
 
 import java.time.LocalDateTime;
 
-public interface QnaDtoRes {
-    Long getQnaId();
+public interface ReviewDtoRes {
+    Long getReviewId();
 
-    int getType();
-    String getTitle();
+    int getScore();
     String getContent();
-    int getSecret();
+
     LocalDateTime getCreateAt();
     LocalDateTime getUpdateAt();
-    int getAnswerStatus();
 
     Long getUserUserId();
     String getUserLoginId();
-
 }
