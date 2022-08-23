@@ -53,6 +53,15 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
     }
 
     @Override
+    public ShippingAddrDtoRes retrieveOneShippingAddr(Long addrId) throws BaseException {
+        try {
+            return shippingAddrRepository.findByAddrId(addrId);
+        } catch (Exception exception) {
+            throw new BaseException(SHIPPING_ADDR_RETRIEVE_FAILED);
+        }
+    }
+
+    @Override
     public ShippingAddrDtoRes retrieveBasicShippingAddr(Long userId) throws BaseException {
         try {
             return shippingAddrRepository.findByUserUserIdAndAddrDefault(userId, 1);
