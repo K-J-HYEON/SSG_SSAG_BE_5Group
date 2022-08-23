@@ -1,6 +1,7 @@
 package com.ssg.ssg_be.cart.domain;
 
 import com.ssg.ssg_be.product.domain.ProductOption;
+import com.ssg.ssg_be.product.domain.ProductOptionDtoRes;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -8,6 +9,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CartOptionPatchDtoRes {
     private Long cartId;
-    private ProductOption productOption;
+    private ProductOptionDtoRes productOption;
     private int count;
 }

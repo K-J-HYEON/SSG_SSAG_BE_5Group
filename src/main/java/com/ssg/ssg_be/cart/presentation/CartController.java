@@ -31,7 +31,7 @@ public class CartController {
 
         try {
             if(cartService.createCart(cartDtoReq, userId)) {
-                result = "이미 추가된 옵션입니다.";
+                result = "이미 추가된 옵션은 수량 변경하였습니다.";
             } else {
                 result = "장바구니 추가에 성공하였습니다.";
             }

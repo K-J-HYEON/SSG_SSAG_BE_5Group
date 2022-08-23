@@ -8,8 +8,6 @@ public class CartOptionPatchDtoReq {
 
     private Long cartId;
     private Long productOptionId;
-    private Long colorId;
-    private Long sizeId;
 
     public Cart toEntity(Cart cart, ProductOption productOption) {
         return Cart.builder()
