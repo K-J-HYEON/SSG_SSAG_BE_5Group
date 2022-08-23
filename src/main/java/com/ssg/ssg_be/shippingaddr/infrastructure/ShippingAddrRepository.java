@@ -9,6 +9,9 @@ import java.util.List;
 
 @Repository
 public interface ShippingAddrRepository extends JpaRepository<ShippingAddr, Long> {
-    List<ShippingAddrDtoRes> findByUserUserId(Long userId);
+    List<ShippingAddrDtoRes> findAllByUserUserId(Long userId);
     ShippingAddrDtoRes findByUserUserIdAndAddrDefault(Long userId, int addrDefault);
+
+    List<ShippingAddr> findByUserUserId(Long userId);
+    boolean existsByUserUserId(Long userId);
 }

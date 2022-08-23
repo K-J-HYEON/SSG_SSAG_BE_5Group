@@ -14,7 +14,7 @@ public class ShippingAddrDtoReq {
     private String streetAddr;   // 도로명 주소
     private String lotAddr;      // 지번 주소
 
-    public ShippingAddr toEntity(User user) {
+    public ShippingAddr toEntity(User user, int addrDefault) {
         return ShippingAddr.builder()
                 .user(user)
                 .addrName(addrName)
@@ -24,7 +24,7 @@ public class ShippingAddrDtoReq {
                 .zipCode(zipCode)
                 .streetAddr(streetAddr)
                 .lotAddr(lotAddr)
-                .addrDefault(0)
+                .addrDefault(addrDefault)
                 .build();
     }
 }
