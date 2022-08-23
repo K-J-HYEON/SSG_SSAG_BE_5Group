@@ -97,6 +97,10 @@ public class OrderServiceImpl implements OrderService {
 
         Orders order = orderRepository.getById(updateDtoReq.getOrderId());
 
+        if(order.getOrderState() != 0) {
+            throw new BaseException(UNABLE_TO_CANCEL_ORDER);
+        }
+
         if(order.getShippingState() == 0) {
             try {
                 orderRepository.save(Orders.builder()

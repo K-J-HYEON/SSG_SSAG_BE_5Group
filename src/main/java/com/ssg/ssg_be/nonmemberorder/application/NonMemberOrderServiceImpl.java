@@ -4,12 +4,14 @@ import com.ssg.config.BaseException;
 import com.ssg.ssg_be.nonmemberorder.domain.*;
 import com.ssg.ssg_be.nonmemberorder.infrastructure.NonMemberOrderListRepository;
 import com.ssg.ssg_be.nonmemberorder.infrastructure.NonMemberOrderRepository;
+import com.ssg.ssg_be.order.domain.Orders;
 import com.ssg.ssg_be.product.domain.ProductOption;
 import com.ssg.ssg_be.product.infrastructure.ProductOptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
@@ -66,15 +68,11 @@ public class NonMemberOrderServiceImpl implements NonMemberOrderService {
     }
 
     @Override
-    public NonMemberOrderListDtoRes retrieveNonMemberOrders(NonMemberGetOrderDtoReq nonMemberGetOrderDtoReq) throws BaseException {
-
-        if(!nonMemberOrderRepository.existsByNonMemberOrderList_NonMemberOrderListIdAndNonMemberOrderList_NameAndNonMemberOrderList_Phone(nonMemberGetOrderDtoReq.getNonMemberOrderListId(), nonMemberGetOrderDtoReq.getName(), nonMemberGetOrderDtoReq.getPhone())) {
-            throw new BaseException(NO_LOOKUP_VALUE);
-        }
+    public NonMemberOrderListDtoRes retrieveNonMemberOrders(Long orderId) throws BaseException {
 
         try {
-            List<NonMemberOrderDtoRes> nonMemberOrderDtoRes = nonMemberOrderRepository.findAllByNonMemberOrderList_NonMemberOrderListId(nonMemberGetOrderDtoReq.getNonMemberOrderListId());
-            NonMemberOrderList nonMemberOrderList = nonMemberOrderListRepository.getById(nonMemberGetOrderDtoReq.getNonMemberOrderListId());
+            List<NonMemberOrderDtoRes> nonMemberOrderDtoRes = nonMemberOrderRepository.findAllByNonMemberOrderList_NonMemberOrderListId(orderId);
+            NonMemberOrderList nonMemberOrderList = nonMemberOrderListRepository.getById(orderId);
 
             return NonMemberOrderListDtoRes.builder()
                     .name(nonMemberOrderList.getName())
@@ -88,6 +86,86 @@ public class NonMemberOrderServiceImpl implements NonMemberOrderService {
                     .build();
         } catch (Exception exception) {
             throw new BaseException(ORDER_RETRIEVE_FAILED);
+        }
+    }
+
+    @Override
+    public boolean authNonMember(NonMemberAuthDtoReq nonMemberAuthDtoReq) {
+        return nonMemberOrderRepository.existsByNonMemberOrderList_NonMemberOrderListIdAndNonMemberOrderList_NameAndNonMemberOrderList_Phone(nonMemberAuthDtoReq.getNonMemberOrderListId(), nonMemberAuthDtoReq.getName(), nonMemberAuthDtoReq.getPhone());
+    }
+
+    @Override
+    public void cancelNonMemberOrder(Long orderId) throws BaseException {
+        NonMemberOrder nonMemberOrder = nonMemberOrderRepository.getById(orderId);
+
+        if(nonMemberOrder.getOrderState() != 0) {
+            throw new BaseException(UNABLE_TO_CANCEL_ORDER);
+        }
+
+        if(nonMemberOrder.getShippingState() == 0) {
+            try {
+                nonMemberOrderRepository.save(NonMemberOrder.builder()
+                            .nonMemberOrderId(nonMemberOrder.getNonMemberOrderId())
+                            .nonMemberOrderList(nonMemberOrder.getNonMemberOrderList())
+                            .productOptionId(nonMemberOrder.getProductOptionId())
+                            .count(nonMemberOrder.getCount())
+                            .totalPayment(nonMemberOrder.getTotalPayment())
+                            .orderState(1)
+                            .shippingState(nonMemberOrder.getShippingState())
+                            .courierCompany(nonMemberOrder.getCourierCompany())
+                            .waybillNumber(nonMemberOrder.getWaybillNumber())
+                            .build());
+
+                ProductOption productOption = productOptionRepository.getById(nonMemberOrder.getProductOptionId());
+
+                productOptionRepository.save(ProductOption.builder()
+                        .productOptionId(productOption.getProductOptionId())
+                        .product(productOption.getProduct())
+                        .size(productOption.getSize())
+                        .color(productOption.getColor())
+                        .modelNumber(productOption.getModelNumber())
+                        .stock(productOption.getStock()+nonMemberOrder.getCount())
+                        .build());
+            } catch (Exception exception) {
+                throw new BaseException(ORDER_CANCEL_FAILED);
+            }
+        } else {
+            throw new BaseException(ALREADY_BEING_PREPARED);
+        }
+    }
+
+    @Override
+    public void updateNonMemberOrder(Long orderId, int type) throws BaseException {
+        NonMemberOrder nonMemberOrder = nonMemberOrderRepository.getById(orderId);
+        LocalDateTime today = LocalDateTime.now();
+
+        if(nonMemberOrder.getShippingState() == 5) {
+            LocalDateTime arrivalDate = nonMemberOrder.getUpdateAt();
+            LocalDateTime expiryDate = arrivalDate.plusDays(7);
+
+            if(today.isAfter(expiryDate)) {
+                throw new BaseException(OVERDUE_ORDER_CHANGE);
+            }
+        }
+
+        if(nonMemberOrder.getOrderState() == 1 || nonMemberOrder.getOrderState() == 2 || nonMemberOrder.getOrderState() == 3) {
+            throw new BaseException(UNABLE_TO_CHANGE_ORDER);
+        }
+
+        try {
+            nonMemberOrderRepository.save(NonMemberOrder.builder()
+                    .nonMemberOrderId(nonMemberOrder.getNonMemberOrderId())
+                    .nonMemberOrderList(nonMemberOrder.getNonMemberOrderList())
+                    .productOptionId(nonMemberOrder.getProductOptionId())
+                    .count(nonMemberOrder.getCount())
+                    .totalPayment(nonMemberOrder.getTotalPayment())
+                    .orderState(type)
+                    .shippingState(nonMemberOrder.getShippingState())
+                    .courierCompany(nonMemberOrder.getCourierCompany())
+                    .waybillNumber(nonMemberOrder.getWaybillNumber())
+                    .build());
+        } catch(Exception exception) {
+            throw new BaseException(ORDER_CHANGE_FAILED);
         }
     }
 }

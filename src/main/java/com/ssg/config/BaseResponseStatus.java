@@ -79,6 +79,7 @@ public enum BaseResponseStatus {
     OVERDUE_ORDER_CHANGE(false, 4067, "반품&교환 신청 가능한 기간이 지났습니다."),
     UNABLE_TO_CHANGE_ORDER(false, 4068, "반품&교환 신청이 불가능한 주문 상태입니다."),
     ORDER_DELETE_FAILED(false, 4069, "주문 목록 삭제에 실패하였습니다."),
+    UNABLE_TO_CANCEL_ORDER(false, 4070, "취소가 불가능한 주문 상태입니다."),
 
     /**
      * 5000: S3 오류
