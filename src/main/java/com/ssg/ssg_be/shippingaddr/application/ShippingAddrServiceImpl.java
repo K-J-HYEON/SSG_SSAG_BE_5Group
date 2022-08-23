@@ -29,9 +29,14 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
     public void createShippingAddr(ShippingAddrDtoReq shippingAddrDtoReq, Long userId) throws BaseException {
 
         User user = userRepository.getById(userId);
+        int addrDefault = 0;
+
+        if(!shippingAddrRepository.existsByUserUserId(userId) || !shippingAddrRepository.existsByAddrDefault(1)) {
+            addrDefault = 1;
+        }
 
         try {
-            shippingAddrRepository.save(shippingAddrDtoReq.toEntity(user));
+            shippingAddrRepository.save(shippingAddrDtoReq.toEntity(user, addrDefault));
         } catch (Exception exception) {
             throw new BaseException(SHIPPING_ADDR_INSERT_FAILED);
         }
@@ -41,7 +46,7 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
     public List<ShippingAddrDtoRes> retrieveShippingAddr(Long userId) throws BaseException {
 
         try {
-            return shippingAddrRepository.findByUserUserId(userId);
+            return shippingAddrRepository.findAllByUserUserId(userId);
         } catch (Exception exception) {
             throw new BaseException(SHIPPING_ADDR_RETRIEVE_FAILED);
         }
@@ -117,10 +122,35 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
     @Override
     public void deleteShippingAddr(Long addrId) throws BaseException {
 
+        ShippingAddr shippingAddr = shippingAddrRepository.getById(addrId);
+        Long userId = shippingAddr.getUser().getUserId();
+        int addrDefault = shippingAddr.getAddrDefault();
+
         try {
             shippingAddrRepository.deleteById(addrId);
         } catch (Exception exception) {
             throw new BaseException(SHIPPING_ADDR_DELETE_FAILED);
+        }
+
+        try {
+            if(addrDefault == 1 && shippingAddrRepository.existsByUserUserId(userId)) {
+                List<ShippingAddr> newDefaultAddr = shippingAddrRepository.findByUserUserId(userId);
+
+                shippingAddrRepository.save(ShippingAddr.builder()
+                        .addrId(newDefaultAddr.get(0).getAddrId())
+                        .user(newDefaultAddr.get(0).getUser())
+                        .addrName(newDefaultAddr.get(0).getAddrName())
+                        .recipient(newDefaultAddr.get(0).getRecipient())
+                        .phone(newDefaultAddr.get(0).getPhone())
+                        .homePhone(newDefaultAddr.get(0).getHomePhone())
+                        .zipCode(newDefaultAddr.get(0).getZipCode())
+                        .streetAddr(newDefaultAddr.get(0).getStreetAddr())
+                        .lotAddr(newDefaultAddr.get(0).getLotAddr())
+                        .addrDefault(1)
+                        .build());
+            }
+        } catch (Exception exception) {
+            throw new BaseException(SHIPPING_ADDR_DEFAULT_UPDATE_FAILED);
         }
     }
 }
