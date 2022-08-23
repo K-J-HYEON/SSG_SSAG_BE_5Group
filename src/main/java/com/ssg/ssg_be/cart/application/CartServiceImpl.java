@@ -4,6 +4,7 @@ import com.ssg.config.BaseException;
 import com.ssg.ssg_be.cart.domain.*;
 import com.ssg.ssg_be.cart.infrastructure.CartRepository;
 import com.ssg.ssg_be.product.domain.ProductOption;
+import com.ssg.ssg_be.product.domain.ProductOptionDtoRes;
 import com.ssg.ssg_be.product.infrastructure.ProductOptionRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
@@ -35,17 +36,21 @@ public class CartServiceImpl implements CartService {
         boolean isOverlap = false;
 
         try {
-            ProductOption productOption = productOptionRepository.getById(cartDtoReq.getProductOptionId());
+            ProductOption productOption;
 
-            // 장바구니에 해당 옵션이 이미 존재하는 경우, 수량만 더해 줌. 존재하지 않는 경우는 해당 옵션을 장바구니에 새로 추가
-            if(cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(userId, cartDtoReq.getProductOptionId())) {
-                Cart cart = cartRepository.findByUserUserIdAndProductOption_ProductOptionId(userId, cartDtoReq.getProductOptionId());
+            for(CartListDto cartListDto : cartDtoReq.getCartList()) {
+                productOption = productOptionRepository.getById(cartListDto.getProductOptionId());
 
-                cartDtoReq.setCount(cartDtoReq.getCount()+cart.getCount());
-                cartRepository.save(cartDtoReq.toOriginEntity(user, productOption, cart.getCartId()));
-                isOverlap = true;
-            } else {
-                cartRepository.save(cartDtoReq.toEntity(user, productOption));
+                // 장바구니에 해당 옵션이 이미 존재하는 경우, 수량만 더해 줌. 존재하지 않는 경우는 해당 옵션을 장바구니에 새로 추가
+                if(cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(userId, cartListDto.getProductOptionId())) {
+                    Cart cart = cartRepository.findByUserUserIdAndProductOption_ProductOptionId(userId, cartListDto.getProductOptionId());
+
+                    cartListDto.setCount(cartListDto.getCount()+cart.getCount());
+                    cartRepository.save(cartListDto.toOriginEntity(user, productOption, cart.getCartId()));
+                    isOverlap = true;
+                } else {
+                    cartRepository.save(cartListDto.toEntity(user, productOption));
+                }
             }
         } catch (Exception exception) {
             throw new BaseException(CART_INSERT_FAILED);
@@ -89,15 +94,20 @@ public class CartServiceImpl implements CartService {
     public CartOptionPatchDtoRes updateCartOption(CartOptionPatchDtoReq cartOptionPatchDtoReq, Long userId) throws BaseException {
         Cart cart = cartRepository.getById(cartOptionPatchDtoReq.getCartId());
 
-        ProductOption productOption = productOptionRepository.getById(cartOptionPatchDtoReq.getProductOptionId());
-        Long productId = productOption.getProduct().getProductId();
-
         ProductOption newProductOption;
         try {
-            newProductOption = productOptionRepository.findByProductProductIdAndColorColorIdAndSizeSizeId(productId, cartOptionPatchDtoReq.getColorId(), cartOptionPatchDtoReq.getSizeId());
+            newProductOption = productOptionRepository.getById(cartOptionPatchDtoReq.getProductOptionId());
         } catch(Exception exception) {
             throw new BaseException(OPTION_RETRIEVE_FAILED);
         }
+
+        ProductOptionDtoRes productOptionDtoRes = ProductOptionDtoRes.builder()
+                .productOptionId(newProductOption.getProductOptionId())
+                .size(newProductOption.getSize())
+                .color(newProductOption.getColor())
+                .modelNumber(newProductOption.getModelNumber())
+                .stock(newProductOption.getStock())
+                .build();
 
         try {
             if(cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(userId, newProductOption.getProductOptionId())) {
@@ -111,7 +121,7 @@ public class CartServiceImpl implements CartService {
                             .build());
 
                 cartRepository.deleteById(cart.getCartId());
-                return new CartOptionPatchDtoRes(overlapCart.getCartId(), newProductOption, overlapCart.getCount()+cart.getCount());
+                return new CartOptionPatchDtoRes(overlapCart.getCartId(), productOptionDtoRes, overlapCart.getCount()+cart.getCount());
 
             } else {
                 cartRepository.save(Cart.builder()
@@ -120,7 +130,7 @@ public class CartServiceImpl implements CartService {
                             .user(cart.getUser())
                             .count(cart.getCount())
                             .build());
-                return new CartOptionPatchDtoRes(cartOptionPatchDtoReq.getCartId(), newProductOption, cart.getCount());
+                return new CartOptionPatchDtoRes(cartOptionPatchDtoReq.getCartId(), productOptionDtoRes, cart.getCount());
             }
         } catch(Exception exception) {
             throw new BaseException(CART_OPTION_UPDATE_FAILED);
