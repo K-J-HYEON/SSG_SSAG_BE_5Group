@@ -14,4 +14,5 @@ public interface ShippingAddrRepository extends JpaRepository<ShippingAddr, Long
 
     List<ShippingAddr> findByUserUserId(Long userId);
     boolean existsByUserUserId(Long userId);
+    boolean existsByAddrDefault(int AddrDefault);
 }

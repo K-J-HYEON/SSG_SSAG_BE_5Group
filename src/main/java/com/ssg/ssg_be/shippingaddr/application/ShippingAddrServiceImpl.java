@@ -31,7 +31,7 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
         User user = userRepository.getById(userId);
         int addrDefault = 0;
 
-        if(!shippingAddrRepository.existsByUserUserId(userId)) {
+        if(!shippingAddrRepository.existsByUserUserId(userId) || !shippingAddrRepository.existsByAddrDefault(1)) {
             addrDefault = 1;
         }
 
@@ -150,7 +150,7 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
                         .build());
             }
         } catch (Exception exception) {
-            throw new BaseException(SHIPPING_ADDR_DELETE_FAILED);
+            throw new BaseException(SHIPPING_ADDR_DEFAULT_UPDATE_FAILED);
         }
     }
 }
