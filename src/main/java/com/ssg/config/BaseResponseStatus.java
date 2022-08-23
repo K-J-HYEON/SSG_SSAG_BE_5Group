@@ -30,6 +30,8 @@ public enum BaseResponseStatus {
     NO_LOOKUP_VALUE(false, 3001, "조회된 데이터가 없습니다."),
     JWT_CREATE_FAILED(false, 3002, "토큰 생성에 실패하였습니다."),
     NO_EXIST_USER(false, 3003, "존재하지 않는 유저 정보입니다."),
+    OUT_OF_STOCK(false,3004,"상품 재고량이 부족합니다."),
+    ALREADY_BEING_PREPARED(false, 3005, "이미 준비 중인 상품입니다."),
 
     /**
      * 4000: Database 오류
@@ -73,6 +75,15 @@ public enum BaseResponseStatus {
     REVIEW_UPDATE_FAILED(false, 4059, "리뷰수정에 실패했습니다."),
     PRODUCT_IMG_RETRIEVE_FAILED(false, 4060, "상품 이미지 조회에 실패했습니다."),
     REVIEW_TOTAL_RETRIEVE_FAILED(false, 4061, "리뷰 통계 조회에 실패했습니다."),
+    ORDER_INSERT_FAILED(false, 4062, "주문 추가에 실패하였습니다."),
+    REDUCE_STOCK_FAILED(false, 4063, "재고 감소에 실패하였습니다."),
+    ORDER_RETRIEVE_FAILED(false, 4064, "주문 목록 조회에 실패하였습니다."),
+    ORDER_CANCEL_FAILED(false, 4065, "주문 취소에 실패하였습니다."),
+    ORDER_CHANGE_FAILED(false, 4066, "반품&교환 신청에 실패하였습니다."),
+    OVERDUE_ORDER_CHANGE(false, 4067, "반품&교환 신청 가능한 기간이 지났습니다."),
+    UNABLE_TO_CHANGE_ORDER(false, 4068, "반품&교환 신청이 불가능한 주문 상태입니다."),
+    ORDER_DELETE_FAILED(false, 4069, "주문 목록 삭제에 실패하였습니다."),
+    UNABLE_TO_CANCEL_ORDER(false, 4070, "취소가 불가능한 주문 상태입니다."),
 
     /**
      * 5000: S3 오류

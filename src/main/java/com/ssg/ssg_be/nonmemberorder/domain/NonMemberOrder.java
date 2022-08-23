@@ -1,6 +1,5 @@
-package com.ssg.ssg_be.order.domain;
+package com.ssg.ssg_be.nonmemberorder.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ssg.config.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,16 +13,15 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Orders extends BaseTimeEntity {
+public class NonMemberOrder extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    private Long nonMemberOrderId;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(nullable = false)
-    private OrderList orderList;
+    private NonMemberOrderList nonMemberOrderList;
 
     @Column(nullable = false)
     private Long productOptionId;
@@ -41,5 +39,6 @@ public class Orders extends BaseTimeEntity {
     private int shippingState;
 
     private int courierCompany;
+
     private String waybillNumber;
 }
