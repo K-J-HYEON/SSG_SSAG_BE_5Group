@@ -56,6 +56,18 @@ public class ShippingAddrController {
     }
 
     @ResponseBody
+    @GetMapping("/shipping-addr/{addrId}")
+    public BaseResponse<ShippingAddrDtoRes> retrieveOneShippingAddr(@PathVariable Long addrId) {
+
+        try {
+            ShippingAddrDtoRes shippingAddrDtoRes = shippingAddrService.retrieveOneShippingAddr(addrId);
+            return new BaseResponse<>(shippingAddrDtoRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
     @GetMapping("/shipping-addr/default")
     public BaseResponse<ShippingAddrDtoRes> retrieveBasicShippingAddr() {
         String token = jwtTokenProvider.getHeader();
