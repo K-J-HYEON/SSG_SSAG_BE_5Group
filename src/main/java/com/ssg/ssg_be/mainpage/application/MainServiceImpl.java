@@ -69,7 +69,7 @@ public class MainServiceImpl implements MainService {
                 i++;
 
                 Product product = productRepository.getById(h.getProductId());
-                List<ThumbnailImg> thumbnailImg = thumbnailImgRepository.findAllByProductProductId(product.getProductId());
+                List<ThumbnailImg> thumbnailImg = thumbnailImgRepository.findAllByProductProductIdOrderByPriority(product.getProductId());
                 List<HappyLoungeImgDto> happyLoungeImgDtos = new ArrayList<>();
                 thumbnailImg.forEach(ti -> happyLoungeImgDtos.add(HappyLoungeImgDto.builder()
                                 .thumbnailImgId(ti.getThumbnailImgId())
