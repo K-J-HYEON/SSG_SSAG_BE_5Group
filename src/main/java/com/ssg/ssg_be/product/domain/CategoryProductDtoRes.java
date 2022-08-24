@@ -1,5 +1,17 @@
 package com.ssg.ssg_be.product.domain;
 
+import java.sql.Timestamp;
+
 public interface CategoryProductDtoRes {
-    Product getProduct();
+    Long getProductProductId();
+    String getProductName();
+    int getProductPrice();
+    int getProductSale();
+    Timestamp getProductSaleStartDate();
+    Timestamp getProductSaleEndDate();
+    String getProductImgOriginName();
+    String getProductImgSaveName();
+    String getProductImgUrl();
+    Long getProductStoreStoreId();
+    String getProductStoreName();
 }

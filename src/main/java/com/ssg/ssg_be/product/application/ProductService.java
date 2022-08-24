@@ -7,12 +7,12 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<ProductDtoRes> retrieveAllProduct() throws BaseException;
-    List<ProductDtoRes> retrieveMediumCategoryProduct(Long mediumCategoryId) throws BaseException;
-    List<ProductDtoRes> retrieveSmallCategoryProduct(Long smallCategoryId) throws BaseException;
-    List<ProductDtoRes> retrieveLargeCategoryProduct(Long largeCategoryId) throws BaseException;
-    List<ProductDtoRes> retrieveSearch(String searchWord) throws BaseException;
-    ProductInfoDtoRes retrieveProductBasic(Long productId) throws BaseException;
+    List<ProductDtoRes> retrieveAllProduct(Long userId) throws BaseException;
+    List<ProductDtoRes> retrieveMediumCategoryProduct(Long mediumCategoryId, Long userId) throws BaseException;
+    List<ProductDtoRes> retrieveSmallCategoryProduct(Long smallCategoryId, Long userId) throws BaseException;
+    List<ProductDtoRes> retrieveLargeCategoryProduct(Long largeCategoryId, Long userId) throws BaseException;
+    List<ProductDtoRes> retrieveSearch(String searchWord, Long userId) throws BaseException;
+    ProductInfoDtoRes retrieveProductBasic(Long productId, Long userId) throws BaseException;
     List<DetailImgDtoRes> retrieveProductDetail(Long productId) throws BaseException;
     List<ProductOptionDtoRes> retrieveProductOption(Long productId) throws BaseException;
 

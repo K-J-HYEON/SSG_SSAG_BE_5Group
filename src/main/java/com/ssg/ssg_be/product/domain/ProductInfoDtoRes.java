@@ -1,6 +1,7 @@
 package com.ssg.ssg_be.product.domain;
 
 import com.ssg.ssg_be.review.domain.ReviewTotalDto;
+import com.ssg.ssg_be.wish.domain.WishDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,4 +21,5 @@ public class ProductInfoDtoRes {
 
     private ReviewTotalDto reviewTotal;
     private List<ProductImgDtoRes> productImg;
+    private WishDto wishDto;
 }
