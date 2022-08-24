@@ -16,7 +16,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     boolean existsByProduct_ProductId(Long productId);
 
-    @Query(value = "select count(*) as reviewCount, round(avg(score),1) as reviewAvg from Review where product_id = ?1", nativeQuery = true)
+    @Query(value = "select count(*) as reviewCount, round(avg(score),1) as reviewAvg from review where product_id = ?1", nativeQuery = true)
     ReviewTotalDto retrieveReviewAvg(@Param("productId") Long productId);
 
     List<ReviewDtoRes> findByProductProductId(Long productId);

@@ -178,7 +178,7 @@ public class ProductController {
     }
 
     @ResponseBody
-    @GetMapping("/products/detail-info/{productId}")
+    @GetMapping("/comm-users/products/detail-info/{productId}")
     public BaseResponse<List<DetailImgDtoRes>> retrieveProductDetail(@PathVariable Long productId) {
         try {
             List<DetailImgDtoRes> product = productService.retrieveProductDetail(productId);
@@ -188,7 +188,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/products/options/{productId}")
+    @GetMapping("/comm-users/products/options/{productId}")
     public BaseResponse<List<ProductOptionDtoRes>> retrieveProductOption(@PathVariable Long productId) {
         try {
             List<ProductOptionDtoRes> product = productService.retrieveProductOption(productId);
