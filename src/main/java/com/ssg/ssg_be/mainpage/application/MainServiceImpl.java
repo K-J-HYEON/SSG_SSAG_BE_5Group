@@ -4,6 +4,7 @@ import com.ssg.config.BaseException;
 import com.ssg.ssg_be.mainpage.domain.*;
 import com.ssg.ssg_be.mainpage.infrastructure.HappyLoungeRepository;
 import com.ssg.ssg_be.mainpage.infrastructure.MainBannerRepository;
+import com.ssg.ssg_be.mainpage.infrastructure.NewServiceRepository;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.product.domain.ThumbnailImg;
 import com.ssg.ssg_be.product.infrastructure.ProductRepository;
@@ -23,13 +24,15 @@ public class MainServiceImpl implements MainService {
     private final HappyLoungeRepository happyLoungeRepository;
     private final ProductRepository productRepository;
     private final ThumbnailImgRepository thumbnailImgRepository;
+    private final NewServiceRepository newServiceRepository;
 
     @Autowired
-    public MainServiceImpl(MainBannerRepository mainBannerRepository, HappyLoungeRepository happyLoungeRepository, ProductRepository productRepository, ThumbnailImgRepository thumbnailImgRepository) {
+    public MainServiceImpl(MainBannerRepository mainBannerRepository, HappyLoungeRepository happyLoungeRepository, ProductRepository productRepository, ThumbnailImgRepository thumbnailImgRepository, NewServiceRepository newServiceRepository) {
         this.mainBannerRepository = mainBannerRepository;
         this.happyLoungeRepository = happyLoungeRepository;
         this.productRepository = productRepository;
         this.thumbnailImgRepository = thumbnailImgRepository;
+        this.newServiceRepository = newServiceRepository;
     }
 
     @Override
@@ -52,7 +55,6 @@ public class MainServiceImpl implements MainService {
         } catch (Exception exception) {
             throw new BaseException(BANNER_RETRIEVE_FAILED);
         }
-
     }
 
     @Override
@@ -93,10 +95,32 @@ public class MainServiceImpl implements MainService {
                                 .happyLoungeImgDto(happyLoungeImgDtos)
                         .build());
             }
-
             return happyLoungeDtoRes;
         } catch (Exception exception) {
             throw new BaseException(HAPPY_LOUNGE_RETRIEVE_FAILED);
+        }
+    }
+
+    @Override
+    public List<NewServiceDtoRes> retrieveNewService() throws BaseException {
+        try {
+            List<NewServiceDtoRes> newServiceDtoRes = new ArrayList<>();
+            List<NewService> newServices = newServiceRepository.findAllByOrderByPriority();
+
+            newServices.forEach(newService -> newServiceDtoRes.add(NewServiceDtoRes.builder()
+                            .newServiceId(newService.getNewServiceId())
+                            .title(newService.getTitle())
+                            .subTitle(newService.getSubTitle())
+                            .originName(newService.getOriginName())
+                            .saveName(newService.getSaveName())
+                            .imgUrl(newService.getImgUrl())
+                            .priority(newService.getPriority())
+                    .build())
+            );
+
+            return newServiceDtoRes;
+        } catch (Exception exception) {
+            throw new BaseException(NEW_SERVICE_RETRIEVE_FAILED);
         }
     }
 }

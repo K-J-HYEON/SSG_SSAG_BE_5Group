@@ -86,6 +86,7 @@ public enum BaseResponseStatus {
     UNABLE_TO_CANCEL_ORDER(false, 4070, "취소가 불가능한 주문 상태입니다."),
     BANNER_RETRIEVE_FAILED(false, 4071, "배너 조회에 실패했습니다."),
     HAPPY_LOUNGE_RETRIEVE_FAILED(false, 4072, "해피 라운지 조회에 실패했습니다."),
+    NEW_SERVICE_RETRIEVE_FAILED(false, 4073, "새로운 서비스 조회에 실패했습니다."),
 
     /**
      * 5000: S3 오류
