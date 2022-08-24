@@ -8,32 +8,26 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Getter
-public class NewService extends BaseTimeEntity {
+@Entity
+public class CardPromotion extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long newServiceId;
+    private Long cardPromotionId;
 
     @Column(nullable = false)
-    private String title;
+    private String cardName;
 
     @Column(nullable = false)
-    private String subTitle;
+    private String event;
 
     @Column(nullable = false)
-    private String originName;
+    private String benefits;
 
     @Column(nullable = false)
-    private String saveName;
-
-    @Column(nullable = false)
-    private String imgUrl;
-
-    @Column(nullable = false)
-    private int priority;
+    private String tagImgUrl;
 }

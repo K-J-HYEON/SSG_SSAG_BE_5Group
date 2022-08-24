@@ -13,23 +13,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Getter
-public class NewService extends BaseTimeEntity {
+public class HotBrand extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long newServiceId;
+    private Long hotBrandId;
 
     @Column(nullable = false)
-    private String title;
-
-    @Column(nullable = false)
-    private String subTitle;
-
-    @Column(nullable = false)
-    private String originName;
-
-    @Column(nullable = false)
-    private String saveName;
+    private String brandName;
 
     @Column(nullable = false)
     private String imgUrl;

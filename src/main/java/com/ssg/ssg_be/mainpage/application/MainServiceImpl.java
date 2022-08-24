@@ -2,9 +2,7 @@ package com.ssg.ssg_be.mainpage.application;
 
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.mainpage.domain.*;
-import com.ssg.ssg_be.mainpage.infrastructure.HappyLoungeRepository;
-import com.ssg.ssg_be.mainpage.infrastructure.MainBannerRepository;
-import com.ssg.ssg_be.mainpage.infrastructure.NewServiceRepository;
+import com.ssg.ssg_be.mainpage.infrastructure.*;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.product.domain.ThumbnailImg;
 import com.ssg.ssg_be.product.infrastructure.ProductRepository;
@@ -25,14 +23,18 @@ public class MainServiceImpl implements MainService {
     private final ProductRepository productRepository;
     private final ThumbnailImgRepository thumbnailImgRepository;
     private final NewServiceRepository newServiceRepository;
+    private final CardPromotionRepository cardPromotionRepository;
+    private final HotBrandRepository hotBrandRepository;
 
     @Autowired
-    public MainServiceImpl(MainBannerRepository mainBannerRepository, HappyLoungeRepository happyLoungeRepository, ProductRepository productRepository, ThumbnailImgRepository thumbnailImgRepository, NewServiceRepository newServiceRepository) {
+    public MainServiceImpl(MainBannerRepository mainBannerRepository, HappyLoungeRepository happyLoungeRepository, ProductRepository productRepository, ThumbnailImgRepository thumbnailImgRepository, NewServiceRepository newServiceRepository, CardPromotionRepository cardPromotionRepository, HotBrandRepository hotBrandRepository) {
         this.mainBannerRepository = mainBannerRepository;
         this.happyLoungeRepository = happyLoungeRepository;
         this.productRepository = productRepository;
         this.thumbnailImgRepository = thumbnailImgRepository;
         this.newServiceRepository = newServiceRepository;
+        this.cardPromotionRepository = cardPromotionRepository;
+        this.hotBrandRepository = hotBrandRepository;
     }
 
     @Override
@@ -121,6 +123,45 @@ public class MainServiceImpl implements MainService {
             return newServiceDtoRes;
         } catch (Exception exception) {
             throw new BaseException(NEW_SERVICE_RETRIEVE_FAILED);
+        }
+    }
+
+    @Override
+    public List<CardPromotionDtoRes> retrieveCardPromotion() throws BaseException {
+        try {
+            List<CardPromotionDtoRes> cardPromotionDtoRes = new ArrayList<>();
+            List<CardPromotion> cardPromotions = cardPromotionRepository.findAll();
+
+            cardPromotions.forEach(cardPromotion -> cardPromotionDtoRes.add(CardPromotionDtoRes.builder()
+                            .cardPromotionId(cardPromotion.getCardPromotionId())
+                            .cardName(cardPromotion.getCardName())
+                            .event(cardPromotion.getEvent())
+                            .benefits(cardPromotion.getBenefits())
+                            .tagImgUrl(cardPromotion.getTagImgUrl())
+                    .build()));
+
+            return cardPromotionDtoRes;
+        } catch (Exception exception) {
+            throw new BaseException(CARD_PROMOTION_RETRIEVE_FAILED);
+        }
+    }
+
+    @Override
+    public List<HotBrandDtoRes> retrieveHotBrand() throws BaseException {
+        try {
+            List<HotBrandDtoRes> hotBrandDtoRes = new ArrayList<>();
+            List<HotBrand> hotBrands = hotBrandRepository.findAllByOrderByPriority();
+
+            hotBrands.forEach(hotBrand -> hotBrandDtoRes.add(HotBrandDtoRes.builder()
+                            .hotBrandId(hotBrand.getHotBrandId())
+                            .brandName(hotBrand.getBrandName())
+                            .imgUrl(hotBrand.getImgUrl())
+                            .priority(hotBrand.getPriority())
+                    .build()));
+
+            return hotBrandDtoRes;
+        } catch (Exception exception) {
+            throw new BaseException(HOT_BRAND_RETRIEVE_FAILED);
         }
     }
 }

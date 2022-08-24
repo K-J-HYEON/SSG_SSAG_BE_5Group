@@ -3,10 +3,7 @@ package com.ssg.ssg_be.mainpage.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.mainpage.application.MainService;
-import com.ssg.ssg_be.mainpage.domain.HappyLoungeDtoRes;
-import com.ssg.ssg_be.mainpage.domain.MainBannerDtoRes;
-import com.ssg.ssg_be.mainpage.domain.NewService;
-import com.ssg.ssg_be.mainpage.domain.NewServiceDtoRes;
+import com.ssg.ssg_be.mainpage.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,6 +51,30 @@ public class MainController {
         try {
             List<NewServiceDtoRes> newServiceDtoRes = mainService.retrieveNewService();
             return new BaseResponse<>(newServiceDtoRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/main/card-promotion")
+    public BaseResponse<List<CardPromotionDtoRes>> retrieveCardPromotion() {
+
+        try {
+            List<CardPromotionDtoRes> cardPromotionDtoRes = mainService.retrieveCardPromotion();
+            return new BaseResponse<>(cardPromotionDtoRes);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/main/hot-brand")
+    public BaseResponse<List<HotBrandDtoRes>> retrieveHotBrand() {
+
+        try {
+            List<HotBrandDtoRes> hotBrandDtoRes = mainService.retrieveHotBrand();
+            return new BaseResponse<>(hotBrandDtoRes);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
