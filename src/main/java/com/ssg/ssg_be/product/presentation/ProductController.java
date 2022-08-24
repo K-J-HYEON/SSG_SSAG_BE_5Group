@@ -127,7 +127,7 @@ public class ProductController {
     }
 
     @ResponseBody
-    @GetMapping("/users/products/search/{searchWord}")
+    @GetMapping("/non-users/products/search/{searchWord}")
     public BaseResponse<List<ProductDtoRes>> retrieveSearch(@PathVariable String searchWord) {
 
         try {
@@ -139,7 +139,7 @@ public class ProductController {
     }
 
     @ResponseBody
-    @GetMapping("/non-users/products/search/{searchWord}")
+    @GetMapping("/users/products/search/{searchWord}")
     public BaseResponse<List<ProductDtoRes>> userRetrieveSearch(@PathVariable String searchWord) {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
