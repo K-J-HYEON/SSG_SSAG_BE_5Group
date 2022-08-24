@@ -177,6 +177,8 @@ public class ProductController {
         }
     }
 
+
+
     @ResponseBody
     @GetMapping("/comm-users/products/detail-info/{productId}")
     public BaseResponse<List<DetailImgDtoRes>> retrieveProductDetail(@PathVariable Long productId) {
