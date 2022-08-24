@@ -206,21 +206,6 @@ public class ProductServiceImpl implements ProductService {
             throw new BaseException(REVIEW_TOTAL_RETRIEVE_FAILED);
         }
 
-//        최근 본 카테고리 추가
-//        Product -> presentation -> ProductController
-//                - userRetrieveLargeCategoryProduct => 여기서 largeCategoryId 식별자 가져오기
-//                - userRetrieveMediumCategoryProduct => mediumCategoryId 식별자 가져오기
-//                - userRetrieveSmallCategoryProduct => smallCategoryId 식별자 가져오기
-//
-//        최근 본 상품 추가
-//        Product -> presentation -> ProductController
-//                - retrieveProductBasic => 여기서 상품 정보 추출
-//
-//        최근 본 검색어 추가
-//        Product -> presentation -> ProductController
-//                - userRetrieveSearch => 여기서 검색어 추출
-
-
         // 최근 상품 조회
         if(userId != -1L) {
             User user = userRepository.getById(userId);
@@ -240,7 +225,6 @@ public class ProductServiceImpl implements ProductService {
                 wishIdDto = new WishDto(wish.getWishId());
             }
         }
-
 
         return ProductInfoDtoRes.builder()
                 .productId(product.getProductId())

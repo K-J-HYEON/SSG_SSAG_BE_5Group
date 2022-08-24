@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ViewHistoryRepository extends JpaRepository<ViewHistory, Long>{
+
 }
