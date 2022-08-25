@@ -10,13 +10,15 @@ public class ViewHistoryDtoReq {
     private Long productId;
     private String name;
     private int price;
-    private String productImg;
+    //    private String productImg;
+    private String product;
 
-    public ViewHistory toEntity(User user) {
+
+    public ViewHistory toEntity(Product product, User user) {
         return ViewHistory.builder()
-                .name(name)
-                .price(price)
-                .productImg(productImg)
+//                .name(name)
+//                .price(price)
+                .product(product)
                 .user(user)
                 .build();
     }
