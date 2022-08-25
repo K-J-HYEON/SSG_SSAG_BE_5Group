@@ -89,6 +89,15 @@ public enum BaseResponseStatus {
     NEW_SERVICE_RETRIEVE_FAILED(false, 4073, "새로운 서비스 조회에 실패했습니다."),
     CARD_PROMOTION_RETRIEVE_FAILED(false, 4074, "카드 프로모션 조회에 실패했습니다."),
     HOT_BRAND_RETRIEVE_FAILED(false, 4075, "핫 브랜드 조회에 실패했습니다."),
+    VIEWHISTORY_RETRIEVE_FAILED(false, 4076, "최근 상품 조회에 실패했습니다."),
+    VIEWHISTORY_DELETE_FAILED(false, 4077, "최근 상품 삭제에 실패했습니다."),
+    SEARCHHISTORY_RETRIEVE_FAILED(false, 4078, "최근 상품 검색어 조회에 실패했습니다."),
+    SEARCHHISTORY_DELETE_FAILED(false, 4079, "최근 상품 검색어 삭제에 실패했습니다."),
+    CATEGORYHISTORY_RETRIEVE_FAILED(false, 4080, "최근 카테고리 조회에 실패했습니다."),
+    CATEGORYHISTORY_DELETE_FAILED(false, 4081, "최근 카테고리 삭제에 실패했습니다."),
+    BRANDHISTORY_RETRIEVE_FAILED(false, 4082, "최근 브랜드 조회에 실패했습니다."),
+    BRANDHISTORY_DELETE_FAILED(false, 4083, "최근 브랜드 삭제에 실패했습니다."),
+
 
     /**
      * 5000: S3 오류
