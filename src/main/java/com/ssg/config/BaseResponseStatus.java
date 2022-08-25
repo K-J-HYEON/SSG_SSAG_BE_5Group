@@ -54,6 +54,8 @@ public enum BaseResponseStatus {
     CART_COUNT_UPDATE_FAILED(false, 4023, "장바구니 수량 수정에 실패하였습니다."),
     CART_OPTION_UPDATE_FAILED(false, 4024, "장바구니 옵션 수정에 실패하였습니다."),
     OPTION_RETRIEVE_FAILED(false, 4025, "옵션 조회에 실패하였습니다."),
+    OPTION_COLOR_RETRIEVE_FAILED(false, 4026, "색상 옵션 조회에 실패하였습니다."),
+    OPTION_SIZE_RETRIEVE_FAILED(false, 4027, "사이즈 옵션 조회에 실패하였습니다."),
     WISH_INSERT_FAILED(false, 4030, "좋아요 누르기에 실패하였습니다."),
     WISH_RETRIEVE_FAILED(false, 4031, "좋아요 조회에 실패하였습니다."),
     WISH_DELETE_FAILED(false, 4032, "좋아요 삭제에 실패하였습니다."),

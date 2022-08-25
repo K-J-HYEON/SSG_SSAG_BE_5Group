@@ -190,10 +190,20 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/comm-users/products/options/{productId}")
-    public BaseResponse<List<ProductOptionDtoRes>> retrieveProductOption(@PathVariable Long productId) {
+    @GetMapping("/comm-users/products/options/color/{productId}")
+    public BaseResponse<List<ProductColorDtoRes>> retrieveProductColor(@PathVariable Long productId) {
         try {
-            List<ProductOptionDtoRes> product = productService.retrieveProductOption(productId);
+            List<ProductColorDtoRes> product = productService.retrieveProductColor(productId);
+            return new BaseResponse<>(product);
+        } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @GetMapping("/comm-users/products/options/size/{productId}/{colorId}")
+    public BaseResponse<List<ProductSizeDtoRes>> retrieveProductSize(@PathVariable Long productId, @PathVariable Long colorId) {
+        try {
+            List<ProductSizeDtoRes> product = productService.retrieveProductSize(productId, colorId);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());

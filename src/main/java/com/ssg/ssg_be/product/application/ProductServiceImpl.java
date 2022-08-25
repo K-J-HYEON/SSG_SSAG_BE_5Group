@@ -262,24 +262,31 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductOptionDtoRes> retrieveProductOption(Long productId) throws BaseException {
-
+    public List<ProductColorDtoRes> retrieveProductColor(Long productId) throws BaseException {
         try {
-            List<ProductOption> productOption = productOptionRepository.findByProductProductId(productId);
-            List<ProductOptionDtoRes> productOptionDtoRes = new ArrayList<>();
+            return productOptionRepository.getColorIds(productId);
+        } catch(Exception exception) {
+            throw new BaseException(OPTION_COLOR_RETRIEVE_FAILED);
+        }
+    }
 
-            productOption.forEach(p -> productOptionDtoRes.add(ProductOptionDtoRes.builder()
-                    .productOptionId(p.getProductOptionId())
-                    .size(p.getSize())
-                    .color(p.getColor())
-                    .modelNumber(p.getModelNumber())
-                    .stock(p.getStock())
+    @Override
+    public List<ProductSizeDtoRes> retrieveProductSize(Long productId, Long colorId) throws BaseException {
+        try {
+            List<ProductOption> productOptions = productOptionRepository.findAllByProductProductIdAndColorColorId(productId, colorId);
+            List<ProductSizeDtoRes> productSizeDtoRes = new ArrayList<>();
+
+            productOptions.forEach(productOption -> productSizeDtoRes.add(ProductSizeDtoRes.builder()
+                            .productOptionId(productOption.getProductOptionId())
+                            .sizeId(productOption.getSize().getSizeId())
+                            .size(productOption.getSize().getSize())
+                            .stock(productOption.getStock())
                     .build())
             );
 
-            return productOptionDtoRes;
+            return productSizeDtoRes;
         } catch(Exception exception) {
-            throw new BaseException(OPTION_RETRIEVE_FAILED);
+            throw new BaseException(OPTION_SIZE_RETRIEVE_FAILED);
         }
     }
 
