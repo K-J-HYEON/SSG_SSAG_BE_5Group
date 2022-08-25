@@ -20,6 +20,12 @@ public class MainBanner extends BaseTimeEntity {
     private Long mainBannerId;
 
     @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
+    private String content;
+
+    @Column(nullable = false)
     private String originName;
 
     @Column(nullable = false)

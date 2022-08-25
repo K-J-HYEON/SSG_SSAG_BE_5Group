@@ -46,6 +46,8 @@ public class MainServiceImpl implements MainService {
 
             mainBanners.forEach(mainBanner -> mainBannerDtoRes.add(MainBannerDtoRes.builder()
                     .mainBannerId(mainBanner.getMainBannerId())
+                    .title(mainBanner.getTitle())
+                    .content(mainBanner.getContent())
                     .originName(mainBanner.getOriginName())
                     .saveName(mainBanner.getSaveName())
                     .imgUrl(mainBanner.getImgUrl())
