@@ -132,6 +132,4 @@ public class HistoryController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
-
-
 }

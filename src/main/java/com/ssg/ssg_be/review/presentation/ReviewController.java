@@ -65,7 +65,7 @@ public class ReviewController {
     }
 
     @DeleteMapping("/review/{reviewId}")
-    public BaseResponse<String> deleteReview(@RequestBody ReviewDtoReq reviewDtoReq, Long reviewId) {
+    public BaseResponse<String> deleteReview(@PathVariable Long reviewId) {
         String result = "";
 
         try {
