@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.history.domain;
 
+import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryHistory {
+public class CategoryHistory extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

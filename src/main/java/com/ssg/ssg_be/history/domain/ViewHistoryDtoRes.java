@@ -8,6 +8,6 @@ public interface ViewHistoryDtoRes {
     int getPrice();
     String getProductImg();
 
-    int getUserId();
+    Long getUserUserId();
     LocalDateTime getCreateAt();
 }

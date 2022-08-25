@@ -86,6 +86,14 @@ public enum BaseResponseStatus {
     UNABLE_TO_CANCEL_ORDER(false, 4070, "취소가 불가능한 주문 상태입니다."),
     BANNER_RETRIEVE_FAILED(false, 4071, "배너 조회에 실패했습니다."),
     VIEWHISTORY_RETRIEVE_FAILED(false, 4072, "최근 상품 조회에 실패했습니다."),
+    VIEWHISTORY_DELETE_FAILED(false, 4073, "최근 상품 삭제에 실패했습니다."),
+    SEARCHHISTORY_RETRIEVE_FAILED(false, 4074, "최근 상품 검색어 조회에 실패했습니다."),
+    SEARCHHISTORY_DELETE_FAILED(false, 4075, "최근 상품 검색어 삭제에 실패했습니다."),
+    CATEGORYHISTORY_RETRIEVE_FAILED(false, 4076, "최근 카테고리 조회에 실패했습니다."),
+    CATEGORYHISTORY_DELETE_FAILED(false, 4077, "최근 카테고리 삭제에 실패했습니다."),
+    BRANDHISTORY_RETRIEVE_FAILED(false, 4078, "최근 브랜드 조회에 실패했습니다."),
+    BRANDHISTORY_DELETE_FAILED(false, 4079, "최근 브랜드 삭제에 실패했습니다."),
+
 
     /**
      * 5000: S3 오류

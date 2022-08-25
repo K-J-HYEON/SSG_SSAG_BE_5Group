@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.history.domain;
 
+import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.AllArgsConstructor;
@@ -13,24 +14,20 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class ViewHistory {
+public class ViewHistory extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long viewHistoryId;
 
-//    @Column(nullable = false)
-//    private String name;
-//
-//    @Column(nullable = false)
-//    private int price;
-//
-//    @Column(nullable = false)
-//    private String productImg;
+    @Column(nullable = false)
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
-    private Product product;
+    @Column(nullable = false)
+    private int price;
+
+    @Column(nullable = false)
+    private String productImg;
 
     // user 엔티티 넣어서 반영
     @ManyToOne
