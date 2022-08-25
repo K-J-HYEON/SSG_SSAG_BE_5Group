@@ -9,6 +9,8 @@ import lombok.Getter;
 @Builder
 public class MainBannerDtoRes {
     private Long mainBannerId;
+    private String title;
+    private String content;
     private String originName;
     private String saveName;
     private String imgUrl;
