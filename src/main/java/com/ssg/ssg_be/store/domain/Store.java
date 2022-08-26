@@ -1,9 +1,11 @@
 package com.ssg.ssg_be.store.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ssg.config.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -11,7 +13,8 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor
 @Builder
-public class Store {
+@NoArgsConstructor
+public class Store extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
