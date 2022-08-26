@@ -6,6 +6,7 @@ import com.ssg.ssg_be.product.application.ProductService;
 import com.ssg.ssg_be.product.domain.*;
 import com.ssg.utils.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,9 +26,9 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/non-users/products/all")
-    public BaseResponse<List<ProductDtoRes>> retrieveAllProduct() {
+    public BaseResponse<List<ProductDtoRes>> retrieveAllProduct(Pageable pageable) {
         try {
-            List<ProductDtoRes> product = productService.retrieveAllProduct(-1L);
+            List<ProductDtoRes> product = productService.retrieveAllProduct(-1L, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -36,12 +37,12 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/users/products/all")
-    public BaseResponse<List<ProductDtoRes>> userRetrieveAllProduct() {
+    public BaseResponse<List<ProductDtoRes>> userRetrieveAllProduct(Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            List<ProductDtoRes> product = productService.retrieveAllProduct(userId);
+            List<ProductDtoRes> product = productService.retrieveAllProduct(userId, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -50,10 +51,10 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/non-users/products/medium/{mediumCategoryId}")
-    public BaseResponse<List<ProductDtoRes>> retrieveMediumCategoryProduct(@PathVariable Long mediumCategoryId) {
+    public BaseResponse<List<ProductDtoRes>> retrieveMediumCategoryProduct(@PathVariable Long mediumCategoryId, Pageable pageable) {
 
         try {
-            List<ProductDtoRes> product = productService.retrieveMediumCategoryProduct(mediumCategoryId, -1L);
+            List<ProductDtoRes> product = productService.retrieveMediumCategoryProduct(mediumCategoryId, -1L, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -62,12 +63,12 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/users/products/medium/{mediumCategoryId}")
-    public BaseResponse<List<ProductDtoRes>> userRetrieveMediumCategoryProduct(@PathVariable Long mediumCategoryId) {
+    public BaseResponse<List<ProductDtoRes>> userRetrieveMediumCategoryProduct(@PathVariable Long mediumCategoryId, Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            List<ProductDtoRes> product = productService.retrieveMediumCategoryProduct(mediumCategoryId, userId);
+            List<ProductDtoRes> product = productService.retrieveMediumCategoryProduct(mediumCategoryId, userId, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -76,10 +77,10 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/non-users/products/small/{smallCategoryId}")
-    public BaseResponse<List<ProductDtoRes>> retrieveSmallCategoryProduct(@PathVariable Long smallCategoryId) {
+    public BaseResponse<List<ProductDtoRes>> retrieveSmallCategoryProduct(@PathVariable Long smallCategoryId, Pageable pageable) {
 
         try {
-            List<ProductDtoRes> product = productService.retrieveSmallCategoryProduct(smallCategoryId, -1L);
+            List<ProductDtoRes> product = productService.retrieveSmallCategoryProduct(smallCategoryId, -1L, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -88,12 +89,12 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/users/products/small/{smallCategoryId}")
-    public BaseResponse<List<ProductDtoRes>> userRetrieveSmallCategoryProduct(@PathVariable Long smallCategoryId) {
+    public BaseResponse<List<ProductDtoRes>> userRetrieveSmallCategoryProduct(@PathVariable Long smallCategoryId, Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            List<ProductDtoRes> product = productService.retrieveSmallCategoryProduct(smallCategoryId, userId);
+            List<ProductDtoRes> product = productService.retrieveSmallCategoryProduct(smallCategoryId, userId, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -102,10 +103,10 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/non-users/products/large/{largeCategoryId}")
-    public BaseResponse<List<ProductDtoRes>> retrieveLargeCategoryProduct(@PathVariable Long largeCategoryId) {
+    public BaseResponse<List<ProductDtoRes>> retrieveLargeCategoryProduct(@PathVariable Long largeCategoryId, Pageable pageable) {
 
         try {
-            List<ProductDtoRes> product = productService.retrieveLargeCategoryProduct(largeCategoryId, -1L);
+            List<ProductDtoRes> product = productService.retrieveLargeCategoryProduct(largeCategoryId, -1L, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -114,12 +115,12 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/users/products/large/{largeCategoryId}")
-    public BaseResponse<List<ProductDtoRes>> userRetrieveLargeCategoryProduct(@PathVariable Long largeCategoryId) {
+    public BaseResponse<List<ProductDtoRes>> userRetrieveLargeCategoryProduct(@PathVariable Long largeCategoryId, Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            List<ProductDtoRes> product = productService.retrieveLargeCategoryProduct(largeCategoryId, userId);
+            List<ProductDtoRes> product = productService.retrieveLargeCategoryProduct(largeCategoryId, userId, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -128,10 +129,10 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/non-users/products/search/{searchWord}")
-    public BaseResponse<List<ProductDtoRes>> retrieveSearch(@PathVariable String searchWord) {
+    public BaseResponse<List<ProductDtoRes>> retrieveSearch(@PathVariable String searchWord, Pageable pageable) {
 
         try {
-            List<ProductDtoRes> product = productService.retrieveSearch(searchWord, -1L);
+            List<ProductDtoRes> product = productService.retrieveSearch(searchWord, -1L, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -140,12 +141,12 @@ public class ProductController {
 
     @ResponseBody
     @GetMapping("/users/products/search/{searchWord}")
-    public BaseResponse<List<ProductDtoRes>> userRetrieveSearch(@PathVariable String searchWord) {
+    public BaseResponse<List<ProductDtoRes>> userRetrieveSearch(@PathVariable String searchWord, Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            List<ProductDtoRes> product = productService.retrieveSearch(searchWord, userId);
+            List<ProductDtoRes> product = productService.retrieveSearch(searchWord, userId, pageable);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());

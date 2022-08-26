@@ -28,6 +28,8 @@ import com.ssg.ssg_be.wish.domain.WishDto;
 import com.ssg.ssg_be.wish.infrastructure.WishRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -73,16 +75,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDtoRes> retrieveAllProduct(Long userId) throws BaseException {
+    public List<ProductDtoRes> retrieveAllProduct(Long userId, Pageable pageable) throws BaseException {
         try {
-            return retrieveProductAndReview(categoryConnRepository.findAllBy(), userId);
+            return retrieveProductAndReview(categoryConnRepository.findAllBy(pageable), userId);
         } catch(Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
 
     @Override
-    public List<ProductDtoRes> retrieveMediumCategoryProduct(Long mediumCategoryId, Long userId) throws BaseException {
+    public List<ProductDtoRes> retrieveMediumCategoryProduct(Long mediumCategoryId, Long userId, Pageable pageable) throws BaseException {
 
         MediumCategory mediumCategory = mediumCategoryRepository.getById(mediumCategoryId);
 
@@ -98,14 +100,14 @@ public class ProductServiceImpl implements ProductService {
                         .build());
             }
 
-            return retrieveProductAndReview(categoryConnRepository.findByMediumCategoryId(mediumCategoryId), userId);
+            return retrieveProductAndReview(categoryConnRepository.findByMediumCategoryId(mediumCategoryId, pageable), userId);
         } catch(Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
 
     @Override
-    public List<ProductDtoRes> retrieveSmallCategoryProduct(Long smallCategoryId, Long userId) throws BaseException {
+    public List<ProductDtoRes> retrieveSmallCategoryProduct(Long smallCategoryId, Long userId, Pageable pageable) throws BaseException {
 
         SmallCategory smallCategory = smallCategoryRepository.getById(smallCategoryId);
 
@@ -120,14 +122,14 @@ public class ProductServiceImpl implements ProductService {
                         .user(user)
                         .build());
             }
-            return retrieveProductAndReview(categoryConnRepository.findBySmallCategorySmallCategoryId(smallCategoryId), userId);
+            return retrieveProductAndReview(categoryConnRepository.findBySmallCategorySmallCategoryId(smallCategoryId, pageable), userId);
         } catch(Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
 
     @Override
-    public List<ProductDtoRes> retrieveLargeCategoryProduct(Long largeCategoryId, Long userId) throws BaseException {
+    public List<ProductDtoRes> retrieveLargeCategoryProduct(Long largeCategoryId, Long userId, Pageable pageable) throws BaseException {
 
         LargeCategory largeCategory = largeCategoryRepository.getById(largeCategoryId);
 
@@ -144,14 +146,14 @@ public class ProductServiceImpl implements ProductService {
 
             }
 
-            return retrieveProductAndReview(categoryConnRepository.findByLargeCategoryId(largeCategoryId), userId);
+            return retrieveProductAndReview(categoryConnRepository.findByLargeCategoryId(largeCategoryId, pageable), userId);
         } catch(Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
 
     @Override
-    public List<ProductDtoRes> retrieveSearch(String searchWord, Long userId) throws BaseException {
+    public List<ProductDtoRes> retrieveSearch(String searchWord, Long userId, Pageable pageable) throws BaseException {
 
         try {
             // 최근 검색 조회
@@ -163,7 +165,7 @@ public class ProductServiceImpl implements ProductService {
                         .build());
             }
 
-            return retrieveProductAndReview(categoryConnRepository.findByProductNameContains(searchWord), userId);
+            return retrieveProductAndReview(categoryConnRepository.findByProductNameContains(searchWord, pageable), userId);
 
         } catch(Exception exception) {
             throw new BaseException(SEARCH_RETRIEVE_FAILED);
@@ -290,7 +292,7 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    public List<ProductDtoRes> retrieveProductAndReview(List<CategoryProductDtoRes> products, Long userId) {
+    public List<ProductDtoRes> retrieveProductAndReview(Page<CategoryProductDtoRes> products, Long userId) {
 
         List<ReviewTotalDto> reviewTotalDtos = new ArrayList<>();
         List<WishDto> wishDtos = new ArrayList<>();
@@ -318,12 +320,17 @@ public class ProductServiceImpl implements ProductService {
         List<ProductDtoRes> productDtoResList = new ArrayList<>();
         ProductDtoRes productDtoRes;
 
-        for(int i = 0; i < products.size(); i++) {
-            productDtoRes = new ProductDtoRes(products.get(i), reviewTotalDtos.get(i), wishDtos.get(i));
+        int i = 0;
+
+        for(CategoryProductDtoRes categoryProductDtoRes : products) {
+            productDtoRes = new ProductDtoRes(categoryProductDtoRes, reviewTotalDtos.get(i), wishDtos.get(i));
             productDtoResList.add(productDtoRes);
+            i++;
         }
 
         return productDtoResList;
     }
+
+
 
 }
