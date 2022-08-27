@@ -56,4 +56,10 @@ public class LoginServiceImpl implements LoginService {
         }
     }
 
+    // kakao
+//    public int checkEmail(String email) throws BaseException {
+//        try {
+//            return
+//        }
+//    }
 }
