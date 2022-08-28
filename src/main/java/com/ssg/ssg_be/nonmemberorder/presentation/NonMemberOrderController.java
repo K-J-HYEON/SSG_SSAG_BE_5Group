@@ -20,7 +20,6 @@ public class NonMemberOrderController {
         this.nonMemberOrderService = nonMemberOrderService;
     }
 
-    @ResponseBody
     @PostMapping("/order")
     public BaseResponse<NonMemberOrderIdDtoRes> createNonMemberOrders(@RequestBody NonMemberOrderListDtoReq nonMemberOrderListDtoReq) {
 
@@ -32,7 +31,6 @@ public class NonMemberOrderController {
         }
     }
 
-    @ResponseBody
     @PostMapping("/order/auth")
     public BaseResponse<String> authNonMember(@RequestBody NonMemberAuthDtoReq nonMemberAuthDtoReq) throws BaseException {
         String result = "";
@@ -45,7 +43,6 @@ public class NonMemberOrderController {
         return new BaseResponse<>(result);
     }
 
-    @ResponseBody
     @GetMapping("/order/check/{orderListId}")
     public BaseResponse<NonMemberOrderListDtoRes> retrieveNonMemberOrders(@PathVariable Long orderListId) {
 

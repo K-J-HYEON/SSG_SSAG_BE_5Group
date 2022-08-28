@@ -40,7 +40,6 @@ public class OrderController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/order")
     public BaseResponse<List<OrderDtoListRes>> retrieveOrders() {
         String token = jwtTokenProvider.getHeader();

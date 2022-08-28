@@ -8,6 +8,7 @@ import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import com.ssg.ssg_be.wish.domain.WishDtoReq;
 import com.ssg.ssg_be.wish.domain.WishDtoRes;
 import com.ssg.ssg_be.wish.infrastructure.WishRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,12 @@ import java.util.List;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
+@RequiredArgsConstructor
 public class WishServiceImpl implements WishServive {
 
-    private final WishRepository wishRepository;
-    private final UserRepository userRepository;
-    private final ProductRepository productRepository;
+    private WishRepository wishRepository;
+    private UserRepository userRepository;
+    private ProductRepository productRepository;
 
     @Autowired
     public WishServiceImpl(WishRepository wishRepository, UserRepository userRepository, ProductRepository productRepository) {

@@ -6,15 +6,17 @@ import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.review.infrastructure.ReviewRepository;
 import com.ssg.ssg_be.signup.application.SignupService;
 import com.ssg.ssg_be.signup.domain.UserDtoReq;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/comm-users")
 public class SignupController {
 
-    private final SignupService signupService;
-    private final ReviewRepository reviewRepository;
+    private SignupService signupService;
+    private ReviewRepository reviewRepository;
 
     @Autowired
     public SignupController(SignupService signupService, ReviewRepository reviewRepository) {

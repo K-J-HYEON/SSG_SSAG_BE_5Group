@@ -6,7 +6,7 @@ import com.ssg.ssg_be.history.infrastructure.BrandHistoryRepository;
 import com.ssg.ssg_be.history.infrastructure.CategoryHistoryRepository;
 import com.ssg.ssg_be.history.infrastructure.SearchHistoryRepository;
 import com.ssg.ssg_be.history.infrastructure.ViewHistoryRepository;
-import com.ssg.ssg_be.signup.domain.User;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +15,13 @@ import java.util.List;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class HistoryServiceImpl implements HistoryService {
-    private final BrandHistoryRepository brandHistoryRepository;
-    private final CategoryHistoryRepository categoryHistoryRepository;
-    private final ViewHistoryRepository viewHistoryRepository;
-    private final SearchHistoryRepository searchHistoryRepository;
+    private BrandHistoryRepository brandHistoryRepository;
+    private CategoryHistoryRepository categoryHistoryRepository;
+    private ViewHistoryRepository viewHistoryRepository;
+    private SearchHistoryRepository searchHistoryRepository;
 
     public HistoryServiceImpl(BrandHistoryRepository brandHistoryRepository, CategoryHistoryRepository categoryHistoryRepository, ViewHistoryRepository viewHistoryRepository, SearchHistoryRepository searchHistoryRepository) {
         this.brandHistoryRepository = brandHistoryRepository;

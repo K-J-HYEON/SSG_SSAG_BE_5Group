@@ -6,6 +6,7 @@ import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.smsauth.application.SmsAuthService;
 import com.ssg.ssg_be.smsauth.domain.SmsAuthDtoReq;
 import com.ssg.ssg_be.smsauth.domain.SmsAuthDtoRes;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,11 +17,12 @@ import static com.ssg.config.BaseResponseStatus.AUTH_NUM_IS_NULL;
 import static com.ssg.config.BaseResponseStatus.INVALID_PHONE_NUM;
 import static com.ssg.utils.ValidationRegex.isRegexPhone;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("comm-users/")
 public class SmsAuthController {
 
-    private final SmsAuthService smsAuthService;
+    private SmsAuthService smsAuthService;
 
     @Autowired
     public SmsAuthController(SmsAuthService smsAuthService) {

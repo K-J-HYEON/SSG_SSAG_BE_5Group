@@ -21,7 +21,6 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @ResponseBody
     @GetMapping("/category")
     public BaseResponse<List<CategoryDtoRes>> retrieveCategory() {
 
@@ -33,7 +32,6 @@ public class CategoryController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/category/small/{mediumCategoryId}")
     public BaseResponse<List<SmallCategoryDtoRes>> retrieveSmallCategory(@PathVariable Long mediumCategoryId) {
 

@@ -39,7 +39,6 @@ public class ReviewController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/review/{reviewId}")
     public BaseResponse<List<ReviewDtoRes>> retrieveReview(@PathVariable Long reviewId) {
         try {
@@ -50,7 +49,6 @@ public class ReviewController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/review/user")
     public BaseResponse<List<ReviewDtoRes>> retrieveMyReview() {
         String token = jwtTokenProvider.getHeader();

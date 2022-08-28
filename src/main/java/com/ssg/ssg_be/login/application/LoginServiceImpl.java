@@ -7,6 +7,7 @@ import com.ssg.ssg_be.login.domain.LoginUserDtoReq;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import com.ssg.utils.jwt.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,12 +18,13 @@ import java.sql.Timestamp;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class LoginServiceImpl implements LoginService {
 
-    private final UserRepository userRepository;
-    private final JwtTokenProvider jwtTokenProvider;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserRepository userRepository;
+    private JwtTokenProvider jwtTokenProvider;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public LoginServiceImpl(UserRepository userRepository, JwtTokenProvider jwtTokenProvider, BCryptPasswordEncoder bCryptPasswordEncoder) {
@@ -55,11 +57,4 @@ public class LoginServiceImpl implements LoginService {
             throw new BaseException(FAILED_TO_LOGIN);
         }
     }
-
-    // kakao
-//    public int checkEmail(String email) throws BaseException {
-//        try {
-//            return
-//        }
-//    }
 }

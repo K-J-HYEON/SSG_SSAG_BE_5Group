@@ -4,9 +4,9 @@ import com.ssg.config.BaseException;
 import com.ssg.ssg_be.nonmemberorder.domain.*;
 import com.ssg.ssg_be.nonmemberorder.infrastructure.NonMemberOrderListRepository;
 import com.ssg.ssg_be.nonmemberorder.infrastructure.NonMemberOrderRepository;
-import com.ssg.ssg_be.order.domain.Orders;
 import com.ssg.ssg_be.product.domain.ProductOption;
 import com.ssg.ssg_be.product.infrastructure.ProductOptionRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +16,13 @@ import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
+@RequiredArgsConstructor
 @Service
 public class NonMemberOrderServiceImpl implements NonMemberOrderService {
 
-    private final NonMemberOrderRepository nonMemberOrderRepository;
-    private final NonMemberOrderListRepository nonMemberOrderListRepository;
-    private final ProductOptionRepository productOptionRepository;
+    private NonMemberOrderRepository nonMemberOrderRepository;
+    private NonMemberOrderListRepository nonMemberOrderListRepository;
+    private ProductOptionRepository productOptionRepository;
 
     @Autowired
     public NonMemberOrderServiceImpl(NonMemberOrderRepository nonMemberOrderRepository, NonMemberOrderListRepository nonMemberOrderListRepository, ProductOptionRepository productOptionRepository) {

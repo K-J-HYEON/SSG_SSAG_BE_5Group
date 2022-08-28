@@ -9,6 +9,7 @@ import com.ssg.ssg_be.product.domain.ProductOption;
 import com.ssg.ssg_be.product.infrastructure.ProductOptionRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,14 +21,15 @@ import java.util.List;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    private final OrderRepository orderRepository;
-    private final OrderListRepository orderListRepository;
-    private final UserRepository userRepository;
-    private final CartRepository cartRepository;
-    private final ProductOptionRepository productOptionRepository;
+    private OrderRepository orderRepository;
+    private OrderListRepository orderListRepository;
+    private UserRepository userRepository;
+    private CartRepository cartRepository;
+    private ProductOptionRepository productOptionRepository;
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository, OrderListRepository orderListRepository, UserRepository userRepository, CartRepository cartRepository, ProductOptionRepository productOptionRepository) {

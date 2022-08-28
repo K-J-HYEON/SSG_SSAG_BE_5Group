@@ -38,8 +38,7 @@ public class PaymentMethodController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
-
-    @ResponseBody
+    
     @GetMapping("/payment")
     public BaseResponse<List<PaymentMethodDtoRes>> retrievePaymentMethod() {
         String token = jwtTokenProvider.getHeader();

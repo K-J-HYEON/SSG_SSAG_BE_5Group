@@ -6,17 +6,19 @@ import com.ssg.ssg_be.memberInfo.domain.MemberInfoPutDtoReq;
 import com.ssg.ssg_be.memberInfo.domain.MemberUpdatePasswordDtoReq;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
+@RequiredArgsConstructor
 @Service
 public class MemberInfoServiceImpl implements MemberInfoService {
 
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserRepository userRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public MemberInfoServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
