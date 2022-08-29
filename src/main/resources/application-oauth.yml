@@ -1,34 +1,20 @@
-server:
-  port: 8080
-
 spring:
-  jpa:
-    generate-ddl: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-        show_sql: true
-    show_sql: false
-    database: mysql
-    hibernate:
-      ddl-auto: update
-  servlet:
-    multipart:
-      max-file-size: 50MB  #최대 파일 사이즈를 50MB로 지정
-      max-request-size: 500MB
-
-  profiles:
-    include: aws, local-db, secret
-
-
   # KAKAO
   security:
     oauth2:
       client:
         registration:
+          naver:
+            client-id: vi2ZsxV43twrli7TYqBb
+            client-secret: zpatnxDwD9
+            redirect-uri: "http://localhost:8080/login/oauth2/code/naver"
+            authorization-grant-type: authorization_code
+            scope: name, email, mobile
+            client-name: Naver
+
           kakao:
             authorization-grant-type: authorization_code
-            client-id : client_id
+            client-id: client_id
             client-secret: client_pw
             scope: profile, account_email
             client-authentication-method: POST
@@ -37,6 +23,12 @@ spring:
 
         # kakao Provider 등록!
         provider:
+          naver:
+            authorization_uri: https://nid.naver.com/oauth2.0/authorize
+            token_uri: https://nid.naver.com/oauth2.0/token
+            user-info-uri: https://openapi.naver.com/v1/nid/me
+            user_name_attribute: response
+
           kakao:
             token-uri: https://kauth.kakao.com/oauth/token
             user-name-attribute: 'id'
