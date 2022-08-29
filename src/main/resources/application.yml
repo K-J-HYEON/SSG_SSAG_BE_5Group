@@ -40,4 +40,4 @@ spring:
 #            max-request-size: 500MB
 #
 #    profiles:
-#        include: aws, dev-db, secret
+#        include: aws, dev-db, secret, oauth
