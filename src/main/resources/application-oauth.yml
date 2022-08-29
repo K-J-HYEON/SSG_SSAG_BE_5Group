@@ -21,7 +21,6 @@ spring:
             redirect-uri: http://localhost:8080/login/oauth2/code/kakao
             client-name: kakao
 
-        # kakao Provider 등록!
         provider:
           naver:
             authorization_uri: https://nid.naver.com/oauth2.0/authorize
