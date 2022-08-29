@@ -68,20 +68,26 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<SmallCategoryDtoRes> retrieveSmallCategory(Long mediumCategoryId) throws BaseException {
+    public SmallCategoryDtoRes retrieveSmallCategory(Long mediumCategoryId) throws BaseException {
 
         try {
+            MediumCategory mediumCategory = mediumCategoryRepository.getById(mediumCategoryId);
+
             List<SmallCategory> smallCategoryList = smallCategoryRepository.findAllByMediumCategoryMediumCategoryId(mediumCategoryId);
-            List<SmallCategoryDtoRes> smallCategoryDtoResList = new ArrayList<>();
+            List<SmallCategoryList> smallCategoryDtoResList = new ArrayList<>();
 
             smallCategoryList.forEach(sc -> {
-                smallCategoryDtoResList.add(SmallCategoryDtoRes.builder()
+                smallCategoryDtoResList.add(SmallCategoryList.builder()
                         .smallCategoryId(sc.getSmallCategoryId())
                         .smallCategoryTitle(sc.getSmallCategoryTitle())
                         .build());
             });
 
-            return smallCategoryDtoResList;
+            return SmallCategoryDtoRes.builder()
+                    .mediumCategoryId(mediumCategoryId)
+                    .mediumCategoryTitle(mediumCategory.getMediumCategoryTitle())
+                    .smallCategoryList(smallCategoryDtoResList)
+                    .build();
         } catch(Exception exception) {
             throw new BaseException(CATEGORY_RETRIEVE_FAILED);
         }
