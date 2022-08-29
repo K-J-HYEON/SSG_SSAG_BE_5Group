@@ -5,10 +5,7 @@ import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.login.application.LoginService;
 import com.ssg.ssg_be.login.domain.LoginDtoReq;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/comm-users")
@@ -31,5 +28,11 @@ public class LoginController {
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
+    }
+
+    @GetMapping("/test/{token}")
+    public BaseResponse<String> test(@PathVariable String token) {
+
+        return new BaseResponse<>(token);
     }
 }

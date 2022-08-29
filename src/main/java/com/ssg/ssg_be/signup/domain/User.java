@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @NoArgsConstructor
@@ -24,10 +26,10 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(nullable = false)
+    @Column()
     private String loginId;
 
-    @Column(nullable = false)
+    @Column()
     private String loginPwd;
 
     @Column(nullable = false)
@@ -64,5 +66,10 @@ public class User extends BaseTimeEntity {
                 .phone(phone)
                 .email(email)
                 .build();
+    }
+
+    public User updateLoginDate() {
+        loginDate = Timestamp.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        return this;
     }
 }

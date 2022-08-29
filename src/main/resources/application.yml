@@ -18,7 +18,7 @@ spring:
             max-request-size: 500MB
 
     profiles:
-        include: aws, local-db, secret
+        include: aws, local-db, secret, oauth
 
 
 

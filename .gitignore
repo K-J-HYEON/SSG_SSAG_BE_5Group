@@ -69,3 +69,4 @@ application-secret.yml
 application-dev-db.yml
 application-local-db.yml
 application-prod-db.yml
+application-oauth.yml
