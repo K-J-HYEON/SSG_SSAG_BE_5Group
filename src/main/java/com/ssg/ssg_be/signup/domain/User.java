@@ -36,7 +36,6 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
     private String phone;
 
     // 0: Friends 등급, 1: Gold 등급, 2: VIP 등급

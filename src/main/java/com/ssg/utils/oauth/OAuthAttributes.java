@@ -33,6 +33,10 @@ public class OAuthAttributes {
             return ofNaver("id", attributes);
         }
 
+        if("kakao".equals(registrationId)) {
+            return ofKakao("id", attributes);
+        }
+
         return ofGoogle(userNameAttributeName, attributes);
     }
 
@@ -58,13 +62,25 @@ public class OAuthAttributes {
                 .build();
     }
 
-    public User toEntity() {
+    private static OAuthAttributes ofKakao(String userNameAttributeName, Map<String, Object> attributes) {
+        Map<String, Object> kakao_account = (Map<String, Object>) attributes.get("kakao_account");
+        Map<String, Object> kakao_profile = (Map<String, Object>) kakao_account.get("profile");
+
+        return OAuthAttributes.builder()
+                .username(String.valueOf(kakao_profile.get("nickname")))
+                .email(String.valueOf(kakao_account.get("email")))
+                .attributes(attributes)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
+    }
+
+    public User toEntity(int userType) {
         return User.builder()
                 .name(username)
                 .email(email)
                 .phone(mobile)
                 .loginDate(Timestamp.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))))
-                .userType(2)
+                .userType(userType)
                 .userRole(Role.USER)
                 .build();
     }
