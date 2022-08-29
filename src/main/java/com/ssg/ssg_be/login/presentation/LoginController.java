@@ -30,8 +30,8 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/test/{token}")
-    public BaseResponse<String> test(@PathVariable String token) {
+    @GetMapping("/social/{token}")
+    public BaseResponse<String> socialLogin(@PathVariable String token) {
 
         return new BaseResponse<>(token);
     }
