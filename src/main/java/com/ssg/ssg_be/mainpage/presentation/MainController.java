@@ -20,7 +20,6 @@ public class MainController {
         this.mainService = mainService;
     }
 
-    @ResponseBody
     @GetMapping("/main-banner")
     public BaseResponse<List<MainBannerDtoRes>> retrieveMainBanner() {
 
@@ -32,7 +31,6 @@ public class MainController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/main/happy-lounge")
     public BaseResponse<List<HappyLoungeDtoRes>> retrieveHappyLounge() {
 
@@ -44,7 +42,6 @@ public class MainController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/main/new-service")
     public BaseResponse<List<NewServiceDtoRes>> retrieveNewService() {
 
@@ -56,7 +53,6 @@ public class MainController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/main/card-promotion")
     public BaseResponse<List<CardPromotionDtoRes>> retrieveCardPromotion() {
 
@@ -68,7 +64,6 @@ public class MainController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/main/hot-brand")
     public BaseResponse<List<HotBrandDtoRes>> retrieveHotBrand() {
 

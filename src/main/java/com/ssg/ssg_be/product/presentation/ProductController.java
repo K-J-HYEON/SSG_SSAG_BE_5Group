@@ -24,7 +24,6 @@ public class ProductController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    @ResponseBody
     @GetMapping("/non-users/products/all")
     public BaseResponse<List<ProductDtoRes>> retrieveAllProduct(Pageable pageable) {
         try {
@@ -35,7 +34,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/users/products/all")
     public BaseResponse<List<ProductDtoRes>> userRetrieveAllProduct(Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
@@ -49,7 +47,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/non-users/products/medium/{mediumCategoryId}")
     public BaseResponse<List<ProductDtoRes>> retrieveMediumCategoryProduct(@PathVariable Long mediumCategoryId, Pageable pageable) {
 
@@ -61,7 +58,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/users/products/medium/{mediumCategoryId}")
     public BaseResponse<List<ProductDtoRes>> userRetrieveMediumCategoryProduct(@PathVariable Long mediumCategoryId, Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
@@ -75,7 +71,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/non-users/products/small/{smallCategoryId}")
     public BaseResponse<List<ProductDtoRes>> retrieveSmallCategoryProduct(@PathVariable Long smallCategoryId, Pageable pageable) {
 
@@ -87,7 +82,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/users/products/small/{smallCategoryId}")
     public BaseResponse<List<ProductDtoRes>> userRetrieveSmallCategoryProduct(@PathVariable Long smallCategoryId, Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
@@ -101,7 +95,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/non-users/products/large/{largeCategoryId}")
     public BaseResponse<List<ProductDtoRes>> retrieveLargeCategoryProduct(@PathVariable Long largeCategoryId, Pageable pageable) {
 
@@ -113,7 +106,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/users/products/large/{largeCategoryId}")
     public BaseResponse<List<ProductDtoRes>> userRetrieveLargeCategoryProduct(@PathVariable Long largeCategoryId, Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
@@ -127,7 +119,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/non-users/products/search/{searchWord}")
     public BaseResponse<List<ProductDtoRes>> retrieveSearch(@PathVariable String searchWord, Pageable pageable) {
 
@@ -139,7 +130,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/users/products/search/{searchWord}")
     public BaseResponse<List<ProductDtoRes>> userRetrieveSearch(@PathVariable String searchWord, Pageable pageable) {
         String token = jwtTokenProvider.getHeader();
@@ -153,7 +143,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/non-users/products/info/{productId}")
     public BaseResponse<ProductInfoDtoRes> retrieveProductBasic(@PathVariable Long productId) {
         try {
@@ -164,7 +153,6 @@ public class ProductController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/users/products/info/{productId}")
     public BaseResponse<ProductInfoDtoRes> userRetrieveProductBasic(@PathVariable Long productId) {
         String token = jwtTokenProvider.getHeader();
@@ -178,9 +166,6 @@ public class ProductController {
         }
     }
 
-
-
-    @ResponseBody
     @GetMapping("/comm-users/products/detail-info/{productId}")
     public BaseResponse<List<DetailImgDtoRes>> retrieveProductDetail(@PathVariable Long productId) {
         try {

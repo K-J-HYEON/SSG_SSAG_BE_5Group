@@ -15,8 +15,8 @@ import java.util.List;
 @RequestMapping("/users")
 public class WishController {
 
-    private final WishServive wishServive;
-    private final JwtTokenProvider jwtTokenProvider;
+    private WishServive wishServive;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     public WishController(WishServive wishServive, JwtTokenProvider jwtTokenProvider) {
@@ -39,7 +39,6 @@ public class WishController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/wish")
     public BaseResponse<List<WishDtoRes>> retrieveWish() {
         String token = jwtTokenProvider.getHeader();

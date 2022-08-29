@@ -6,6 +6,7 @@ import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.domain.UserDtoReq;
 import com.ssg.ssg_be.signup.infrastucture.MarketingRepository;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,13 @@ import org.springframework.stereotype.Service;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
+@RequiredArgsConstructor
 public class SignupServiceImpl implements SignupService {
 
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
-    private final MarketingRepository marketingRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private MarketingRepository marketingRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public SignupServiceImpl(UserRepository userRepository, MarketingRepository marketingRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {

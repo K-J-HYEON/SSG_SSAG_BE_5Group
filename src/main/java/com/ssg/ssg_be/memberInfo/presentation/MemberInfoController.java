@@ -25,7 +25,6 @@ public class MemberInfoController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    @ResponseBody
     @GetMapping("/info")
     public BaseResponse<MemberInfoDtoRes> retrieveUserMember() {
         String token = jwtTokenProvider.getHeader();

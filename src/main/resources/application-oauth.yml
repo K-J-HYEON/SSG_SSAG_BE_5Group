@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        show_sql: true
+    show_sql: false
+    database: mysql
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      max-file-size: 50MB  #최대 파일 사이즈를 50MB로 지정
+      max-request-size: 500MB
+
+  profiles:
+    include: aws, local-db, secret
+
+
+  # KAKAO
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            authorization-grant-type: authorization_code
+            client-id : client_id
+            client-secret: client_pw
+            scope: profile, account_email
+            client-authentication-method: POST
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            client-name: kakao
+
+        # kakao Provider 등록!
+        provider:
+          kakao:
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-name-attribute: 'id'
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            authorization-uri: https://kauth.kakao.com/oauth/authorize

@@ -7,17 +7,19 @@ import com.ssg.ssg_be.qna.domain.QnaDtoReq;
 import com.ssg.ssg_be.qna.domain.QnaDtoRes;
 import com.ssg.ssg_be.qna.domain.QnaPatchDtoReq;
 import com.ssg.utils.jwt.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/users")
 public class QnaController {
 
-    private final QnaService qnaService;
-    private final JwtTokenProvider jwtTokenProvider;
+    private QnaService qnaService;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     public QnaController(QnaService qnaService, JwtTokenProvider jwtTokenProvider) {
@@ -40,7 +42,6 @@ public class QnaController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/qna/{productId}")
     public BaseResponse<List<QnaDtoRes>> retrieveQna(@PathVariable Long productId) {
         String token = jwtTokenProvider.getHeader();
@@ -54,7 +55,6 @@ public class QnaController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/qna/user")
     public BaseResponse<List<QnaDtoRes>> retrieveMyQna() {
         String token = jwtTokenProvider.getHeader();

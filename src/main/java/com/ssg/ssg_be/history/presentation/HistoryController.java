@@ -25,7 +25,6 @@ public class HistoryController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    @ResponseBody
     @GetMapping("/recent/product")
     public BaseResponse<List<ViewHistoryDtoRes>> retrieveViewHistory() {
         String token = jwtTokenProvider.getHeader();
@@ -52,7 +51,6 @@ public class HistoryController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/recent/search")
     public BaseResponse<List<SearchHistoryDtoRes>> retrieveSearchHistory() {
         String token = jwtTokenProvider.getHeader();
@@ -79,7 +77,6 @@ public class HistoryController {
         }
     }
 
-    @ResponseBody
     @GetMapping("recent/category")
     public BaseResponse<List<CategoryHistoryDtoRes>> retrieveCategoryHistory() {
         String token = jwtTokenProvider.getHeader();
@@ -106,7 +103,6 @@ public class HistoryController {
         }
     }
 
-    @ResponseBody
     @GetMapping("/recent/brand")
     public BaseResponse<List<BrandHistoryDtoRes>> retrieveBrandHistory() {
         String token = jwtTokenProvider.getHeader();

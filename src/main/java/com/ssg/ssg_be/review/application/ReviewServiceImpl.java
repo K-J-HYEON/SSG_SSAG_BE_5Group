@@ -17,9 +17,9 @@ import static com.ssg.config.BaseResponseStatus.*;
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
-    private final ReviewRepository reviewRepository;
-    private final UserRepository userRepository;
-    private final ProductRepository productRepository;
+    private ReviewRepository reviewRepository;
+    private UserRepository userRepository;
+    private ProductRepository productRepository;
 
     @Autowired
     public ReviewServiceImpl(ReviewRepository reviewRepository, UserRepository userRepository, ProductRepository productRepository) {

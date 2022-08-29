@@ -21,6 +21,28 @@ spring:
         include: aws, local-db, secret, oauth
 
 
+# KAKAO
+    security:
+        oauth2:
+            client:
+                registration:
+                    kakao:
+                        authorization-grant-type: authorization_code
+                        client-id : client_id
+                        client-secret: client_pw
+                        scope: profile, account_email
+                        client-authentication-method: POST
+                        redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+                        client-name: kakao
+
+# kakao Provider 등록!
+                provider:
+                    kakao:
+                        token-uri: https://kauth.kakao.com/oauth/token
+                        user-name-attribute: 'id'
+                        user-info-uri: https://kapi.kakao.com/v2/user/me
+                        authorization-uri: https://kauth.kakao.com/oauth/authorize
+
 
 #server:
 #    port: 9000

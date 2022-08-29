@@ -8,6 +8,7 @@ import com.ssg.ssg_be.paymentmethod.infrastucture.CardImgRepository;
 import com.ssg.ssg_be.paymentmethod.infrastucture.PaymentMethodRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +16,13 @@ import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
+@RequiredArgsConstructor
 @Service
 public class PaymentMethodServiceImpl implements PaymentMethodService {
 
-    private final PaymentMethodRepository paymentMethodRepository;
-    private final UserRepository userRepository;
-    private final CardImgRepository cardImgRepository;
+    private PaymentMethodRepository paymentMethodRepository;
+    private UserRepository userRepository;
+    private CardImgRepository cardImgRepository;
 
     @Autowired
     public PaymentMethodServiceImpl(PaymentMethodRepository paymentMethodRepository, UserRepository userRepository, CardImgRepository cardImgRepository) {

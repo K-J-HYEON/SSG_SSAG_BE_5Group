@@ -7,6 +7,7 @@ import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.product.domain.ThumbnailImg;
 import com.ssg.ssg_be.product.infrastructure.ProductRepository;
 import com.ssg.ssg_be.product.infrastructure.ThumbnailImgRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +16,17 @@ import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
+@RequiredArgsConstructor
 @Service
 public class MainServiceImpl implements MainService {
 
-    private final MainBannerRepository mainBannerRepository;
-    private final HappyLoungeRepository happyLoungeRepository;
-    private final ProductRepository productRepository;
-    private final ThumbnailImgRepository thumbnailImgRepository;
-    private final NewServiceRepository newServiceRepository;
-    private final CardPromotionRepository cardPromotionRepository;
-    private final HotBrandRepository hotBrandRepository;
+    private MainBannerRepository mainBannerRepository;
+    private HappyLoungeRepository happyLoungeRepository;
+    private ProductRepository productRepository;
+    private ThumbnailImgRepository thumbnailImgRepository;
+    private NewServiceRepository newServiceRepository;
+    private CardPromotionRepository cardPromotionRepository;
+    private HotBrandRepository hotBrandRepository;
 
     @Autowired
     public MainServiceImpl(MainBannerRepository mainBannerRepository, HappyLoungeRepository happyLoungeRepository, ProductRepository productRepository, ThumbnailImgRepository thumbnailImgRepository, NewServiceRepository newServiceRepository, CardPromotionRepository cardPromotionRepository, HotBrandRepository hotBrandRepository) {

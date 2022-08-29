@@ -9,6 +9,7 @@ import com.ssg.ssg_be.qna.domain.QnaPatchDtoReq;
 import com.ssg.ssg_be.qna.infrastructure.QnaRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,12 @@ import java.util.List;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
+@RequiredArgsConstructor
 public class QnaServiceImpl implements QnaService {
 
-    private final QnaRepository qnaRepository;
-    private final UserRepository userRepository;
-    private final ProductRepository productRepository;
+    private QnaRepository qnaRepository;
+    private UserRepository userRepository;
+    private ProductRepository productRepository;
 
     @Autowired
     public QnaServiceImpl(QnaRepository qnaRepository, UserRepository userRepository, ProductRepository productRepository) {

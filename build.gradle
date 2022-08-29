@@ -38,6 +38,9 @@ dependencies {
 
 	// OAuth
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	// Gradle
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {

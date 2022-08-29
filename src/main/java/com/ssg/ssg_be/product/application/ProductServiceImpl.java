@@ -26,6 +26,7 @@ import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import com.ssg.ssg_be.wish.domain.Wish;
 import com.ssg.ssg_be.wish.domain.WishDto;
 import com.ssg.ssg_be.wish.infrastructure.WishRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,24 +39,25 @@ import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
+@RequiredArgsConstructor
 @Service
 @Slf4j
 public class ProductServiceImpl implements ProductService {
 
-    private final CategoryConnRepository categoryConnRepository;
-    private final ReviewRepository reviewRepository;
-    private final ProductRepository productRepository;
-    private final ProductImgRepository productImgRepository;
-    private final DetailImgRepository detailImgRepository;
-    private final ProductOptionRepository productOptionRepository;
-    private final WishRepository wishRepository;
-    private final ViewHistoryRepository viewHistoryRepository;
-    private final UserRepository userRepository;
-    private final SearchHistoryRepository searchHistoryRepository;
-    private final CategoryHistoryRepository categoryHistoryRepository;
-    private final LargeCategoryRepository largeCategoryRepository;
-    private final MediumCategoryRepository mediumCategoryRepository;
-    private final SmallCategoryRepository smallCategoryRepository;
+    private CategoryConnRepository categoryConnRepository;
+    private ReviewRepository reviewRepository;
+    private ProductRepository productRepository;
+    private ProductImgRepository productImgRepository;
+    private DetailImgRepository detailImgRepository;
+    private ProductOptionRepository productOptionRepository;
+    private WishRepository wishRepository;
+    private ViewHistoryRepository viewHistoryRepository;
+    private UserRepository userRepository;
+    private SearchHistoryRepository searchHistoryRepository;
+    private CategoryHistoryRepository categoryHistoryRepository;
+    private LargeCategoryRepository largeCategoryRepository;
+    private MediumCategoryRepository mediumCategoryRepository;
+    private SmallCategoryRepository smallCategoryRepository;
 
     @Autowired
     public ProductServiceImpl(CategoryConnRepository categoryConnRepository, ReviewRepository reviewRepository, ProductRepository productRepository, ProductImgRepository productImgRepository, DetailImgRepository detailImgRepository, ProductOptionRepository productOptionRepository, WishRepository wishRepository, ViewHistoryRepository viewHistoryRepository, UserRepository userRepository, SearchHistoryRepository searchHistoryRepository, CategoryHistoryRepository categoryHistoryRepository, LargeCategoryRepository largeCategoryRepository, MediumCategoryRepository mediumCategoryRepository, SmallCategoryRepository smallCategoryRepository) {

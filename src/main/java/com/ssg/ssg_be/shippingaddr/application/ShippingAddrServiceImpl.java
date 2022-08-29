@@ -5,6 +5,7 @@ import com.ssg.ssg_be.shippingaddr.domain.*;
 import com.ssg.ssg_be.shippingaddr.infrastructure.ShippingAddrRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,10 +15,11 @@ import java.util.List;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
+@RequiredArgsConstructor
 public class ShippingAddrServiceImpl implements ShippingAddrService {
 
-    private final ShippingAddrRepository shippingAddrRepository;
-    private final UserRepository userRepository;
+    private ShippingAddrRepository shippingAddrRepository;
+    private UserRepository userRepository;
 
     @Autowired
     public ShippingAddrServiceImpl(ShippingAddrRepository shippingAddrRepository, UserRepository userRepository) {

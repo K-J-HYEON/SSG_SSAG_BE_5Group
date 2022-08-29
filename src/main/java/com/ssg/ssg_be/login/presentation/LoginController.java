@@ -4,7 +4,12 @@ import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.login.application.LoginService;
 import com.ssg.ssg_be.login.domain.LoginDtoReq;
+import com.ssg.ssg_be.login.domain.PostLoginRes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +24,7 @@ public class LoginController {
     }
 
     @PostMapping("/login/user")
-    public BaseResponse<String> userLogin(@RequestBody LoginDtoReq loginDtoReq) {
+    public BaseResponse<String> userLogin(@Valid @RequestBody LoginDtoReq loginDtoReq) {
         String token = "";
 
         try {
