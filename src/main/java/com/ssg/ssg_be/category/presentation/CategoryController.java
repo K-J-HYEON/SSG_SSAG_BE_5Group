@@ -3,8 +3,7 @@ package com.ssg.ssg_be.category.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.category.application.CategoryService;
-import com.ssg.ssg_be.category.domain.CategoryDtoRes;
-import com.ssg.ssg_be.category.domain.SmallCategoryDtoRes;
+import com.ssg.ssg_be.category.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +37,17 @@ public class CategoryController {
         try {
             List<SmallCategoryDtoRes> smallCategoryDtoRes = categoryService.retrieveSmallCategory(mediumCategoryId);
             return new BaseResponse<>(smallCategoryDtoRes);
+        } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @GetMapping("/category/{largeCategoryId}")
+    public BaseResponse<List<MediumCategoryList>> retrieveMediumCategory(@PathVariable Long largeCategoryId) {
+
+        try {
+            List<MediumCategoryList> mediumCategoryLists = categoryService.retrieveMediumCategory(largeCategoryId);
+            return new BaseResponse<>(mediumCategoryLists);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
