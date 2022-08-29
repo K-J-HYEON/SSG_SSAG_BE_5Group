@@ -1,11 +1,10 @@
 package com.ssg.utils.oauth;
 
-import com.ssg.config.BaseException;
-import com.ssg.config.BaseResponseStatus;
 import com.ssg.config.Role;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import com.ssg.utils.jwt.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,10 +23,11 @@ import static com.ssg.config.BaseResponseStatus.NO_EXIST_USER;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    private final JwtTokenProvider jwtTokenProvider;
-    private final UserRepository userRepository;
+    private JwtTokenProvider jwtTokenProvider;
+    private UserRepository userRepository;
 
     @Autowired
     public OAuth2AuthenticationSuccessHandler(JwtTokenProvider jwtTokenProvider, UserRepository userRepository) {
