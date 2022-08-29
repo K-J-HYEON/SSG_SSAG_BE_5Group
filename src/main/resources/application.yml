@@ -1,27 +1,5 @@
-server:
-    port: 8080
-
-spring:
-    jpa:
-        generate-ddl: true
-        properties:
-            hibernate:
-                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-                show_sql: true
-        show_sql: false
-        database: mysql
-        hibernate:
-            ddl-auto: update
-    servlet:
-        multipart:
-            max-file-size: 50MB  #최대 파일 사이즈를 50MB로 지정
-            max-request-size: 500MB
-
-    profiles:
-        include: aws, local-db, secret, oauth
-
 #server:
-#    port: 9000
+#    port: 8080
 #
 #spring:
 #    jpa:
@@ -40,4 +18,26 @@ spring:
 #            max-request-size: 500MB
 #
 #    profiles:
-#        include: aws, dev-db, secret, oauth
+#        include: aws, local-db, secret, oauth
+
+server:
+    port: 9000
+
+spring:
+    jpa:
+        generate-ddl: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+                show_sql: true
+        show_sql: false
+        database: mysql
+        hibernate:
+            ddl-auto: update
+    servlet:
+        multipart:
+            max-file-size: 50MB  #최대 파일 사이즈를 50MB로 지정
+            max-request-size: 500MB
+
+    profiles:
+        include: aws, dev-db, secret, oauth

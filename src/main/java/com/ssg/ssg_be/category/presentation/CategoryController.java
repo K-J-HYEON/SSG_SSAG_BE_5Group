@@ -43,10 +43,10 @@ public class CategoryController {
     }
 
     @GetMapping("/category/{largeCategoryId}")
-    public BaseResponse<List<MediumCategoryList>> retrieveMediumCategory(@PathVariable Long largeCategoryId) {
+    public BaseResponse<MediumCategoryDtoRes> retrieveMediumCategory(@PathVariable Long largeCategoryId) {
 
         try {
-            List<MediumCategoryList> mediumCategoryLists = categoryService.retrieveMediumCategory(largeCategoryId);
+            MediumCategoryDtoRes mediumCategoryLists = categoryService.retrieveMediumCategory(largeCategoryId);
             return new BaseResponse<>(mediumCategoryLists);
         } catch(BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
