@@ -86,4 +86,24 @@ public class CategoryServiceImpl implements CategoryService {
             throw new BaseException(CATEGORY_RETRIEVE_FAILED);
         }
     }
+
+    @Override
+    public List<MediumCategoryList> retrieveMediumCategory(Long largeCategoryId) throws BaseException {
+
+        try {
+            List<MediumCategory> mediumCategoryList = mediumCategoryRepository.findAllByLargeCategoryLargeCategoryId(largeCategoryId);
+            List<MediumCategoryList> mediumCategoryLists = new ArrayList<>();
+
+            mediumCategoryList.forEach(mc -> {
+                mediumCategoryLists.add(MediumCategoryList.builder()
+                        .mediumCategoryId(mc.getMediumCategoryId())
+                        .mediumCategoryTitle(mc.getMediumCategoryTitle())
+                        .build());
+            });
+
+            return mediumCategoryLists;
+        } catch(Exception exception) {
+            throw new BaseException(CATEGORY_RETRIEVE_FAILED);
+        }
+    }
 }
