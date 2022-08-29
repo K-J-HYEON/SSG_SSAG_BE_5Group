@@ -88,9 +88,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<MediumCategoryList> retrieveMediumCategory(Long largeCategoryId) throws BaseException {
+    public MediumCategoryDtoRes retrieveMediumCategory(Long largeCategoryId) throws BaseException {
 
         try {
+            LargeCategory largeCategory = largeCategoryRepository.getById(largeCategoryId);
+
             List<MediumCategory> mediumCategoryList = mediumCategoryRepository.findAllByLargeCategoryLargeCategoryId(largeCategoryId);
             List<MediumCategoryList> mediumCategoryLists = new ArrayList<>();
 
@@ -101,7 +103,11 @@ public class CategoryServiceImpl implements CategoryService {
                         .build());
             });
 
-            return mediumCategoryLists;
+            return MediumCategoryDtoRes.builder()
+                    .largeCategoryId(largeCategoryId)
+                    .largeCategoryTitle(largeCategory.getTitle())
+                    .mediumCategoryList(mediumCategoryLists)
+                    .build();
         } catch(Exception exception) {
             throw new BaseException(CATEGORY_RETRIEVE_FAILED);
         }
