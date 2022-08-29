@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.ssg.config.BaseResponseStatus.NO_EXIST_USER;
@@ -37,8 +38,16 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+        Map<String, Object> kakao_account;
+        String email;
 
-        String email = String.valueOf(oAuth2User.getAttributes().get("email"));
+        if(oAuth2User.getAttributes().containsKey("kakao_account")) {
+            kakao_account = (Map<String, Object>) oAuth2User.getAttributes().get("kakao_account");
+            email = String.valueOf(kakao_account.get("email"));
+        } else {
+            email = String.valueOf(oAuth2User.getAttributes().get("email"));
+        }
+
         Optional<User> user = userRepository.findByEmail(email);
 
         String jwt = jwtTokenProvider.createToken(user.get().getUserId(), String.valueOf(Role.USER));
