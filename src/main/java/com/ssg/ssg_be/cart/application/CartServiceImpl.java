@@ -3,16 +3,16 @@ package com.ssg.ssg_be.cart.application;
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.cart.domain.*;
 import com.ssg.ssg_be.cart.infrastructure.CartRepository;
-import com.ssg.ssg_be.product.domain.ProductOption;
-import com.ssg.ssg_be.product.domain.ProductOptionDtoRes;
+import com.ssg.ssg_be.product.domain.*;
 import com.ssg.ssg_be.product.infrastructure.ProductOptionRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
+import com.ssg.ssg_be.store.domain.StoreIdDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
@@ -60,9 +60,90 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<CartDtoRes> retrieveCart(Long userId) throws BaseException {
+    public CartTotalDtoRes retrieveCart(Long userId) throws BaseException {
+
         try {
-            return cartRepository.findByUserUserId(userId);
+            // 장바구니 각 아이템의 스토어 ID 추출
+            List<StoreIdDto> storeIdDtos = cartRepository.findAllByUserUserId(userId);
+            Map<Long, String> map = new HashMap<>();
+            int totalOrder = 0;
+            int totalSale = 0;
+            int totalAmount = 0;
+
+            for(StoreIdDto storeIdDto : storeIdDtos) {
+                map.put(storeIdDto.getProductOptionProductStoreStoreId(), storeIdDto.getProductOptionProductStoreName());
+            }
+
+            List<StoreList> storeLists = new ArrayList<>();
+            List<CartList> cartLists = new ArrayList<>();
+            for(Long s : map.keySet()){
+                int storeTotal = 0;
+                int storeSale = 0;
+                int storeAmount = 0;
+                List<Cart> carts = cartRepository.getCartsByStore(userId, s);
+
+                for(Cart cart : carts) {
+                    ProductOption productOption = cart.getProductOption();
+                    Product product = productOption.getProduct();
+                    int cartTotal = cart.getCount() * product.getPrice();
+                    int cartSale = (int) (product.getPrice() * (product.getSale() * 0.01)) * cart.getCount();
+                    int cartAmount = cartTotal - cartSale;
+
+                    ProductDto productDto = ProductDto.builder()
+                            .productId(product.getProductId())
+                            .name(product.getName())
+                            .price(product.getPrice())
+                            .sale(product.getSale())
+                            .imgUrl(product.getImgUrl())
+                            .build();
+
+                    ProductOptionDto productOptionDto = ProductOptionDto.builder()
+                            .productOptionId(productOption.getProductOptionId())
+                            .sizeId(productOption.getSize().getSizeId())
+                            .size(productOption.getSize().getSize())
+                            .colorId(productOption.getColor().getColorId())
+                            .color(productOption.getColor().getColor())
+                            .modelNumber(productOption.getModelNumber())
+                            .stock(productOption.getStock())
+                            .productDto(productDto)
+                            .build();
+
+                    cartLists.add(
+                            CartList.builder()
+                                    .cartId(cart.getCartId())
+                                    .count(cart.getCount())
+                                    .cartTotal(cartTotal)
+                                    .cartSale(cartSale)
+                                    .cartAmount(cartAmount)
+                                    .productOptionDto(productOptionDto)
+                                    .build()
+                    );
+
+                    storeTotal += cartTotal;
+                    storeSale += cartSale;
+                    storeAmount += cartAmount;
+                }
+
+                storeLists.add(StoreList.builder()
+                                .storeId(s)
+                                .storeName(map.get(s))
+                                .storeTotal(storeTotal)
+                                .storeSale(storeSale)
+                                .storeAmount(storeAmount)
+                                .cartList(cartLists)
+                        .build());
+
+                totalOrder += storeTotal;
+                totalSale += storeSale;
+                totalAmount += storeAmount;
+            }
+
+            return CartTotalDtoRes.builder()
+                    .totalOrder(totalOrder)
+                    .totalSale(totalSale)
+                    .totalAmount(totalAmount)
+                    .storeList(storeLists)
+                    .build();
         } catch (Exception exception) {
             throw new BaseException(CART_RETRIEVE_FAILED);
         }
