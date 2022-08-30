@@ -21,6 +21,7 @@ public enum BaseResponseStatus {
     POST_EXISTS_QNA(false,2004,"중복된 문의&답변 입니다."),
     AUTH_NUM_IS_NULL(false,2005,"인증번호가 비어 있습니다."),
     INVALID_PHONE_NUM(false,2006,"유효하지 않은 전화번호 형식입니다."),
+    POST_EXISTS_WISH(false, 2007, "중복된 좋아요 요청입니다."),
 
     /**
      * 3000: Response 오류

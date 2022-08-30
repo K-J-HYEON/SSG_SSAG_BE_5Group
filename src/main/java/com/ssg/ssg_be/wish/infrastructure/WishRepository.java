@@ -11,5 +11,6 @@ import java.util.List;
 public interface WishRepository extends JpaRepository<Wish, Long> {
     List<WishDtoRes> findByUserUserId(Long userId);
     Wish findByUserUserIdAndProductProductId(Long userId, Long productId);
+    boolean existsByProductProductIdAndUserUserId(Long productId, Long userId);
 
 }
