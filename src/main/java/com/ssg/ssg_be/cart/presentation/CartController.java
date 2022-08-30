@@ -43,13 +43,13 @@ public class CartController {
 
     @ResponseBody
     @GetMapping("/carts")
-    public BaseResponse<List<CartDtoRes>> retrieveCart() {
+    public BaseResponse<CartTotalDtoRes> retrieveCart() {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            List<CartDtoRes> cartDtoRes = cartService.retrieveCart(userId);
-            return new BaseResponse<>(cartDtoRes);
+            CartTotalDtoRes cartTotalDtoRes = cartService.retrieveCart(userId);
+            return new BaseResponse<>(cartTotalDtoRes);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
