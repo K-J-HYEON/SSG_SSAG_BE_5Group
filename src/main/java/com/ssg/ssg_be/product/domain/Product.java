@@ -32,16 +32,14 @@ public class Product extends BaseTimeEntity {
 
     private Timestamp saleEndDate;
 
-    @Column(nullable = false)
     private String imgOriginName;
 
-    @Column(nullable = false)
     private String imgSaveName;
 
     @Column(nullable = false)
     private String imgUrl;
 
     @ManyToOne
-    @JoinColumn(name = "storeId", nullable = false)
+    @JoinColumn(name = "storeId")
     private Store store;
 }
