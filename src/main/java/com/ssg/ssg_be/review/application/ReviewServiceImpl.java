@@ -7,8 +7,9 @@ import com.ssg.ssg_be.review.infrastructure.ReviewImgRepository;
 import com.ssg.ssg_be.review.infrastructure.ReviewRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
+import com.ssg.utils.s3.S3UploadDtoReq;
 import com.ssg.utils.s3.S3UploaderService;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,14 +18,23 @@ import java.util.List;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
-@RequiredArgsConstructor
+@Slf4j
 public class ReviewServiceImpl implements ReviewService {
 
-    private ReviewRepository reviewRepository;
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
-    private ReviewImgRepository reviewImgRepository;
-    private S3UploaderService s3UploaderService;
+    private final ReviewRepository reviewRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+    private final ReviewImgRepository reviewImgRepository;
+    private final S3UploaderService s3UploaderService;
+
+    @Autowired
+    public ReviewServiceImpl(ReviewRepository reviewRepository, UserRepository userRepository, ProductRepository productRepository, ReviewImgRepository reviewImgRepository, S3UploaderService s3UploaderService) {
+        this.reviewRepository = reviewRepository;
+        this.userRepository = userRepository;
+        this.productRepository = productRepository;
+        this.reviewImgRepository = reviewImgRepository;
+        this.s3UploaderService = s3UploaderService;
+    }
 
     @Override
     public void createReview(ReviewDtoReq reviewDtoReq, Long userId, List<MultipartFile> multipartFile) throws BaseException {
@@ -32,11 +42,16 @@ public class ReviewServiceImpl implements ReviewService {
         try {
             Product product = productRepository.getById(reviewDtoReq.getProductId());
             Review review = reviewRepository.save(reviewDtoReq.toEntity(product, user));
-            //TODO #1 : S3UploadDto 만들기 (String saveName, String imgUrl)
 
-            //TODO #2 : S3UploadService로 multipart 파일 업로드하기
-
-            //TODO #3 : 반환 값으로 reviewImgRepo에 데이터 저장
+            for(MultipartFile m : multipartFile) {
+                S3UploadDtoReq s3UploadDtoReq = s3UploaderService.upload(m, "review");
+                reviewImgRepository.save(ReviewImg.builder()
+                        .review(review)
+                        .originName(m.getOriginalFilename())
+                        .saveName(s3UploadDtoReq.getSaveName())
+                        .imgUrl(s3UploadDtoReq.getImgUrl())
+                        .build());
+            }
         } catch (Exception exception) {
             throw new BaseException(REVIEW_INSERT_FAILED);
         }

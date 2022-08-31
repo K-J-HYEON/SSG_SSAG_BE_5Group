@@ -27,13 +27,14 @@ public class ReviewController {
     }
 
     @PostMapping("/review")
-    public BaseResponse<String> addReview(@RequestPart(value = "reviewImg")List<MultipartFile>  multipartFile, @RequestPart(value = "reviewDto") ReviewDtoReq reviewDtoReq) {
+    public BaseResponse<String> addReview(@RequestPart(value = "reviewImg") List<MultipartFile> reviewImg,
+                                          @RequestPart(value = "reviewDto") ReviewDtoReq reviewDto) {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
         String result;
 
         try {
-            reviewService.createReview(reviewDtoReq, userId, multipartFile);
+            reviewService.createReview(reviewDto, userId, reviewImg);
             result = "리뷰 생성에 성공하였습니다.";
             return new BaseResponse<>(result);
         } catch (BaseException exception) {
