@@ -5,7 +5,6 @@ import com.ssg.ssg_be.category.domain.*;
 import com.ssg.ssg_be.category.infrastructure.LargeCategoryRepository;
 import com.ssg.ssg_be.category.infrastructure.MediumCategoryRepository;
 import com.ssg.ssg_be.category.infrastructure.SmallCategoryRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +14,12 @@ import java.util.Objects;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
-@RequiredArgsConstructor
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    private LargeCategoryRepository largeCategoryRepository;
-    private MediumCategoryRepository mediumCategoryRepository;
-    private SmallCategoryRepository smallCategoryRepository;
+    private final LargeCategoryRepository largeCategoryRepository;
+    private final MediumCategoryRepository mediumCategoryRepository;
+    private final SmallCategoryRepository smallCategoryRepository;
 
     @Autowired
     public CategoryServiceImpl(LargeCategoryRepository largeCategoryRepository, MediumCategoryRepository mediumCategoryRepository, SmallCategoryRepository smallCategoryRepository) {
