@@ -3,6 +3,7 @@ package com.ssg.ssg_be.wish.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.wish.application.WishServive;
+import com.ssg.ssg_be.wish.domain.WishDto;
 import com.ssg.ssg_be.wish.domain.WishDtoReq;
 import com.ssg.ssg_be.wish.domain.WishDtoRes;
 import com.ssg.utils.jwt.JwtTokenProvider;
@@ -25,15 +26,13 @@ public class WishController {
     }
 
     @PostMapping("/wish")
-    public BaseResponse<String> addWish(@RequestBody WishDtoReq wishDtoReq) {
-        String result = "";
+    public BaseResponse<WishDto> addWish(@RequestBody WishDtoReq wishDtoReq) {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            wishServive.createWish(wishDtoReq, userId);
-            result = "좋아요 누르기에 성공하였습니다.";
-            return new BaseResponse<>(result);
+            WishDto wishDto = wishServive.createWish(wishDtoReq, userId);
+            return new BaseResponse<>(wishDto);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }

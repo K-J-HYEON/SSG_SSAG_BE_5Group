@@ -5,6 +5,8 @@ import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.product.infrastructure.ProductRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
+import com.ssg.ssg_be.wish.domain.Wish;
+import com.ssg.ssg_be.wish.domain.WishDto;
 import com.ssg.ssg_be.wish.domain.WishDtoReq;
 import com.ssg.ssg_be.wish.domain.WishDtoRes;
 import com.ssg.ssg_be.wish.infrastructure.WishRepository;
@@ -32,7 +34,7 @@ public class WishServiceImpl implements WishServive {
     }
 
     @Override
-    public void createWish(WishDtoReq wishDtoReq, Long userId) throws BaseException {
+    public WishDto createWish(WishDtoReq wishDtoReq, Long userId) throws BaseException {
         if(wishRepository.existsByProductProductIdAndUserUserId(wishDtoReq.getProductId(), userId)) {
             throw new BaseException(POST_EXISTS_WISH);
         }
@@ -41,8 +43,8 @@ public class WishServiceImpl implements WishServive {
             User user = userRepository.getById(userId);
             Product product = productRepository.getById(wishDtoReq.getProductId());
 
-            wishRepository.save(wishDtoReq.toEntity(product, user));
-
+            Wish wish = wishRepository.save(wishDtoReq.toEntity(product, user));
+            return new WishDto(wish.getWishId());
         } catch (Exception exception) {
             throw new BaseException(WISH_INSERT_FAILED);
         }
