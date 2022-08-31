@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.*;
 public class SignupController {
 
     private SignupService signupService;
-    private ReviewRepository reviewRepository;
 
     @Autowired
-    public SignupController(SignupService signupService, ReviewRepository reviewRepository) {
+    public SignupController(SignupService signupService) {
         this.signupService = signupService;
-        this.reviewRepository = reviewRepository;
     }
 
     @PostMapping("/signup")
