@@ -75,12 +75,12 @@ public class CartServiceImpl implements CartService {
             }
 
             List<StoreList> storeLists = new ArrayList<>();
-            List<CartList> cartLists = new ArrayList<>();
             for(Long s : map.keySet()){
                 int storeTotal = 0;
                 int storeSale = 0;
                 int storeAmount = 0;
                 List<Cart> carts = cartRepository.getCartsByStore(userId, s);
+                List<CartList> cartLists = new ArrayList<>();
 
                 for(Cart cart : carts) {
                     ProductOption productOption = cart.getProductOption();
