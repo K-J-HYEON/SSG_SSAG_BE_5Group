@@ -29,21 +29,26 @@ public class S3UploaderService {
         this.amazonS3Client = amazonS3Client;
     }
 
-    public String upload(MultipartFile multipartFile, String dirName) throws BaseException {
+    public S3UploadDtoReq upload(MultipartFile multipartFile, String dirName) throws BaseException {
+
         try {
             File uploadFile = convert(multipartFile);
             return upload(uploadFile, bucket, dirName);
+
         } catch (BaseException e) {
             throw new BaseException(TRANSLATE_FILE_FAILED);
         }
     }
 
     // S3로 파일 업로드하기
-    private String upload(File uploadFile, String bucket, String dirName) {
+    private S3UploadDtoReq upload(File uploadFile, String bucket, String dirName) {
         String fileName = dirName + "/" + UUID.randomUUID() + uploadFile.getName(); // S3에 저장된 파일 이름
         String uploadImageUrl = putS3(uploadFile, bucket, fileName); // S3로 업로드
         removeNewFile(uploadFile);
-        return uploadImageUrl;
+        return S3UploadDtoReq.builder()
+                .saveName(fileName)
+                .imgUrl(uploadImageUrl)
+                .build();
     }
 
     private String putS3(File uploadFile, String bucket, String fileName) {

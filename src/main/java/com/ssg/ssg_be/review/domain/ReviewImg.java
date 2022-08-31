@@ -1,11 +1,15 @@
 package com.ssg.ssg_be.review.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ReviewImg{
 
     @Id
