@@ -7,7 +7,7 @@ public interface ViewHistoryDtoRes {
     String getName();
     int getPrice();
     String getProductImg();
-
+    Long getProductId();
     Long getUserUserId();
     LocalDateTime getCreateAt();
 }

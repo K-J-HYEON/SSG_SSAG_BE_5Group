@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ViewHistoryRepository extends JpaRepository<ViewHistory, Long>{
     List<ViewHistoryDtoRes> findAllByUserUserId(Long userId);
+    boolean existsByUserUserIdAndProductId(Long userId, Long productId);
+    ViewHistory findByUserUserIdAndProductId(Long userId, Long productId);
 }

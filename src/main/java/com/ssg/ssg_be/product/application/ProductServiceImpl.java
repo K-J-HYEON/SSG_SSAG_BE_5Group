@@ -94,13 +94,24 @@ public class ProductServiceImpl implements ProductService {
         try {
             // 최근 본 카테고리(중)
             if (userId != -1L) {
-                User user = userRepository.getById(mediumCategoryId);
-                categoryHistoryRepository.save(CategoryHistory.builder()
-                        .categoryId(mediumCategoryId)
-                        .categoryName(mediumCategory.getMediumCategoryTitle())
-                        .categoryType(1)
-                        .user(user)
-                        .build());
+                User user = userRepository.getById(userId);
+                if(!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 1, mediumCategoryId)) {
+                    categoryHistoryRepository.save(CategoryHistory.builder()
+                            .categoryId(mediumCategoryId)
+                            .categoryName(mediumCategory.getMediumCategoryTitle())
+                            .categoryType(1)
+                            .user(user)
+                            .build());
+                } else {
+                    CategoryHistory categoryHistory = categoryHistoryRepository.findByUserUserIdAndCategoryTypeAndCategoryId(userId, 1, mediumCategoryId);
+                    categoryHistoryRepository.save(CategoryHistory.builder()
+                            .categoryHistoryId(categoryHistory.getCategoryHistoryId())
+                            .categoryId(categoryHistory.getCategoryId())
+                            .categoryName(categoryHistory.getCategoryName())
+                            .categoryType(categoryHistory.getCategoryType())
+                            .user(categoryHistory.getUser())
+                            .build());
+                }
             }
 
             return retrieveProductAndReview(categoryConnRepository.findByMediumCategoryId(mediumCategoryId, pageable), userId);
@@ -117,13 +128,24 @@ public class ProductServiceImpl implements ProductService {
         try {
             // 최근 본 카테고리(소)
             if (userId != -1L) {
-                User user = userRepository.getById(smallCategoryId);
-                categoryHistoryRepository.save(CategoryHistory.builder()
-                        .categoryId(smallCategoryId)
-                        .categoryName(smallCategory.getSmallCategoryTitle())
-                        .categoryType(2)
-                        .user(user)
-                        .build());
+                User user = userRepository.getById(userId);
+                if(!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 2, smallCategoryId)) {
+                    categoryHistoryRepository.save(CategoryHistory.builder()
+                            .categoryId(smallCategoryId)
+                            .categoryName(smallCategory.getSmallCategoryTitle())
+                            .categoryType(2)
+                            .user(user)
+                            .build());
+                } else {
+                    CategoryHistory categoryHistory = categoryHistoryRepository.findByUserUserIdAndCategoryTypeAndCategoryId(userId, 2, smallCategoryId);
+                    categoryHistoryRepository.save(CategoryHistory.builder()
+                            .categoryHistoryId(categoryHistory.getCategoryHistoryId())
+                            .categoryId(categoryHistory.getCategoryId())
+                            .categoryName(categoryHistory.getCategoryName())
+                            .categoryType(categoryHistory.getCategoryType())
+                            .user(categoryHistory.getUser())
+                            .build());
+                }
             }
             return retrieveProductAndReview(categoryConnRepository.findBySmallCategorySmallCategoryId(smallCategoryId, pageable), userId);
         } catch(Exception exception) {
@@ -139,14 +161,24 @@ public class ProductServiceImpl implements ProductService {
         try {
             // 최근 본 카테고리(대)
             if (userId != -1L) {
-                User user = userRepository.getById(largeCategoryId);
-                categoryHistoryRepository.save(CategoryHistory.builder()
-                        .categoryId(largeCategoryId)
-                        .categoryName(largeCategory.getTitle())
-                        .categoryType(0) // 0 large
-                        .user(user)
-                        .build());
-
+                User user = userRepository.getById(userId);
+                if(!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 0, largeCategoryId)) {
+                    categoryHistoryRepository.save(CategoryHistory.builder()
+                            .categoryId(largeCategoryId)
+                            .categoryName(largeCategory.getTitle())
+                            .categoryType(0) // 0 large
+                            .user(user)
+                            .build());
+                } else {
+                    CategoryHistory categoryHistory = categoryHistoryRepository.findByUserUserIdAndCategoryTypeAndCategoryId(userId, 0, largeCategoryId);
+                    categoryHistoryRepository.save(CategoryHistory.builder()
+                            .categoryHistoryId(categoryHistory.getCategoryHistoryId())
+                            .categoryId(categoryHistory.getCategoryId())
+                            .categoryName(categoryHistory.getCategoryName())
+                            .categoryType(categoryHistory.getCategoryType())
+                            .user(categoryHistory.getUser())
+                            .build());
+                }
             }
 
             return retrieveProductAndReview(categoryConnRepository.findByLargeCategoryId(largeCategoryId, pageable), userId);
@@ -162,10 +194,19 @@ public class ProductServiceImpl implements ProductService {
             // 최근 검색 조회
             if (userId != -1L) {
                 User user = userRepository.getById(userId);
-                searchHistoryRepository.save(SearchHistory.builder()
-                        .searchWord(searchWord)
-                        .user(user)
-                        .build());
+                if(!searchHistoryRepository.existsByUserUserIdAndSearchWord(userId, searchWord)) {
+                    searchHistoryRepository.save(SearchHistory.builder()
+                            .searchWord(searchWord)
+                            .user(user)
+                            .build());
+                } else {
+                    SearchHistory searchHistory = searchHistoryRepository.findByUserUserIdAndSearchWord(userId, searchWord);
+                    searchHistoryRepository.save(SearchHistory.builder()
+                            .searchHistoryId(searchHistory.getSearchHistoryId())
+                            .searchWord(searchHistory.getSearchWord())
+                            .user(searchHistory.getUser())
+                            .build());
+                }
             }
 
             return retrieveProductAndReview(categoryConnRepository.findByProductNameContains(searchWord, pageable), userId);
@@ -214,12 +255,26 @@ public class ProductServiceImpl implements ProductService {
         // 최근 상품 조회
         if(userId != -1L) {
             User user = userRepository.getById(userId);
-            viewHistoryRepository.save(ViewHistory.builder()
-                    .name(product.getName())
-                    .price(product.getPrice())
-                    .productImg(product.getImgUrl())
-                    .user(user)
-                    .build());
+
+            if(!viewHistoryRepository.existsByUserUserIdAndProductId(userId, productId)) {
+                viewHistoryRepository.save(ViewHistory.builder()
+                        .name(product.getName())
+                        .price(product.getPrice())
+                        .productImg(product.getImgUrl())
+                        .productId(product.getProductId())
+                        .user(user)
+                        .build());
+            } else {
+                ViewHistory viewHistory = viewHistoryRepository.findByUserUserIdAndProductId(userId, productId);
+                viewHistoryRepository.save(ViewHistory.builder()
+                        .viewHistoryId(viewHistory.getViewHistoryId())
+                        .name(viewHistory.getName())
+                        .price(viewHistory.getPrice())
+                        .productImg(viewHistory.getProductImg())
+                        .productId(viewHistory.getProductId())
+                        .user(viewHistory.getUser())
+                        .build());
+            }
         }
 
         // 찜 여부 조회
