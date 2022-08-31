@@ -30,9 +30,11 @@ public class S3UploaderService {
     }
 
     public String upload(MultipartFile multipartFile, String dirName) throws BaseException {
+
         try {
             File uploadFile = convert(multipartFile);
             return upload(uploadFile, bucket, dirName);
+
         } catch (BaseException e) {
             throw new BaseException(TRANSLATE_FILE_FAILED);
         }
