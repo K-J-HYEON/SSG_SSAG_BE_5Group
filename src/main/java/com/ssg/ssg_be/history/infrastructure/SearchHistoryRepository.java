@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface SearchHistoryRepository extends JpaRepository<SearchHistory, Long> {
     List<SearchHistoryDtoRes> findAllByUserUserId(Long userId);
+    boolean existsByUserUserIdAndSearchWord(Long userId, String searchWord);
+    SearchHistory findByUserUserIdAndSearchWord(Long userId, String searchWord);
 }

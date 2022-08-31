@@ -29,6 +29,9 @@ public class ViewHistory extends BaseTimeEntity {
     @Column(nullable = false)
     private String productImg;
 
+    @Column(nullable = false)
+    private Long productId;
+
     // user 엔티티 넣어서 반영
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
