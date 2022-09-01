@@ -93,4 +93,18 @@ public class CartController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
+
+    @ResponseBody
+    @GetMapping("/carts/count")
+    public BaseResponse<CartCountDto> retrieveCartCount() {
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
+
+        try {
+            CartCountDto cartCountDto = cartService.retrieveCartCount(userId);
+            return new BaseResponse<>(cartCountDto);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
 }
