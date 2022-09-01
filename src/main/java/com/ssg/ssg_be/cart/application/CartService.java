@@ -11,4 +11,5 @@ public interface CartService {
     void deleteCart(Long cartId) throws BaseException;
     void updateCartCount(CartCountPatchDtoReq cartCountPatchDtoReq) throws BaseException;
     CartOptionPatchDtoRes updateCartOption(CartOptionPatchDtoReq cartOptionPatchDtoReq, Long userId) throws BaseException;
+    CartCountDto retrieveCartCount(Long userId) throws BaseException;
 }

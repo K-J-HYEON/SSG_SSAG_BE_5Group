@@ -22,4 +22,7 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
     boolean existsByUserUserIdAndProductOption_ProductOptionId(Long userId, Long productOptionId);
 
     Cart findByUserUserIdAndProductOption_ProductOptionId(Long userId, Long productOptionId);
+
+    @Query(value = "select count(c) from Cart as c where c.user.userId =:userId")
+    int retrieveCartCount(@Param("userId") Long userId);
 }

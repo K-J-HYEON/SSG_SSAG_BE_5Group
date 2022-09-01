@@ -217,4 +217,14 @@ public class CartServiceImpl implements CartService {
             throw new BaseException(CART_OPTION_UPDATE_FAILED);
         }
     }
+
+    @Override
+    public CartCountDto retrieveCartCount(Long userId) throws BaseException {
+        try {
+            int cartCount = cartRepository.retrieveCartCount(userId);
+            return new CartCountDto(cartCount);
+        } catch (Exception exception) {
+            throw new BaseException(CART_RETRIEVE_FAILED);
+        }
+    }
 }
