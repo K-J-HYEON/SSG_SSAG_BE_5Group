@@ -29,7 +29,6 @@ import com.ssg.ssg_be.wish.infrastructure.WishRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
@@ -78,7 +77,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDtoRes> retrieveAllProduct(Long userId, Pageable pageable) throws BaseException {
+    public ProductSliceDtoRes retrieveAllProduct(Long userId, Pageable pageable) throws BaseException {
         try {
             return retrieveProductAndReview(categoryConnRepository.findAllBy(pageable), userId);
         } catch(Exception exception) {
@@ -87,7 +86,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDtoRes> retrieveMediumCategoryProduct(Long mediumCategoryId, Long userId, Pageable pageable) throws BaseException {
+    public ProductSliceDtoRes retrieveMediumCategoryProduct(Long mediumCategoryId, Long userId, Pageable pageable) throws BaseException {
 
         MediumCategory mediumCategory = mediumCategoryRepository.getById(mediumCategoryId);
 
@@ -121,7 +120,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDtoRes> retrieveSmallCategoryProduct(Long smallCategoryId, Long userId, Pageable pageable) throws BaseException {
+    public ProductSliceDtoRes retrieveSmallCategoryProduct(Long smallCategoryId, Long userId, Pageable pageable) throws BaseException {
 
         SmallCategory smallCategory = smallCategoryRepository.getById(smallCategoryId);
 
@@ -154,7 +153,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDtoRes> retrieveLargeCategoryProduct(Long largeCategoryId, Long userId, Pageable pageable) throws BaseException {
+    public ProductSliceDtoRes retrieveLargeCategoryProduct(Long largeCategoryId, Long userId, Pageable pageable) throws BaseException {
 
         LargeCategory largeCategory = largeCategoryRepository.getById(largeCategoryId);
 
@@ -188,7 +187,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDtoRes> retrieveSearch(String searchWord, Long userId, Pageable pageable) throws BaseException {
+    public ProductSliceDtoRes retrieveSearch(String searchWord, Long userId, Pageable pageable) throws BaseException {
 
         try {
             // 최근 검색 조회
@@ -350,7 +349,7 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    public List<ProductDtoRes> retrieveProductAndReview(Slice<CategoryProductDtoRes> products, Long userId) {
+    public ProductSliceDtoRes retrieveProductAndReview(Slice<CategoryProductDtoRes> products, Long userId) {
 
         List<ReviewTotalDto> reviewTotalDtos = new ArrayList<>();
         List<WishDto> wishDtos = new ArrayList<>();
@@ -380,13 +379,19 @@ public class ProductServiceImpl implements ProductService {
 
         int i = 0;
 
-        for(CategoryProductDtoRes categoryProductDtoRes : products) {
+        for(CategoryProductDtoRes categoryProductDtoRes : products.getContent()) {
             productDtoRes = new ProductDtoRes(categoryProductDtoRes, reviewTotalDtos.get(i), wishDtos.get(i));
             productDtoResList.add(productDtoRes);
             i++;
         }
 
-        return productDtoResList;
+        return ProductSliceDtoRes.builder()
+                .pageNumber(products.getNumber())
+                .contentSize(products.getNumberOfElements())
+                .last(products.isLast())
+                .next(products.hasNext())
+                .productDtoRes(productDtoResList)
+                .build();
     }
 
 
