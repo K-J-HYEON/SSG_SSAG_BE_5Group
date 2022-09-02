@@ -127,7 +127,7 @@ public class OrderServiceImpl implements OrderService {
                                 .zipCode(odl.getZipCode())
                                 .shippingMsg(odl.getShippingMsg())
                                 .createAt(odl.getCreateAt())
-                                .orderDtoRes(orderDtos)
+                                .orders(orderDtos)
                         .build());
             }
 

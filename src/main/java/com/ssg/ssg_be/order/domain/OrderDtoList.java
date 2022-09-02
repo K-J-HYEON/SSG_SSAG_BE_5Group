@@ -23,5 +23,5 @@ public class OrderDtoList {
     private String zipCode;
     private String shippingMsg;
     private LocalDateTime createAt;
-    private List<OrderDto> orderDtoRes;
+    private List<OrderDto> orders;
 }
