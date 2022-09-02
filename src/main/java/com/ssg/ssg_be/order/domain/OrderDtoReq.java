@@ -1,5 +1,6 @@
 package com.ssg.ssg_be.order.domain;
 
+import com.ssg.ssg_be.product.domain.ProductOption;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,10 +11,10 @@ public class OrderDtoReq {
     private int count;
     private int totalPayment;
 
-    public Orders toEntity(OrderList orderList) {
+    public Orders toEntity(OrderList orderList, ProductOption productOption) {
         return Orders.builder()
                 .orderList(orderList)
-                .productOptionId(productOptionId)
+                .productOption(productOption)
                 .count(count)
                 .totalPayment(totalPayment)
                 .orderState(0)

@@ -3,6 +3,7 @@ package com.ssg.ssg_be.order.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.order.application.OrderService;
+import com.ssg.ssg_be.order.domain.OrderDtoList;
 import com.ssg.ssg_be.order.domain.OrderUpdateDtoReq;
 import com.ssg.ssg_be.order.domain.OrderDtoListRes;
 import com.ssg.ssg_be.order.domain.OrderListDtoReq;
@@ -41,12 +42,12 @@ public class OrderController {
     }
 
     @GetMapping("/order")
-    public BaseResponse<List<OrderDtoListRes>> retrieveOrders() {
+    public BaseResponse<List<OrderDtoList>> retrieveOrders() {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            List<OrderDtoListRes> orderDtoListRes = orderService.retrieveOrders(userId);
+            List<OrderDtoList> orderDtoListRes = orderService.retrieveOrders(userId);
             return new BaseResponse<>(orderDtoListRes);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());

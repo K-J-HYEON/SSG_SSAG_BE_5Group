@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
@@ -48,7 +49,11 @@ public class OrderServiceImpl implements OrderService {
 
         try {
             OrderList orderList = orderListRepository.save(orderListDtoReq.toEntity(user));
-            orderListDtoReq.getOrderDtoReq().forEach(orderDtoReq -> orderRepository.save(orderDtoReq.toEntity(orderList)));
+
+            for(OrderDtoReq orderDtoReq : orderListDtoReq.getOrderDtoReq()) {
+                ProductOption productOption = productOptionRepository.getById(orderDtoReq.getProductOptionId());
+                orderRepository.save(orderDtoReq.toEntity(orderList, productOption));
+            }
         } catch (Exception exception) {
             throw new BaseException(ORDER_INSERT_FAILED);
         }
@@ -84,10 +89,49 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDtoListRes> retrieveOrders(Long userId) throws BaseException {
+    public List<OrderDtoList> retrieveOrders(Long userId) throws BaseException {
 
         try {
-            return orderListRepository.findAllByUserUserId(userId);
+            List<OrderDtoListRes> orderDtoListRes = orderListRepository.findAllByUserUserId(userId);
+            List<OrderDtoList> orderDtoLists = new ArrayList<>();
+            List<OrderDto> orderDtos = new ArrayList<>();
+
+            for(OrderDtoListRes odl : orderDtoListRes) {
+                odl.getOrders().forEach(orderDtoRes -> orderDtos.add(OrderDto.builder()
+                                .orderId(orderDtoRes.getOrderId())
+                                .count(orderDtoRes.getCount())
+                                .totalPayment(orderDtoRes.getTotalPayment())
+                                .orderState(orderDtoRes.getOrderState())
+                                .shippingState(orderDtoRes.getShippingState())
+                                .courierCompany(orderDtoRes.getCourierCompany())
+                                .waybillNumber(orderDtoRes.getWaybillNumber())
+                                .productOptionId(orderDtoRes.getProductOption().getProductOptionId())
+                                .productId(orderDtoRes.getProductOption().getProduct().getProductId())
+                                .productName(orderDtoRes.getProductOption().getProduct().getName())
+                                .price(orderDtoRes.getProductOption().getProduct().getPrice())
+                                .sale(orderDtoRes.getProductOption().getProduct().getSale())
+                                .imgUrl(orderDtoRes.getProductOption().getProduct().getImgUrl())
+                                .storeName(orderDtoRes.getProductOption().getProduct().getStore().getName())
+                                .size(orderDtoRes.getProductOption().getSize().getSize())
+                                .color(orderDtoRes.getProductOption().getColor().getColor())
+                        .build())
+                );
+
+                orderDtoLists.add(OrderDtoList.builder()
+                                .orderListId(odl.getOrderListId())
+                                .user(odl.getUser())
+                                .refundType(odl.getRefundType())
+                                .recipient(odl.getRecipient())
+                                .addrName(odl.getAddrName())
+                                .streetAddr(odl.getStreetAddr())
+                                .zipCode(odl.getZipCode())
+                                .shippingMsg(odl.getShippingMsg())
+                                .createAt(odl.getCreateAt())
+                                .orderDtoRes(orderDtos)
+                        .build());
+            }
+
+            return orderDtoLists;
         } catch (Exception exception) {
             throw new BaseException(ORDER_RETRIEVE_FAILED);
         }
@@ -108,7 +152,7 @@ public class OrderServiceImpl implements OrderService {
                 orderRepository.save(Orders.builder()
                                 .orderId(order.getOrderId())
                                 .orderList(order.getOrderList())
-                                .productOptionId(order.getProductOptionId())
+                                .productOption(order.getProductOption())
                                 .count(order.getCount())
                                 .totalPayment(order.getTotalPayment())
                                 .orderState(1)
@@ -117,7 +161,7 @@ public class OrderServiceImpl implements OrderService {
                                 .waybillNumber(order.getWaybillNumber())
                                 .build());
 
-                ProductOption productOption = productOptionRepository.getById(order.getProductOptionId());
+                ProductOption productOption = productOptionRepository.getById(order.getProductOption().getProductOptionId());
 
                 productOptionRepository.save(ProductOption.builder()
                                 .productOptionId(productOption.getProductOptionId())
@@ -158,7 +202,7 @@ public class OrderServiceImpl implements OrderService {
             orderRepository.save(Orders.builder()
                     .orderId(order.getOrderId())
                     .orderList(order.getOrderList())
-                    .productOptionId(order.getProductOptionId())
+                    .productOption(order.getProductOption())
                     .count(order.getCount())
                     .totalPayment(order.getTotalPayment())
                     .orderState(type)
