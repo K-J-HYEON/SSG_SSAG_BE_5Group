@@ -1,7 +1,9 @@
 package com.ssg.ssg_be.order.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ssg.config.BaseTimeEntity;
+import com.ssg.ssg_be.product.domain.ProductOption;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,8 +27,9 @@ public class Orders extends BaseTimeEntity {
     @JoinColumn(nullable = false)
     private OrderList orderList;
 
-    @Column(nullable = false)
-    private Long productOptionId;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private ProductOption productOption;
 
     @Column(nullable = false)
     private int count;
