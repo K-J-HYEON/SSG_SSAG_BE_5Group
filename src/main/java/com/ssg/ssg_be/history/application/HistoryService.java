@@ -4,12 +4,12 @@ import com.ssg.config.BaseException;
 import com.ssg.ssg_be.history.domain.BrandHistoryDtoRes;
 import com.ssg.ssg_be.history.domain.CategoryHistoryDtoRes;
 import com.ssg.ssg_be.history.domain.SearchHistoryDtoRes;
-import com.ssg.ssg_be.history.domain.ViewHistoryDtoRes;
+import com.ssg.ssg_be.history.domain.ViewHistoryDto;
 
 import java.util.List;
 
 public interface HistoryService {
-    List<ViewHistoryDtoRes> retrieveViewHistory(Long userId) throws BaseException;
+    List<ViewHistoryDto> retrieveViewHistory(Long userId) throws BaseException;
     void deleteViewHistory(Long viewHistoryId) throws BaseException;
 
     List<SearchHistoryDtoRes> retrieveSearchHistory(Long userId) throws BaseException;
