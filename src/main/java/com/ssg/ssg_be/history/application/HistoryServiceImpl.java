@@ -6,10 +6,14 @@ import com.ssg.ssg_be.history.infrastructure.BrandHistoryRepository;
 import com.ssg.ssg_be.history.infrastructure.CategoryHistoryRepository;
 import com.ssg.ssg_be.history.infrastructure.SearchHistoryRepository;
 import com.ssg.ssg_be.history.infrastructure.ViewHistoryRepository;
+import com.ssg.ssg_be.wish.domain.Wish;
+import com.ssg.ssg_be.wish.domain.WishDto;
+import com.ssg.ssg_be.wish.infrastructure.WishRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
@@ -21,19 +25,43 @@ public class HistoryServiceImpl implements HistoryService {
     private final CategoryHistoryRepository categoryHistoryRepository;
     private final ViewHistoryRepository viewHistoryRepository;
     private final SearchHistoryRepository searchHistoryRepository;
+    private final WishRepository wishRepository;
 
     @Autowired
-    public HistoryServiceImpl(BrandHistoryRepository brandHistoryRepository, CategoryHistoryRepository categoryHistoryRepository, ViewHistoryRepository viewHistoryRepository, SearchHistoryRepository searchHistoryRepository) {
+    public HistoryServiceImpl(BrandHistoryRepository brandHistoryRepository, CategoryHistoryRepository categoryHistoryRepository, ViewHistoryRepository viewHistoryRepository, SearchHistoryRepository searchHistoryRepository, WishRepository wishRepository) {
         this.brandHistoryRepository = brandHistoryRepository;
         this.categoryHistoryRepository = categoryHistoryRepository;
         this.viewHistoryRepository = viewHistoryRepository;
         this.searchHistoryRepository = searchHistoryRepository;
+        this.wishRepository = wishRepository;
     }
 
     @Override
-    public List<ViewHistoryDtoRes> retrieveViewHistory(Long userId) throws BaseException {
+    public List<ViewHistoryDto> retrieveViewHistory(Long userId) throws BaseException {
         try {
-            return viewHistoryRepository.findAllByUserUserId(userId);
+            List<ViewHistoryDtoRes> viewHistoryDtoResList = viewHistoryRepository.findAllByUserUserId(userId);
+            List<ViewHistoryDto> viewHistoryDtos = new ArrayList<>();
+
+            for(ViewHistoryDtoRes v : viewHistoryDtoResList) {
+                Wish wish = wishRepository.findByUserUserIdAndProductProductId(userId, v.getProductId());
+                WishDto wishDto = null;
+                if(wish != null) {
+                    wishDto = new WishDto(wish.getWishId());
+                }
+
+                viewHistoryDtos.add(ViewHistoryDto.builder()
+                        .viewHistoryId(v.getViewHistoryId())
+                        .name(v.getName())
+                        .price(v.getPrice())
+                        .productImg(v.getProductImg())
+                        .productId(v.getProductId())
+                        .userUserId(v.getUserUserId())
+                        .createAt(v.getCreateAt())
+                        .wishDto(wishDto)
+                        .build());
+            }
+
+            return viewHistoryDtos;
         } catch (Exception exception) {
             throw new BaseException(VIEWHISTORY_RETRIEVE_FAILED);
         }

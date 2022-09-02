@@ -3,10 +3,7 @@ package com.ssg.ssg_be.history.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.history.application.HistoryService;
-import com.ssg.ssg_be.history.domain.BrandHistoryDtoRes;
-import com.ssg.ssg_be.history.domain.CategoryHistoryDtoRes;
-import com.ssg.ssg_be.history.domain.SearchHistoryDtoRes;
-import com.ssg.ssg_be.history.domain.ViewHistoryDtoRes;
+import com.ssg.ssg_be.history.domain.*;
 import com.ssg.utils.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +23,12 @@ public class HistoryController {
     }
 
     @GetMapping("/recent/product")
-    public BaseResponse<List<ViewHistoryDtoRes>> retrieveViewHistory() {
+    public BaseResponse<List<ViewHistoryDto>> retrieveViewHistory() {
         String token = jwtTokenProvider.getHeader();
         Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
 
         try {
-            List<ViewHistoryDtoRes> viewHistoryDtoRes = historyService.retrieveViewHistory(userId);
+            List<ViewHistoryDto> viewHistoryDtoRes = historyService.retrieveViewHistory(userId);
             return new BaseResponse<>(viewHistoryDtoRes);
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
