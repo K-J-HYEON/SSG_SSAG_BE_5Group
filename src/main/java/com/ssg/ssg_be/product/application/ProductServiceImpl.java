@@ -244,9 +244,11 @@ public class ProductServiceImpl implements ProductService {
         }
 
         // 리뷰 개수 조회
-        ReviewTotalDto reviewTotalDto;
+        ReviewTotalDto reviewTotalDto = null;;
         try {
-            reviewTotalDto = reviewRepository.retrieveReviewAvg(productId);
+            if(reviewRepository.existsByProduct_ProductId(productId)) {
+                reviewTotalDto = reviewRepository.retrieveReviewAvg(productId);
+            }
         } catch(Exception exception) {
             throw new BaseException(REVIEW_TOTAL_RETRIEVE_FAILED);
         }

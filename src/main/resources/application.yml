@@ -26,14 +26,14 @@ spring:
         include: aws, local-db, secret, oauth
 
 #server:
+#    port: 9000
+#
+#spring:
 #    data:
 #        web:
 #            pageable:
 #                default-page-size: 10
 #                max-page-size: 100
-#    port: 9000
-#
-#spring:
 #    jpa:
 #        generate-ddl: true
 #        properties:
