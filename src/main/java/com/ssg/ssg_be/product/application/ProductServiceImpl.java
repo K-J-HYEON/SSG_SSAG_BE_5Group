@@ -208,7 +208,7 @@ public class ProductServiceImpl implements ProductService {
                 }
             }
 
-            return retrieveProductAndReview(categoryConnRepository.findByProductNameContains(searchWord, pageable), userId);
+            return retrieveProductAndReview(categoryConnRepository.findByProductNameContaining(searchWord, pageable), userId);
 
         } catch(Exception exception) {
             throw new BaseException(SEARCH_RETRIEVE_FAILED);

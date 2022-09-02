@@ -12,6 +12,6 @@ public interface CategoryConnRepository extends JpaRepository<CategoryConn, Long
     Slice<CategoryProductDtoRes> findByMediumCategoryId(Long mediumCategoryId, Pageable pageable);
     Slice<CategoryProductDtoRes> findBySmallCategorySmallCategoryId(Long smallCategoryId, Pageable pageable);
     Slice<CategoryProductDtoRes> findByLargeCategoryId(Long largeCategoryId, Pageable pageable);
-    Slice<CategoryProductDtoRes> findByProductNameContains(String searchWord, Pageable pageable);
+    Slice<CategoryProductDtoRes> findByProductNameContaining(String searchWord, Pageable pageable);
 
 }
