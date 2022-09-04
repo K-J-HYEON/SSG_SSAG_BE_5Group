@@ -2,6 +2,7 @@ package com.ssg.ssg_be.product.presentation;
 
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
+import com.ssg.ssg_be.category.infrastructure.CategoryConnRepository;
 import com.ssg.ssg_be.product.application.ProductService;
 import com.ssg.ssg_be.product.domain.*;
 import com.ssg.utils.jwt.JwtTokenProvider;
@@ -192,6 +193,43 @@ public class ProductController {
             List<ProductSizeDtoRes> product = productService.retrieveProductSize(productId, colorId);
             return new BaseResponse<>(product);
         } catch(BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @GetMapping("/users/products/all/test1")
+    public BaseResponse<ProductTestWithNQRes> testWithNativeQuery(Pageable pageable) {
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
+
+        try {
+            ProductTestWithNQRes product = productService.testWithNativeQuery(pageable, userId);
+            return new BaseResponse<>(product);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @GetMapping("/comm-users/products/all/test2")
+    public BaseResponse<ProductSliceTestDto> testWithSeparation(Pageable pageable) {
+
+        try {
+            ProductSliceTestDto product = productService.testWithSeparation(pageable);
+            return new BaseResponse<>(product);
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+    }
+
+    @GetMapping("/users/products/all/test2/review-wish/{productIds}")
+    public BaseResponse<ReviewAndWishDto> testWithReviewAndWish(Pageable pageable, @PathVariable("productIds") List<Long> productIds) {
+        String token = jwtTokenProvider.getHeader();
+        Long userId = Long.valueOf(jwtTokenProvider.getUserPk(token));
+
+        try {
+            ReviewAndWishDto product = productService.testWithReviewAndWish(pageable, userId, productIds);
+            return new BaseResponse<>(product);
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }

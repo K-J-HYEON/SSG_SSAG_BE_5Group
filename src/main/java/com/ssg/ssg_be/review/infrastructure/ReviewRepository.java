@@ -1,6 +1,5 @@
 package com.ssg.ssg_be.review.infrastructure;
 
-import com.ssg.ssg_be.qna.domain.QnaDtoRes;
 import com.ssg.ssg_be.review.domain.Review;
 import com.ssg.ssg_be.review.domain.ReviewDtoRes;
 import com.ssg.ssg_be.review.domain.ReviewTotalDto;

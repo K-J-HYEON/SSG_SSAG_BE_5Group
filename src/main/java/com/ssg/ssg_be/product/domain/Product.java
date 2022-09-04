@@ -39,7 +39,7 @@ public class Product extends BaseTimeEntity {
     @Column(nullable = false)
     private String imgUrl;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storeId")
     private Store store;
 }

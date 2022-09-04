@@ -86,6 +86,70 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductTestWithNQRes testWithNativeQuery(Pageable pageable, Long userId) throws BaseException {
+        Slice<ProductTestWithNQ> productTestWithNQS = categoryConnRepository.findAllWithReviewAndWish(pageable, userId);
+
+        return ProductTestWithNQRes.builder()
+                .pageNumber(productTestWithNQS.getNumber())
+                .contentSize(productTestWithNQS.getSize())
+                .last(productTestWithNQS.isLast())
+                .next(productTestWithNQS.hasNext())
+                .productDtoRes(productTestWithNQS.getContent())
+                .build();
+    }
+
+    @Override
+    public ProductSliceTestDto testWithSeparation(Pageable pageable) throws BaseException {
+        try {
+            Slice<CategoryProductDtoRes> categoryProductDtoRes = categoryConnRepository.findAllBy(pageable);
+            ProductSliceTestDto productSliceDtoRes = ProductSliceTestDto.builder()
+                    .pageNumber(categoryProductDtoRes.getNumber())
+                    .contentSize(categoryProductDtoRes.getSize())
+                    .last(categoryProductDtoRes.isLast())
+                    .next(categoryProductDtoRes.hasNext())
+                    .productDtoRes(categoryProductDtoRes.getContent())
+                    .build();
+            return productSliceDtoRes;
+        } catch(Exception exception) {
+            throw new BaseException(PRODUCT_RETRIEVE_FAILED);
+        }
+    }
+
+    @Override
+    public ReviewAndWishDto testWithReviewAndWish(Pageable pageable, Long userId, List<Long> productIds) throws BaseException {
+
+        List<WishDto> wishIdDtos = new ArrayList<>();
+
+        List<Wish> wish = wishRepository.findByUserUserIdAndProductProductIdIn(userId, productIds);
+        for(Wish w : wish) {
+            if(w != null) {
+                wishIdDtos.add(new WishDto(w.getWishId()));
+            } else {
+                wishIdDtos.add(null);
+            }
+        }
+
+        ReviewTotalDto reviewTotalDto = null;;
+        List<ReviewTotalDto> reviewTotalDtos = new ArrayList<>();
+
+        for(Long id : productIds) {
+            try {
+                if(reviewRepository.existsByProduct_ProductId(id)) {
+                    reviewTotalDto = reviewRepository.retrieveReviewAvg(id);
+                }
+                reviewTotalDtos.add(reviewTotalDto);
+            } catch(Exception exception) {
+                throw new BaseException(REVIEW_TOTAL_RETRIEVE_FAILED);
+            }
+        }
+
+        return ReviewAndWishDto.builder()
+                .wishIdDtos(wishIdDtos)
+                .reviewTotalDtos(reviewTotalDtos)
+                .build();
+    }
+
+    @Override
     public ProductSliceDtoRes retrieveMediumCategoryProduct(Long mediumCategoryId, Long userId, Pageable pageable) throws BaseException {
 
         MediumCategory mediumCategory = mediumCategoryRepository.getById(mediumCategoryId);
@@ -356,12 +420,13 @@ public class ProductServiceImpl implements ProductService {
         List<ReviewTotalDto> reviewTotalDtos = new ArrayList<>();
         List<WishDto> wishDtos = new ArrayList<>();
 
-        for(CategoryProductDtoRes categoryProductDtoRes : products) {
+        for(CategoryProductDtoRes categoryProductDtoRes : products.getContent()) {
+
+            ReviewTotalDto reviewTotalDto = null;;
             if(reviewRepository.existsByProduct_ProductId(categoryProductDtoRes.getProductProductId())) {
-                reviewTotalDtos.add(reviewRepository.retrieveReviewAvg(categoryProductDtoRes.getProductProductId()));
-            } else {
-                reviewTotalDtos.add(null);
+                reviewTotalDto = reviewRepository.retrieveReviewAvg(categoryProductDtoRes.getProductProductId());
             }
+            reviewTotalDtos.add(reviewTotalDto);
 
             if(userId != -1L) {
                 Wish wish = wishRepository.findByUserUserIdAndProductProductId(userId, categoryProductDtoRes.getProductProductId());

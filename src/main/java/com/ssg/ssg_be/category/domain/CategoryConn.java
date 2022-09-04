@@ -18,18 +18,18 @@ public class CategoryConn extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryConnId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private SmallCategory smallCategory;
 
-    @JoinColumn(nullable = false)
+    @Column(nullable = false)
     private Long mediumCategoryId;
 
-    @JoinColumn(nullable = false)
+    @Column(nullable = false)
     private Long largeCategoryId;
 
 }
