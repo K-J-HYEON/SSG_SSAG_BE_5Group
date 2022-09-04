@@ -94,9 +94,11 @@ public class OrderServiceImpl implements OrderService {
         try {
             List<OrderDtoListRes> orderDtoListRes = orderListRepository.findAllByUserUserId(userId);
             List<OrderDtoList> orderDtoLists = new ArrayList<>();
-            List<OrderDto> orderDtos = new ArrayList<>();
 
             for(OrderDtoListRes odl : orderDtoListRes) {
+
+                List<OrderDto> orderDtos = new ArrayList<>();
+
                 odl.getOrders().forEach(orderDtoRes -> orderDtos.add(OrderDto.builder()
                                 .orderId(orderDtoRes.getOrderId())
                                 .count(orderDtoRes.getCount())
