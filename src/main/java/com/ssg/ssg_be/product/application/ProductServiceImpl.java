@@ -28,7 +28,6 @@ import com.ssg.ssg_be.wish.domain.WishDto;
 import com.ssg.ssg_be.wish.infrastructure.WishRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
@@ -43,110 +42,50 @@ import static com.ssg.config.BaseResponseStatus.*;
 @Slf4j
 public class ProductServiceImpl implements ProductService {
 
-    private CategoryConnRepository categoryConnRepository;
-    private ReviewRepository reviewRepository;
-    private ProductRepository productRepository;
-    private ProductImgRepository productImgRepository;
-    private DetailImgRepository detailImgRepository;
-    private ProductOptionRepository productOptionRepository;
-    private WishRepository wishRepository;
-    private ViewHistoryRepository viewHistoryRepository;
-    private UserRepository userRepository;
-    private SearchHistoryRepository searchHistoryRepository;
-    private CategoryHistoryRepository categoryHistoryRepository;
-    private LargeCategoryRepository largeCategoryRepository;
-    private MediumCategoryRepository mediumCategoryRepository;
-    private SmallCategoryRepository smallCategoryRepository;
-
-    @Autowired
-    public ProductServiceImpl(CategoryConnRepository categoryConnRepository, ReviewRepository reviewRepository, ProductRepository productRepository, ProductImgRepository productImgRepository, DetailImgRepository detailImgRepository, ProductOptionRepository productOptionRepository, WishRepository wishRepository, ViewHistoryRepository viewHistoryRepository, UserRepository userRepository, SearchHistoryRepository searchHistoryRepository, CategoryHistoryRepository categoryHistoryRepository, LargeCategoryRepository largeCategoryRepository, MediumCategoryRepository mediumCategoryRepository, SmallCategoryRepository smallCategoryRepository) {
-        this.categoryConnRepository = categoryConnRepository;
-        this.reviewRepository = reviewRepository;
-        this.productRepository = productRepository;
-        this.productImgRepository = productImgRepository;
-        this.detailImgRepository = detailImgRepository;
-        this.productOptionRepository = productOptionRepository;
-        this.wishRepository = wishRepository;
-        this.viewHistoryRepository = viewHistoryRepository;
-        this.userRepository = userRepository;
-        this.searchHistoryRepository = searchHistoryRepository;
-        this.categoryHistoryRepository = categoryHistoryRepository;
-        this.largeCategoryRepository = largeCategoryRepository;
-        this.mediumCategoryRepository = mediumCategoryRepository;
-        this.smallCategoryRepository = smallCategoryRepository;
-    }
+    private final CategoryConnRepository categoryConnRepository;
+    private final ReviewRepository reviewRepository;
+    private final ProductRepository productRepository;
+    private final ProductImgRepository productImgRepository;
+    private final DetailImgRepository detailImgRepository;
+    private final ProductOptionRepository productOptionRepository;
+    private final WishRepository wishRepository;
+    private final ViewHistoryRepository viewHistoryRepository;
+    private final UserRepository userRepository;
+    private final SearchHistoryRepository searchHistoryRepository;
+    private final CategoryHistoryRepository categoryHistoryRepository;
+    private final LargeCategoryRepository largeCategoryRepository;
+    private final MediumCategoryRepository mediumCategoryRepository;
+    private final SmallCategoryRepository smallCategoryRepository;
 
     @Override
-    public ProductSliceDtoRes retrieveAllProduct(Long userId, Pageable pageable) throws BaseException {
+    public ProductWithWishDtoRes retrieveAllProduct(Long userId, Pageable pageable) throws BaseException {
+
         try {
-            return retrieveProductAndReview(categoryConnRepository.findAllBy(pageable), userId);
-        } catch(Exception exception) {
-            throw new BaseException(PRODUCT_RETRIEVE_FAILED);
-        }
-    }
+            Slice<ProductWithWishDto> productWithWishDto = categoryConnRepository.findAllWithReviewAndWish(pageable, userId);
+            List<ProductTotalDto> productTotalDtos = new ArrayList<>();
 
-    @Override
-    public ProductTestWithNQRes testWithNativeQuery(Pageable pageable, Long userId) throws BaseException {
-        Slice<ProductTestWithNQ> productTestWithNQS = categoryConnRepository.findAllWithReviewAndWish(pageable, userId);
+            for(ProductWithWishDto p : productWithWishDto.getContent()) {
+                CategoryProductDto categoryProductDto = new CategoryProductDto();
+                ReviewDto reviewTotalDto = new ReviewDto(p.getReviewCount(), p.getReviewAvg());
+                WishDto wishDto = new WishDto(p.getWishId());
 
-        return ProductTestWithNQRes.builder()
-                .pageNumber(productTestWithNQS.getNumber())
-                .contentSize(productTestWithNQS.getSize())
-                .last(productTestWithNQS.isLast())
-                .next(productTestWithNQS.hasNext())
-                .productDtoRes(productTestWithNQS.getContent())
-                .build();
-    }
+                productTotalDtos.add(ProductTotalDto.builder()
+                                .categoryProductDto(categoryProductDto.toDto(p))
+                                .reviewTotalDto(reviewTotalDto)
+                                .wishDto(wishDto)
+                        .build());
+            }
 
-    @Override
-    public ProductSliceTestDto testWithSeparation(Pageable pageable) throws BaseException {
-        try {
-            Slice<CategoryProductDtoRes> categoryProductDtoRes = categoryConnRepository.findAllBy(pageable);
-            ProductSliceTestDto productSliceDtoRes = ProductSliceTestDto.builder()
-                    .pageNumber(categoryProductDtoRes.getNumber())
-                    .contentSize(categoryProductDtoRes.getSize())
-                    .last(categoryProductDtoRes.isLast())
-                    .next(categoryProductDtoRes.hasNext())
-                    .productDtoRes(categoryProductDtoRes.getContent())
+            return ProductWithWishDtoRes.builder()
+                    .pageNumber(productWithWishDto.getNumber())
+                    .contentSize(productWithWishDto.getSize())
+                    .last(productWithWishDto.isLast())
+                    .next(productWithWishDto.hasNext())
+                    .productDtoRes(productTotalDtos)
                     .build();
-            return productSliceDtoRes;
         } catch(Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
-    }
-
-    @Override
-    public ReviewAndWishDto testWithReviewAndWish(Pageable pageable, Long userId, List<Long> productIds) throws BaseException {
-
-        List<WishDto> wishIdDtos = new ArrayList<>();
-
-        List<Wish> wish = wishRepository.findByUserUserIdAndProductProductIdIn(userId, productIds);
-        for(Wish w : wish) {
-            if(w != null) {
-                wishIdDtos.add(new WishDto(w.getWishId()));
-            } else {
-                wishIdDtos.add(null);
-            }
-        }
-
-        ReviewTotalDto reviewTotalDto = null;;
-        List<ReviewTotalDto> reviewTotalDtos = new ArrayList<>();
-
-        for(Long id : productIds) {
-            try {
-                if(reviewRepository.existsByProduct_ProductId(id)) {
-                    reviewTotalDto = reviewRepository.retrieveReviewAvg(id);
-                }
-                reviewTotalDtos.add(reviewTotalDto);
-            } catch(Exception exception) {
-                throw new BaseException(REVIEW_TOTAL_RETRIEVE_FAILED);
-            }
-        }
-
-        return ReviewAndWishDto.builder()
-                .wishIdDtos(wishIdDtos)
-                .reviewTotalDtos(reviewTotalDtos)
-                .build();
     }
 
     @Override
@@ -158,22 +97,16 @@ public class ProductServiceImpl implements ProductService {
             // 최근 본 카테고리(중)
             if (userId != -1L) {
                 User user = userRepository.getById(userId);
+                CategoryHistory categoryHistory = new CategoryHistory();
+
                 if(!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 1, mediumCategoryId)) {
-                    categoryHistoryRepository.save(CategoryHistory.builder()
-                            .categoryId(mediumCategoryId)
-                            .categoryName(mediumCategory.getMediumCategoryTitle())
-                            .categoryType(1)
-                            .user(user)
-                            .build());
+                    categoryHistory = categoryHistory.dtoToCategoryHistoryEntity(null,mediumCategoryId,
+                            mediumCategory.getMediumCategoryTitle(), 1, user);
+                    categoryHistoryRepository.save(categoryHistory);
+
                 } else {
-                    CategoryHistory categoryHistory = categoryHistoryRepository.findByUserUserIdAndCategoryTypeAndCategoryId(userId, 1, mediumCategoryId);
-                    categoryHistoryRepository.save(CategoryHistory.builder()
-                            .categoryHistoryId(categoryHistory.getCategoryHistoryId())
-                            .categoryId(categoryHistory.getCategoryId())
-                            .categoryName(categoryHistory.getCategoryName())
-                            .categoryType(categoryHistory.getCategoryType())
-                            .user(categoryHistory.getUser())
-                            .build());
+                    CategoryHistory originCategoryHistory = categoryHistoryRepository.findByUserUserIdAndCategoryTypeAndCategoryId(userId, 1, mediumCategoryId);
+                    categoryHistoryRepository.save(categoryHistory.toCategoryHistoryEntity(originCategoryHistory));
                 }
             }
 
