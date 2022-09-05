@@ -64,10 +64,13 @@ public class ProductServiceImpl implements ProductService {
             Slice<ProductWithWishDto> productWithWishDto = categoryConnRepository.findAllWithReviewAndWish(pageable, userId);
             List<ProductTotalDto> productTotalDtos = new ArrayList<>();
 
+            CategoryProductDto categoryProductDto = new CategoryProductDto();
+            ReviewDto reviewTotalDto = null;
+            WishDto wishDto = null;
+
             for(ProductWithWishDto p : productWithWishDto.getContent()) {
-                CategoryProductDto categoryProductDto = new CategoryProductDto();
-                ReviewDto reviewTotalDto = new ReviewDto(p.getReviewCount(), p.getReviewAvg());
-                WishDto wishDto = new WishDto(p.getWishId());
+                reviewTotalDto = new ReviewDto(p.getReviewCount(), p.getReviewAvg());
+                wishDto = new WishDto(p.getWishId());
 
                 productTotalDtos.add(ProductTotalDto.builder()
                                 .categoryProductDto(categoryProductDto.toDto(p))

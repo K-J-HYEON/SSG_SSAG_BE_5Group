@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @Getter
 public class ReviewDto {
-    private int reviewCount;
-    private double reviewAvg;
+    private Integer reviewCount;
+    private Double reviewAvg;
 }
