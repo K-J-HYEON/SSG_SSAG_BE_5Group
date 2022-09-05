@@ -33,4 +33,28 @@ public class CategoryHistory extends BaseTimeEntity {
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 
+    public CategoryHistory dtoToCategoryHistoryEntity(Long categoryHistoryId,
+                                                   Long categoryId,
+                                                   String name,
+                                                   int type,
+                                                   User user) {
+        return CategoryHistory.builder()
+                .categoryHistoryId(categoryHistoryId)
+                .categoryId(categoryId)
+                .categoryName(name)
+                .categoryType(type)
+                .user(user)
+                .build();
+    }
+
+    public CategoryHistory toCategoryHistoryEntity(CategoryHistory categoryHistory) {
+        return CategoryHistory.builder()
+                .categoryHistoryId(categoryHistory.getCategoryHistoryId())
+                .categoryId(categoryHistory.getCategoryId())
+                .categoryName(categoryHistory.getCategoryName())
+                .categoryType(categoryHistory.getCategoryType())
+                .user(categoryHistory.getUser())
+                .build();
+    }
+
 }

@@ -11,10 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductTestWithNQRes {
+public class ProductWithWishDtoRes {
     private int pageNumber;
     private int contentSize;
     private boolean last;
     private boolean next;
-    private List<ProductTestWithNQ> productDtoRes;
+    private List<ProductTotalDto> productDtoRes;
 }
