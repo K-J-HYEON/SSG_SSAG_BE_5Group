@@ -19,8 +19,6 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.ssg.config.BaseResponseStatus.NO_EXIST_USER;
-
 @Slf4j
 @Component
 @RequiredArgsConstructor

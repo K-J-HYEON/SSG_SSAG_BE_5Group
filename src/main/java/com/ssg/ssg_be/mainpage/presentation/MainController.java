@@ -3,7 +3,7 @@ package com.ssg.ssg_be.mainpage.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.mainpage.application.MainService;
-import com.ssg.ssg_be.mainpage.domain.*;
+import com.ssg.ssg_be.mainpage.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

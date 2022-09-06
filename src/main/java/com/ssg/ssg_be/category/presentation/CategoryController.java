@@ -3,7 +3,9 @@ package com.ssg.ssg_be.category.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.category.application.CategoryService;
-import com.ssg.ssg_be.category.domain.*;
+import com.ssg.ssg_be.category.dto.CategoryDtoRes;
+import com.ssg.ssg_be.category.dto.MediumCategoryDtoRes;
+import com.ssg.ssg_be.category.dto.SmallCategoryDtoRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

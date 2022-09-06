@@ -1,11 +1,10 @@
 package com.ssg.ssg_be.signup.presentation;
 
-
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.review.infrastructure.ReviewRepository;
 import com.ssg.ssg_be.signup.application.SignupService;
-import com.ssg.ssg_be.signup.domain.UserDtoReq;
+import com.ssg.ssg_be.signup.dto.UserDtoReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

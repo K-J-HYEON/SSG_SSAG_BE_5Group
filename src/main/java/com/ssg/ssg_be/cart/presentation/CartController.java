@@ -3,12 +3,10 @@ package com.ssg.ssg_be.cart.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.cart.application.CartService;
-import com.ssg.ssg_be.cart.domain.*;
+import com.ssg.ssg_be.cart.dto.*;
 import com.ssg.utils.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")

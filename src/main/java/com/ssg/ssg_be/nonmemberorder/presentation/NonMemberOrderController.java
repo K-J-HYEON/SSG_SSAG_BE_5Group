@@ -3,7 +3,10 @@ package com.ssg.ssg_be.nonmemberorder.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.nonmemberorder.application.NonMemberOrderService;
-import com.ssg.ssg_be.nonmemberorder.domain.*;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberAuthDtoReq;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberOrderIdDtoRes;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberOrderListDtoReq;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberOrderListDtoRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

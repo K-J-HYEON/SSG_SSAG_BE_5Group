@@ -2,6 +2,10 @@ package com.ssg.ssg_be.shippingaddr.application;
 
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.shippingaddr.domain.*;
+import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDefaultPutDtoReq;
+import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDtoReq;
+import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDtoRes;
+import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrPutDtoReq;
 import com.ssg.ssg_be.shippingaddr.infrastructure.ShippingAddrRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;

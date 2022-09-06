@@ -1,13 +1,13 @@
 package com.ssg.ssg_be.history.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.history.domain.*;
+import com.ssg.ssg_be.history.dto.*;
 import com.ssg.ssg_be.history.infrastructure.BrandHistoryRepository;
 import com.ssg.ssg_be.history.infrastructure.CategoryHistoryRepository;
 import com.ssg.ssg_be.history.infrastructure.SearchHistoryRepository;
 import com.ssg.ssg_be.history.infrastructure.ViewHistoryRepository;
 import com.ssg.ssg_be.wish.domain.Wish;
-import com.ssg.ssg_be.wish.domain.WishDto;
+import com.ssg.ssg_be.wish.dto.WishDto;
 import com.ssg.ssg_be.wish.infrastructure.WishRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

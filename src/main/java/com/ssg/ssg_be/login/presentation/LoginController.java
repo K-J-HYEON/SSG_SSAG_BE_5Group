@@ -3,7 +3,7 @@ package com.ssg.ssg_be.login.presentation;
 import com.ssg.config.BaseException;
 import com.ssg.config.BaseResponse;
 import com.ssg.ssg_be.login.application.LoginService;
-import com.ssg.ssg_be.login.domain.LoginDtoReq;
+import com.ssg.ssg_be.login.dto.LoginDtoReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

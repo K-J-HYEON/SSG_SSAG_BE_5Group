@@ -1,10 +1,9 @@
 package com.ssg.ssg_be.order.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.order.domain.OrderDtoList;
-import com.ssg.ssg_be.order.domain.OrderUpdateDtoReq;
-import com.ssg.ssg_be.order.domain.OrderDtoListRes;
-import com.ssg.ssg_be.order.domain.OrderListDtoReq;
+import com.ssg.ssg_be.order.dto.OrderDtoList;
+import com.ssg.ssg_be.order.dto.OrderUpdateDtoReq;
+import com.ssg.ssg_be.order.dto.OrderListDtoReq;
 
 import java.util.List;
 

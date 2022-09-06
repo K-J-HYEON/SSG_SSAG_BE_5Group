@@ -1,10 +1,10 @@
 package com.ssg.ssg_be.shippingaddr.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrDefaultPutDtoReq;
-import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrDtoReq;
-import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrDtoRes;
-import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrPutDtoReq;
+import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDefaultPutDtoReq;
+import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDtoReq;
+import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDtoRes;
+import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrPutDtoReq;
 
 import java.util.List;
 

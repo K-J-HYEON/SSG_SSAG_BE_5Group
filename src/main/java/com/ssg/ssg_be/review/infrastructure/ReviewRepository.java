@@ -1,8 +1,8 @@
 package com.ssg.ssg_be.review.infrastructure;
 
 import com.ssg.ssg_be.review.domain.Review;
-import com.ssg.ssg_be.review.domain.ReviewDtoRes;
-import com.ssg.ssg_be.review.domain.ReviewTotalDto;
+import com.ssg.ssg_be.review.dto.ReviewDtoRes;
+import com.ssg.ssg_be.review.dto.ReviewTotalDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

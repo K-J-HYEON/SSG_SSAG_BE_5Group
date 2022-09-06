@@ -1,7 +1,7 @@
 package com.ssg.ssg_be.product.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.product.domain.*;
+import com.ssg.ssg_be.product.dto.*;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

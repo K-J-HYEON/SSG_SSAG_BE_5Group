@@ -1,8 +1,8 @@
 package com.ssg.ssg_be.cart.infrastructure;
 
 import com.ssg.ssg_be.cart.domain.Cart;
-import com.ssg.ssg_be.cart.domain.CartDtoRes;
-import com.ssg.ssg_be.store.domain.StoreIdDto;
+import com.ssg.ssg_be.cart.dto.CartDtoRes;
+import com.ssg.ssg_be.store.dto.StoreIdDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

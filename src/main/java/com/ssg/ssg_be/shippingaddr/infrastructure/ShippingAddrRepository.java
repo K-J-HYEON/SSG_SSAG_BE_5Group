@@ -1,7 +1,7 @@
 package com.ssg.ssg_be.shippingaddr.infrastructure;
 
 import com.ssg.ssg_be.shippingaddr.domain.ShippingAddr;
-import com.ssg.ssg_be.shippingaddr.domain.ShippingAddrDtoRes;
+import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDtoRes;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
