@@ -6,9 +6,6 @@
 - [프론트](https://github.com/Im-hass/SSG_SSAG_FE)
 - [백엔드](https://github.com/K-J-HYEON/SSG_SSAG_BE)
 
-## 목차
-1. [개발 환경](#1-개발-환경)
-
 ## 1. 개발 환경
 ```
 * OS : Windows 10, Ubuntu 20.04.4 LTS
