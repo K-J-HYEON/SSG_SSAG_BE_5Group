@@ -1,7 +1,7 @@
 package com.ssg.ssg_be.nonmemberorder.infrastructure;
 
 import com.ssg.ssg_be.nonmemberorder.domain.NonMemberOrder;
-import com.ssg.ssg_be.nonmemberorder.domain.NonMemberOrderDtoRes;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberOrderDtoRes;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

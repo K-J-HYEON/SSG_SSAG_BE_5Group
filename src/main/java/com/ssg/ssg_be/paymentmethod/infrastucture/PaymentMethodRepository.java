@@ -1,7 +1,7 @@
 package com.ssg.ssg_be.paymentmethod.infrastucture;
 
 import com.ssg.ssg_be.paymentmethod.domain.PaymentMethod;
-import com.ssg.ssg_be.paymentmethod.domain.PaymentMethodDtoRes;
+import com.ssg.ssg_be.paymentmethod.dto.PaymentMethodDtoRes;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

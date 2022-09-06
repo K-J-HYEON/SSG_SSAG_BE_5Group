@@ -1,7 +1,6 @@
 package com.ssg.ssg_be.history.domain;
 
 import com.ssg.config.BaseTimeEntity;
-import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

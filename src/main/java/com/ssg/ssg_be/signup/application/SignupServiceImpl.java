@@ -1,9 +1,9 @@
 package com.ssg.ssg_be.signup.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.signup.domain.MarketingDtoReq;
+import com.ssg.ssg_be.signup.dto.MarketingDtoReq;
 import com.ssg.ssg_be.signup.domain.User;
-import com.ssg.ssg_be.signup.domain.UserDtoReq;
+import com.ssg.ssg_be.signup.dto.UserDtoReq;
 import com.ssg.ssg_be.signup.infrastucture.MarketingRepository;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import lombok.RequiredArgsConstructor;

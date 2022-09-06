@@ -1,10 +1,9 @@
 package com.ssg.ssg_be.category.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.category.domain.CategoryDtoRes;
-import com.ssg.ssg_be.category.domain.MediumCategoryDtoRes;
-import com.ssg.ssg_be.category.domain.MediumCategoryList;
-import com.ssg.ssg_be.category.domain.SmallCategoryDtoRes;
+import com.ssg.ssg_be.category.dto.CategoryDtoRes;
+import com.ssg.ssg_be.category.dto.MediumCategoryDtoRes;
+import com.ssg.ssg_be.category.dto.SmallCategoryDtoRes;
 
 import java.util.List;
 

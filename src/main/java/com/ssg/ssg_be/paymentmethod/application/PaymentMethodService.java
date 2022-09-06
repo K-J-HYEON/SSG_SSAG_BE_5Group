@@ -1,8 +1,8 @@
 package com.ssg.ssg_be.paymentmethod.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.paymentmethod.domain.PaymentMethodDtoReq;
-import com.ssg.ssg_be.paymentmethod.domain.PaymentMethodDtoRes;
+import com.ssg.ssg_be.paymentmethod.dto.PaymentMethodDtoReq;
+import com.ssg.ssg_be.paymentmethod.dto.PaymentMethodDtoRes;
 
 import java.util.List;
 

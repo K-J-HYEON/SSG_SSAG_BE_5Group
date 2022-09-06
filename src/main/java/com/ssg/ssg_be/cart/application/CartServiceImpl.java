@@ -2,12 +2,16 @@ package com.ssg.ssg_be.cart.application;
 
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.cart.domain.*;
+import com.ssg.ssg_be.cart.dto.*;
 import com.ssg.ssg_be.cart.infrastructure.CartRepository;
 import com.ssg.ssg_be.product.domain.*;
+import com.ssg.ssg_be.product.dto.ProductDto;
+import com.ssg.ssg_be.product.dto.ProductOptionDto;
+import com.ssg.ssg_be.product.dto.ProductOptionDtoRes;
 import com.ssg.ssg_be.product.infrastructure.ProductOptionRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
-import com.ssg.ssg_be.store.domain.StoreIdDto;
+import com.ssg.ssg_be.store.dto.StoreIdDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

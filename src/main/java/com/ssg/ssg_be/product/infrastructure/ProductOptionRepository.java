@@ -1,6 +1,6 @@
 package com.ssg.ssg_be.product.infrastructure;
 
-import com.ssg.ssg_be.product.domain.ProductColorDtoRes;
+import com.ssg.ssg_be.product.dto.ProductColorDtoRes;
 import com.ssg.ssg_be.product.domain.ProductOption;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

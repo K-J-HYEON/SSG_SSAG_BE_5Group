@@ -1,7 +1,10 @@
 package com.ssg.ssg_be.nonmemberorder.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.nonmemberorder.domain.*;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberAuthDtoReq;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberOrderIdDtoRes;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberOrderListDtoReq;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberOrderListDtoRes;
 
 public interface NonMemberOrderService {
     NonMemberOrderIdDtoRes createNonMemberOrders(NonMemberOrderListDtoReq nonMemberOrderListDtoReq) throws BaseException;

@@ -2,6 +2,7 @@ package com.ssg.ssg_be.mainpage.application;
 
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.mainpage.domain.*;
+import com.ssg.ssg_be.mainpage.dto.*;
 import com.ssg.ssg_be.mainpage.infrastructure.*;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.product.domain.ThumbnailImg;

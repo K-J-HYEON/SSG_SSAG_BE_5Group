@@ -1,7 +1,6 @@
 package com.ssg.ssg_be.order.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.ssg_be.product.domain.ProductOption;
 import lombok.AllArgsConstructor;

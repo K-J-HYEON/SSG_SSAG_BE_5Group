@@ -1,8 +1,7 @@
 package com.ssg.ssg_be.history.infrastructure;
 
 import com.ssg.ssg_be.history.domain.SearchHistory;
-import com.ssg.ssg_be.history.domain.SearchHistoryDtoRes;
-import com.ssg.ssg_be.history.domain.ViewHistoryDtoRes;
+import com.ssg.ssg_be.history.dto.SearchHistoryDtoRes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

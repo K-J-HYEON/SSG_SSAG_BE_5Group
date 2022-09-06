@@ -1,8 +1,6 @@
 package com.ssg.ssg_be.cart.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssg.config.BaseTimeEntity;
-import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.product.domain.ProductOption;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.*;

@@ -2,8 +2,8 @@ package com.ssg.ssg_be.paymentmethod.application;
 
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.paymentmethod.domain.CardImg;
-import com.ssg.ssg_be.paymentmethod.domain.PaymentMethodDtoReq;
-import com.ssg.ssg_be.paymentmethod.domain.PaymentMethodDtoRes;
+import com.ssg.ssg_be.paymentmethod.dto.PaymentMethodDtoReq;
+import com.ssg.ssg_be.paymentmethod.dto.PaymentMethodDtoRes;
 import com.ssg.ssg_be.paymentmethod.infrastucture.CardImgRepository;
 import com.ssg.ssg_be.paymentmethod.infrastucture.PaymentMethodRepository;
 import com.ssg.ssg_be.signup.domain.User;

@@ -3,7 +3,7 @@ package com.ssg.ssg_be.signup.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ssg.config.BaseTimeEntity;
 import com.ssg.config.Role;
-import com.ssg.ssg_be.memberInfo.domain.MemberInfoDtoRes;
+import com.ssg.ssg_be.memberInfo.dto.MemberInfoDtoRes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

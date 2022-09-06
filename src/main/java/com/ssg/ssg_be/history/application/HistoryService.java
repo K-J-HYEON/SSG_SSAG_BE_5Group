@@ -1,10 +1,10 @@
 package com.ssg.ssg_be.history.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.history.domain.BrandHistoryDtoRes;
-import com.ssg.ssg_be.history.domain.CategoryHistoryDtoRes;
-import com.ssg.ssg_be.history.domain.SearchHistoryDtoRes;
-import com.ssg.ssg_be.history.domain.ViewHistoryDto;
+import com.ssg.ssg_be.history.dto.BrandHistoryDtoRes;
+import com.ssg.ssg_be.history.dto.CategoryHistoryDtoRes;
+import com.ssg.ssg_be.history.dto.SearchHistoryDtoRes;
+import com.ssg.ssg_be.history.dto.ViewHistoryDto;
 
 import java.util.List;
 

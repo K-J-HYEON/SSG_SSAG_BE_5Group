@@ -1,9 +1,9 @@
 package com.ssg.ssg_be.wish.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.wish.domain.WishDto;
-import com.ssg.ssg_be.wish.domain.WishDtoReq;
-import com.ssg.ssg_be.wish.domain.WishDtoRes;
+import com.ssg.ssg_be.wish.dto.WishDto;
+import com.ssg.ssg_be.wish.dto.WishDtoReq;
+import com.ssg.ssg_be.wish.dto.WishDtoRes;
 
 import java.util.List;
 

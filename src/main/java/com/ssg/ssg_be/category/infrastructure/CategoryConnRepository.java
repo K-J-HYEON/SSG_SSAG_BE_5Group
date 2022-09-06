@@ -1,8 +1,8 @@
 package com.ssg.ssg_be.category.infrastructure;
 
 import com.ssg.ssg_be.category.domain.CategoryConn;
-import com.ssg.ssg_be.product.domain.CategoryProductDtoRes;
-import com.ssg.ssg_be.product.domain.ProductWithWishDto;
+import com.ssg.ssg_be.product.dto.CategoryProductDtoRes;
+import com.ssg.ssg_be.product.dto.ProductWithWishDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;

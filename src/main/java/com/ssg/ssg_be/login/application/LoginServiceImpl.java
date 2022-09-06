@@ -2,8 +2,8 @@ package com.ssg.ssg_be.login.application;
 
 import com.ssg.config.BaseException;
 import com.ssg.config.Role;
-import com.ssg.ssg_be.login.domain.LoginDtoReq;
-import com.ssg.ssg_be.login.domain.LoginUserDtoReq;
+import com.ssg.ssg_be.login.dto.LoginDtoReq;
+import com.ssg.ssg_be.login.dto.LoginUserDtoReq;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import com.ssg.utils.jwt.JwtTokenProvider;

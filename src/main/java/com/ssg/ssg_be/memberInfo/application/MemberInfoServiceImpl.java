@@ -1,9 +1,9 @@
 package com.ssg.ssg_be.memberInfo.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.memberInfo.domain.MemberInfoDtoRes;
-import com.ssg.ssg_be.memberInfo.domain.MemberInfoPutDtoReq;
-import com.ssg.ssg_be.memberInfo.domain.MemberUpdatePasswordDtoReq;
+import com.ssg.ssg_be.memberInfo.dto.MemberInfoDtoRes;
+import com.ssg.ssg_be.memberInfo.dto.MemberInfoPutDtoReq;
+import com.ssg.ssg_be.memberInfo.dto.MemberUpdatePasswordDtoReq;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,9 +1,9 @@
 package com.ssg.ssg_be.qna.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.qna.domain.QnaDtoReq;
-import com.ssg.ssg_be.qna.domain.QnaDtoRes;
-import com.ssg.ssg_be.qna.domain.QnaPatchDtoReq;
+import com.ssg.ssg_be.qna.dto.QnaDtoReq;
+import com.ssg.ssg_be.qna.dto.QnaDtoRes;
+import com.ssg.ssg_be.qna.dto.QnaPatchDtoReq;
 
 import java.util.List;
 

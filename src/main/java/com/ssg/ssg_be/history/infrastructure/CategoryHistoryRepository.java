@@ -1,7 +1,7 @@
 package com.ssg.ssg_be.history.infrastructure;
 
 import com.ssg.ssg_be.history.domain.CategoryHistory;
-import com.ssg.ssg_be.history.domain.CategoryHistoryDtoRes;
+import com.ssg.ssg_be.history.dto.CategoryHistoryDtoRes;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

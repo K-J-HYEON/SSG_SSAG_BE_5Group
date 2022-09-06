@@ -1,9 +1,7 @@
 package com.ssg.ssg_be.cart.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.cart.domain.*;
-
-import java.util.List;
+import com.ssg.ssg_be.cart.dto.*;
 
 public interface CartService {
     boolean createCart(CartDtoReq cartDtoReq, Long userId) throws BaseException;
