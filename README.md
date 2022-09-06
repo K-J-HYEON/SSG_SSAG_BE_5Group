@@ -8,7 +8,7 @@
 
 ## 1. 개발 환경
 ```
-* OS : Windows 10, Ubuntu 20.04.4 LTS
+* OS : Windows 10, Mac OS, Ubuntu 20.04.4 LTS
 * Infra : AWS EC2, Nginx
 * DB : AWS RDS(MySQL 8.0.28)
 * Storage : AWS S3
