@@ -1,6 +1,6 @@
 # 스파로스 아카데미 쇼핑포털 “SSG.SSAG”
  
- 본 프로젝트는 스파로스 아카데미 1기에서 진행한 신시계몰 클론 코딩 프로젝트입니다.
+ 본 프로젝트는 스파로스 아카데미 1기에서 진행한 신세계몰 클론 코딩 프로젝트입니다.
 
 **Project Repositories:**  
 - [프론트](https://github.com/Im-hass/SSG_SSAG_FE)
