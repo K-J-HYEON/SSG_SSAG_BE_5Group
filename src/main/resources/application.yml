@@ -35,8 +35,8 @@ spring:
             client:
                 registration:
                     naver:
-                        client-id: vi2ZsxV43twrli7TYqBb
-                        client-secret: zpatnxDwD9
+                        client-id: [Client Id 입력]
+                        client-secret: [Secret Key 입력]
                         redirect-uri: "http://13.209.26.150:9000/login/oauth2/code/naver"
                         authorization-grant-type: authorization_code
                         scope: name, email, mobile
@@ -44,8 +44,8 @@ spring:
 
                     kakao:
                         authorization-grant-type: authorization_code
-                        client-id: d2ee80c9b901d56f11a33259b89ea320
-                        client-secret: FMYibHeA5QTU83wMrnJh94TFY0YqW2MZ
+                        client-id: [Client Id 입력]
+                        client-secret: [Secret Key 입력]
                         scope: profile_nickname, account_email
                         client-authentication-method: POST
                         redirect-uri: "http://13.209.26.150:9000/login/oauth2/code/kakao"
@@ -67,8 +67,8 @@ spring:
 cloud:
     aws:
         credentials:
-            accessKey: AKIA6JUYLGWCQNJKG3W4
-            secretKey: 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
+            accessKey: [Access Key 입력]
+            secretKey: [Secret Key 입력]
         s3:
             bucket: ssg-ssag-bucket
         region:
@@ -79,10 +79,10 @@ cloud:
 jwt:
     tokenValidTime: 1800000
 
-    secret: SSG-SSAG-TEAM-SECRET-KEY
+    secret: [Secret Key 입력]
 
 sms:
     serviceId: ncp:sms:kr:265220930008:ssgssag
-    accessKey: x9wislBxXnQPLZiVOgtQ
-    secretKey: bHY9dcmQ4Cv5uppOS6Z6p81ipXkP2hMyW8UqlLXx
+    accessKey: [Access Key 입력]
+    secretKey: [Secret Key 입력]
     phone: '01047569038'
