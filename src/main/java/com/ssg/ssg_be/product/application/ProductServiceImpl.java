@@ -194,19 +194,10 @@ public class ProductServiceImpl implements ProductService {
             // 최근 검색 조회
             if (userId != -1L) {
                 User user = userRepository.getById(userId);
-                if (!searchHistoryRepository.existsByUserUserIdAndSearchWord(userId, searchWord)) {
-                    searchHistoryRepository.save(SearchHistory.builder()
-                            .searchWord(searchWord)
-                            .user(user)
-                            .build());
-                } else {
-                    SearchHistory searchHistory = searchHistoryRepository.findByUserUserIdAndSearchWord(userId, searchWord);
-                    searchHistoryRepository.save(SearchHistory.builder()
-                            .searchHistoryId(searchHistory.getSearchHistoryId())
-                            .searchWord(searchHistory.getSearchWord())
-                            .user(searchHistory.getUser())
-                            .build());
-                }
+                searchHistoryRepository.save(SearchHistory.builder()
+                        .searchWord(searchWord)
+                        .user(user)
+                        .build());
             }
 
             return retrieveProductAndReview(categoryConnRepository.findByProductNameContaining(searchWord, pageable), userId);

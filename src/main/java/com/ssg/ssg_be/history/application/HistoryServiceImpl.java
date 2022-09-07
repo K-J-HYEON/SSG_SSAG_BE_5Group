@@ -39,7 +39,7 @@ public class HistoryServiceImpl implements HistoryService {
     @Override
     public List<ViewHistoryDto> retrieveViewHistory(Long userId) throws BaseException {
         try {
-            List<ViewHistoryDtoRes> viewHistoryDtoResList = viewHistoryRepository.findAllByUserUserId(userId);
+            List<ViewHistoryDtoRes> viewHistoryDtoResList = viewHistoryRepository.findAllByUserUserIdOrderByUpdateAtDesc(userId);
             List<ViewHistoryDto> viewHistoryDtos = new ArrayList<>();
 
             for (ViewHistoryDtoRes v : viewHistoryDtoResList) {
