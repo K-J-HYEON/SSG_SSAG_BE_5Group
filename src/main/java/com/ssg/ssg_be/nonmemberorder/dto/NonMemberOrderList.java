@@ -1,4 +1,4 @@
-package com.ssg.ssg_be.nonmemberorder.domain;
+package com.ssg.ssg_be.nonmemberorder.dto;
 
 import com.ssg.config.BaseTimeEntity;
 import lombok.AllArgsConstructor;

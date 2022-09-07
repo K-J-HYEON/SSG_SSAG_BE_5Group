@@ -1,6 +1,7 @@
 package com.ssg.ssg_be.nonmemberorder.domain;
 
 import com.ssg.config.BaseTimeEntity;
+import com.ssg.ssg_be.nonmemberorder.dto.NonMemberOrderList;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

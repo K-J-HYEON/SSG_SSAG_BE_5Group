@@ -1,7 +1,8 @@
-package com.ssg.ssg_be.order.domain;
+package com.ssg.ssg_be.order.dto;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ssg.config.BaseTimeEntity;
+import com.ssg.ssg_be.order.domain.Orders;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

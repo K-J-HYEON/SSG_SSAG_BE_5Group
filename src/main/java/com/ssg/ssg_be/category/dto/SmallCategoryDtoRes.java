@@ -1,6 +1,5 @@
 package com.ssg.ssg_be.category.dto;
 
-import com.ssg.ssg_be.category.domain.SmallCategoryList;
 import lombok.Builder;
 import lombok.Getter;
 

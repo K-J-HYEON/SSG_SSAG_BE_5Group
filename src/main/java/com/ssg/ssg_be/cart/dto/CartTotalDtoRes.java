@@ -1,6 +1,5 @@
 package com.ssg.ssg_be.cart.dto;
 
-import com.ssg.ssg_be.cart.domain.StoreList;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

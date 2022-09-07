@@ -1,4 +1,4 @@
-package com.ssg.ssg_be.login.domain;
+package com.ssg.ssg_be.login.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

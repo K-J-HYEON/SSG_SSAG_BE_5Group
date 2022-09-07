@@ -1,4 +1,4 @@
-package com.ssg.ssg_be.category.domain;
+package com.ssg.ssg_be.category.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

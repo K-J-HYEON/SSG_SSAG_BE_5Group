@@ -1,4 +1,4 @@
-package com.ssg.ssg_be.cart.domain;
+package com.ssg.ssg_be.cart.dto;
 
 import com.ssg.ssg_be.product.dto.ProductOptionDto;
 import lombok.AllArgsConstructor;

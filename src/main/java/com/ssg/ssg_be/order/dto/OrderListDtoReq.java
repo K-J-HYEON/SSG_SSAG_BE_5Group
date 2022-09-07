@@ -1,6 +1,5 @@
 package com.ssg.ssg_be.order.dto;
 
-import com.ssg.ssg_be.order.domain.OrderList;
 import com.ssg.ssg_be.signup.domain.User;
 import lombok.Getter;
 

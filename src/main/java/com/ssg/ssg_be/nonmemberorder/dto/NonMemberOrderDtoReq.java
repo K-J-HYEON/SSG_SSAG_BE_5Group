@@ -1,7 +1,6 @@
 package com.ssg.ssg_be.nonmemberorder.dto;
 
 import com.ssg.ssg_be.nonmemberorder.domain.NonMemberOrder;
-import com.ssg.ssg_be.nonmemberorder.domain.NonMemberOrderList;
 import lombok.Getter;
 
 @Getter
