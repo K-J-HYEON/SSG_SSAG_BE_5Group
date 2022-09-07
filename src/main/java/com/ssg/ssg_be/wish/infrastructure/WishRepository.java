@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface WishRepository extends JpaRepository<Wish, Long> {
-    List<WishDtoRes> findByUserUserId(Long userId);
+    List<WishDtoRes> findByUserUserIdOrderByCreateAtDesc(Long userId);
 
     Wish findByUserUserIdAndProductProductId(Long userId, Long productId);
 
