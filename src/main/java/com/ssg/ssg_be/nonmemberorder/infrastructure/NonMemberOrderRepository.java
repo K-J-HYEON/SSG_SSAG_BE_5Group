@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface NonMemberOrderRepository extends JpaRepository<NonMemberOrder, Long> {
     boolean existsByNonMemberOrderList_NonMemberOrderListIdAndNonMemberOrderList_NameAndNonMemberOrderList_Phone(Long nonMemberOrderListId, String name, String phone);
+
     List<NonMemberOrderDtoRes> findAllByNonMemberOrderList_NonMemberOrderListId(Long nonMemberOrderListIde);
 }

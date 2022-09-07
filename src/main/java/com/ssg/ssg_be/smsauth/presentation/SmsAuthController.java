@@ -32,11 +32,11 @@ public class SmsAuthController {
     @PostMapping("/auth/sms")
     public BaseResponse<SmsAuthDtoRes> sendMsg(@RequestBody SmsAuthDtoReq smsAuthDtoReq) throws JsonProcessingException {
 
-        if(smsAuthDtoReq.getContent().equals("")) {
+        if (smsAuthDtoReq.getContent().equals("")) {
             return new BaseResponse<>(AUTH_NUM_IS_NULL);
         }
 
-        if(!isRegexPhone(smsAuthDtoReq.getRecipientPhoneNumber())) {
+        if (!isRegexPhone(smsAuthDtoReq.getRecipientPhoneNumber())) {
             return new BaseResponse<>(INVALID_PHONE_NUM);
         }
 

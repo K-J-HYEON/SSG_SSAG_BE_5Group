@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+
 import static com.ssg.config.BaseResponseStatus.TRANSLATE_FILE_FAILED;
 
 @Slf4j
@@ -71,7 +72,7 @@ public class S3UploaderService {
         String storeFileName = createStoreFileName(originalFilename);
 
         //파일 업로드
-        File file = new File(System.getProperty("user.dir")+storeFileName);
+        File file = new File(System.getProperty("user.dir") + storeFileName);
 
         try {
             multipartFile.transferTo(file);

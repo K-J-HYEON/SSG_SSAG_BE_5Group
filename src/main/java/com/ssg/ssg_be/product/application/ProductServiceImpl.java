@@ -69,14 +69,14 @@ public class ProductServiceImpl implements ProductService {
             ReviewDto reviewTotalDto = null;
             WishDto wishDto = null;
 
-            for(ProductWithWishDto p : productWithWishDto.getContent()) {
+            for (ProductWithWishDto p : productWithWishDto.getContent()) {
                 reviewTotalDto = new ReviewDto(p.getReviewCount(), p.getReviewAvg());
                 wishDto = new WishDto(p.getWishId());
 
                 productTotalDtos.add(ProductTotalDto.builder()
-                                .categoryProductDto(categoryProductDto.toDto(p))
-                                .reviewTotalDto(reviewTotalDto)
-                                .wishDto(wishDto)
+                        .categoryProductDto(categoryProductDto.toDto(p))
+                        .reviewTotalDto(reviewTotalDto)
+                        .wishDto(wishDto)
                         .build());
             }
 
@@ -87,7 +87,7 @@ public class ProductServiceImpl implements ProductService {
                     .next(productWithWishDto.hasNext())
                     .productDtoRes(productTotalDtos)
                     .build();
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
@@ -103,8 +103,8 @@ public class ProductServiceImpl implements ProductService {
                 User user = userRepository.getById(userId);
                 CategoryHistory categoryHistory = new CategoryHistory();
 
-                if(!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 1, mediumCategoryId)) {
-                    categoryHistory = categoryHistory.dtoToCategoryHistoryEntity(null,mediumCategoryId,
+                if (!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 1, mediumCategoryId)) {
+                    categoryHistory = categoryHistory.dtoToCategoryHistoryEntity(null, mediumCategoryId,
                             mediumCategory.getMediumCategoryTitle(), 1, user);
                     categoryHistoryRepository.save(categoryHistory);
 
@@ -115,7 +115,7 @@ public class ProductServiceImpl implements ProductService {
             }
 
             return retrieveProductAndReview(categoryConnRepository.findByMediumCategoryId(mediumCategoryId, pageable), userId);
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
@@ -129,7 +129,7 @@ public class ProductServiceImpl implements ProductService {
             // 최근 본 카테고리(소)
             if (userId != -1L) {
                 User user = userRepository.getById(userId);
-                if(!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 2, smallCategoryId)) {
+                if (!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 2, smallCategoryId)) {
                     categoryHistoryRepository.save(CategoryHistory.builder()
                             .categoryId(smallCategoryId)
                             .categoryName(smallCategory.getSmallCategoryTitle())
@@ -148,7 +148,7 @@ public class ProductServiceImpl implements ProductService {
                 }
             }
             return retrieveProductAndReview(categoryConnRepository.findBySmallCategorySmallCategoryId(smallCategoryId, pageable), userId);
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
@@ -162,7 +162,7 @@ public class ProductServiceImpl implements ProductService {
             // 최근 본 카테고리(대)
             if (userId != -1L) {
                 User user = userRepository.getById(userId);
-                if(!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 0, largeCategoryId)) {
+                if (!categoryHistoryRepository.existsByUserUserIdAndCategoryTypeAndCategoryId(userId, 0, largeCategoryId)) {
                     categoryHistoryRepository.save(CategoryHistory.builder()
                             .categoryId(largeCategoryId)
                             .categoryName(largeCategory.getTitle())
@@ -182,7 +182,7 @@ public class ProductServiceImpl implements ProductService {
             }
 
             return retrieveProductAndReview(categoryConnRepository.findByLargeCategoryId(largeCategoryId, pageable), userId);
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
     }
@@ -194,7 +194,7 @@ public class ProductServiceImpl implements ProductService {
             // 최근 검색 조회
             if (userId != -1L) {
                 User user = userRepository.getById(userId);
-                if(!searchHistoryRepository.existsByUserUserIdAndSearchWord(userId, searchWord)) {
+                if (!searchHistoryRepository.existsByUserUserIdAndSearchWord(userId, searchWord)) {
                     searchHistoryRepository.save(SearchHistory.builder()
                             .searchWord(searchWord)
                             .user(user)
@@ -211,7 +211,7 @@ public class ProductServiceImpl implements ProductService {
 
             return retrieveProductAndReview(categoryConnRepository.findByProductNameContaining(searchWord, pageable), userId);
 
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(SEARCH_RETRIEVE_FAILED);
         }
     }
@@ -232,7 +232,7 @@ public class ProductServiceImpl implements ProductService {
                     .priority(productImg.getPriority())
                     .build()
             ));
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PRODUCT_IMG_RETRIEVE_FAILED);
         }
 
@@ -240,25 +240,26 @@ public class ProductServiceImpl implements ProductService {
         Product product;
         try {
             product = productRepository.getById(productId);
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PRODUCT_RETRIEVE_FAILED);
         }
 
         // 리뷰 개수 조회
-        ReviewTotalDto reviewTotalDto = null;;
+        ReviewTotalDto reviewTotalDto = null;
+        ;
         try {
-            if(reviewRepository.existsByProduct_ProductId(productId)) {
+            if (reviewRepository.existsByProduct_ProductId(productId)) {
                 reviewTotalDto = reviewRepository.retrieveReviewAvg(productId);
             }
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(REVIEW_TOTAL_RETRIEVE_FAILED);
         }
 
         // 최근 상품 조회
-        if(userId != -1L) {
+        if (userId != -1L) {
             User user = userRepository.getById(userId);
 
-            if(!viewHistoryRepository.existsByUserUserIdAndProductId(userId, productId)) {
+            if (!viewHistoryRepository.existsByUserUserIdAndProductId(userId, productId)) {
                 viewHistoryRepository.save(ViewHistory.builder()
                         .name(product.getName())
                         .price(product.getPrice())
@@ -281,9 +282,9 @@ public class ProductServiceImpl implements ProductService {
 
         // 찜 여부 조회
         WishDto wishIdDto = null;
-        if(userId != -1L) {
+        if (userId != -1L) {
             Wish wish = wishRepository.findByUserUserIdAndProductProductId(userId, productId);
-            if(wish != null) {
+            if (wish != null) {
                 wishIdDto = new WishDto(wish.getWishId());
             }
         }
@@ -309,16 +310,16 @@ public class ProductServiceImpl implements ProductService {
             List<DetailImgDtoRes> detailImgDtoRes = new ArrayList<>();
 
             detailImgs.forEach(detailImg -> detailImgDtoRes.add(DetailImgDtoRes.builder()
-                            .detailImgId(detailImg.getDetailImgId())
-                            .originName(detailImg.getOriginName())
-                            .saveName(detailImg.getSaveName())
-                            .imgUrl(detailImg.getImgUrl())
-                            .priority(detailImg.getPriority())
-                            .build()
+                    .detailImgId(detailImg.getDetailImgId())
+                    .originName(detailImg.getOriginName())
+                    .saveName(detailImg.getSaveName())
+                    .imgUrl(detailImg.getImgUrl())
+                    .priority(detailImg.getPriority())
+                    .build()
             ));
 
             return detailImgDtoRes;
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PRODUCT_IMG_RETRIEVE_FAILED);
         }
     }
@@ -327,7 +328,7 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductColorDtoRes> retrieveProductColor(Long productId) throws BaseException {
         try {
             return productOptionRepository.getColorIds(productId);
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(OPTION_COLOR_RETRIEVE_FAILED);
         }
     }
@@ -339,15 +340,15 @@ public class ProductServiceImpl implements ProductService {
             List<ProductSizeDtoRes> productSizeDtoRes = new ArrayList<>();
 
             productOptions.forEach(productOption -> productSizeDtoRes.add(ProductSizeDtoRes.builder()
-                            .productOptionId(productOption.getProductOptionId())
-                            .sizeId(productOption.getSize().getSizeId())
-                            .size(productOption.getSize().getSize())
-                            .stock(productOption.getStock())
+                    .productOptionId(productOption.getProductOptionId())
+                    .sizeId(productOption.getSize().getSizeId())
+                    .size(productOption.getSize().getSize())
+                    .stock(productOption.getStock())
                     .build())
             );
 
             return productSizeDtoRes;
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(OPTION_SIZE_RETRIEVE_FAILED);
         }
     }
@@ -357,19 +358,20 @@ public class ProductServiceImpl implements ProductService {
         List<ReviewTotalDto> reviewTotalDtos = new ArrayList<>();
         List<WishDto> wishDtos = new ArrayList<>();
 
-        for(CategoryProductDtoRes categoryProductDtoRes : products.getContent()) {
+        for (CategoryProductDtoRes categoryProductDtoRes : products.getContent()) {
 
-            ReviewTotalDto reviewTotalDto = null;;
-            if(reviewRepository.existsByProduct_ProductId(categoryProductDtoRes.getProductProductId())) {
+            ReviewTotalDto reviewTotalDto = null;
+            ;
+            if (reviewRepository.existsByProduct_ProductId(categoryProductDtoRes.getProductProductId())) {
                 reviewTotalDto = reviewRepository.retrieveReviewAvg(categoryProductDtoRes.getProductProductId());
             }
             reviewTotalDtos.add(reviewTotalDto);
 
-            if(userId != -1L) {
+            if (userId != -1L) {
                 Wish wish = wishRepository.findByUserUserIdAndProductProductId(userId, categoryProductDtoRes.getProductProductId());
                 WishDto wishIdDto = null;
 
-                if(wish != null) {
+                if (wish != null) {
                     wishIdDto = new WishDto(wish.getWishId());
                 }
                 wishDtos.add(wishIdDto);
@@ -383,7 +385,7 @@ public class ProductServiceImpl implements ProductService {
 
         int i = 0;
 
-        for(CategoryProductDtoRes categoryProductDtoRes : products.getContent()) {
+        for (CategoryProductDtoRes categoryProductDtoRes : products.getContent()) {
             productDtoRes = new ProductDtoRes(categoryProductDtoRes, reviewTotalDtos.get(i), wishDtos.get(i));
             productDtoResList.add(productDtoRes);
             i++;
@@ -397,7 +399,6 @@ public class ProductServiceImpl implements ProductService {
                 .productDtoRes(productDtoResList)
                 .build();
     }
-
 
 
 }

@@ -67,13 +67,13 @@ public class SmsAuthServiceImpl implements SmsAuthService {
         String sig = makeSignature(time);
         headers.set("x-ncp-apigw-signature-v2", sig);
 
-        HttpEntity<String> body = new HttpEntity<>(jsonBody,headers);
+        HttpEntity<String> body = new HttpEntity<>(jsonBody, headers);
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
         SmsAuthDtoRes smsAuthDtoRes = null;
         try {
-            smsAuthDtoRes = restTemplate.postForObject(new URI("https://sens.apigw.ntruss.com/sms/v2/services/"+this.serviceId+"/messages"), body, SmsAuthDtoRes.class);
+            smsAuthDtoRes = restTemplate.postForObject(new URI("https://sens.apigw.ntruss.com/sms/v2/services/" + this.serviceId + "/messages"), body, SmsAuthDtoRes.class);
         } catch (URISyntaxException e) {
             e.printStackTrace();
             throw new BaseException(CREATE_URI_FAILED);
@@ -87,7 +87,7 @@ public class SmsAuthServiceImpl implements SmsAuthService {
         String space = " ";
         String newLine = "\n";
         String method = "POST";
-        String url = "/sms/v2/services/"+ this.serviceId+"/messages";
+        String url = "/sms/v2/services/" + this.serviceId + "/messages";
         String accessKey = this.accessKey;
         String secretKey = this.secretKey;
 

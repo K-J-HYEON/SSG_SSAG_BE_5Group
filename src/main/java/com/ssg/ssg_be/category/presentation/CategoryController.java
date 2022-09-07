@@ -28,7 +28,7 @@ public class CategoryController {
         try {
             List<CategoryDtoRes> categoryDtoRes = categoryService.retrieveCategory();
             return new BaseResponse<>(categoryDtoRes);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -39,7 +39,7 @@ public class CategoryController {
         try {
             SmallCategoryDtoRes smallCategoryDtoRes = categoryService.retrieveSmallCategory(mediumCategoryId);
             return new BaseResponse<>(smallCategoryDtoRes);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -50,7 +50,7 @@ public class CategoryController {
         try {
             MediumCategoryDtoRes mediumCategoryLists = categoryService.retrieveMediumCategory(largeCategoryId);
             return new BaseResponse<>(mediumCategoryLists);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }

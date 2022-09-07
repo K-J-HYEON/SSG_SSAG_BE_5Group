@@ -71,8 +71,8 @@ public class MainServiceImpl implements MainService {
             List<HappyLoungeDtoRes> happyLoungeDtoRes = new ArrayList<>();
 
             int i = 0, size = happyLounges.size();
-            for(HappyLounge h : happyLounges) {
-                if(i >= size || i >=3) {
+            for (HappyLounge h : happyLounges) {
+                if (i >= size || i >= 3) {
                     break;
                 }
                 i++;
@@ -81,25 +81,25 @@ public class MainServiceImpl implements MainService {
                 List<ThumbnailImg> thumbnailImg = thumbnailImgRepository.findAllByProductProductIdOrderByPriority(product.getProductId());
                 List<HappyLoungeImgDto> happyLoungeImgDtos = new ArrayList<>();
                 thumbnailImg.forEach(ti -> happyLoungeImgDtos.add(HappyLoungeImgDto.builder()
-                                .thumbnailImgId(ti.getThumbnailImgId())
-                                .originName(ti.getOriginName())
-                                .saveName(ti.getSaveName())
-                                .imgUrl(ti.getImgUrl())
-                                .priority(ti.getPriority())
+                        .thumbnailImgId(ti.getThumbnailImgId())
+                        .originName(ti.getOriginName())
+                        .saveName(ti.getSaveName())
+                        .imgUrl(ti.getImgUrl())
+                        .priority(ti.getPriority())
                         .build())
                 );
 
                 happyLoungeDtoRes.add(HappyLoungeDtoRes.builder()
-                                .productId(product.getProductId())
-                                .name(product.getName())
-                                .price(product.getPrice())
-                                .sale(product.getSale())
-                                .saleStartDate(product.getSaleStartDate())
-                                .saleEndDate(product.getSaleEndDate())
-                                .imgOriginName(product.getImgOriginName())
-                                .imgSaveName(product.getImgSaveName())
-                                .imgUrl(product.getImgUrl())
-                                .happyLoungeImgDto(happyLoungeImgDtos)
+                        .productId(product.getProductId())
+                        .name(product.getName())
+                        .price(product.getPrice())
+                        .sale(product.getSale())
+                        .saleStartDate(product.getSaleStartDate())
+                        .saleEndDate(product.getSaleEndDate())
+                        .imgOriginName(product.getImgOriginName())
+                        .imgSaveName(product.getImgSaveName())
+                        .imgUrl(product.getImgUrl())
+                        .happyLoungeImgDto(happyLoungeImgDtos)
                         .build());
             }
             return happyLoungeDtoRes;
@@ -115,13 +115,13 @@ public class MainServiceImpl implements MainService {
             List<NewService> newServices = newServiceRepository.findAllByOrderByPriority();
 
             newServices.forEach(newService -> newServiceDtoRes.add(NewServiceDtoRes.builder()
-                            .newServiceId(newService.getNewServiceId())
-                            .title(newService.getTitle())
-                            .subTitle(newService.getSubTitle())
-                            .originName(newService.getOriginName())
-                            .saveName(newService.getSaveName())
-                            .imgUrl(newService.getImgUrl())
-                            .priority(newService.getPriority())
+                    .newServiceId(newService.getNewServiceId())
+                    .title(newService.getTitle())
+                    .subTitle(newService.getSubTitle())
+                    .originName(newService.getOriginName())
+                    .saveName(newService.getSaveName())
+                    .imgUrl(newService.getImgUrl())
+                    .priority(newService.getPriority())
                     .build())
             );
 
@@ -138,11 +138,11 @@ public class MainServiceImpl implements MainService {
             List<CardPromotion> cardPromotions = cardPromotionRepository.findAll();
 
             cardPromotions.forEach(cardPromotion -> cardPromotionDtoRes.add(CardPromotionDtoRes.builder()
-                            .cardPromotionId(cardPromotion.getCardPromotionId())
-                            .cardName(cardPromotion.getCardName())
-                            .event(cardPromotion.getEvent())
-                            .benefits(cardPromotion.getBenefits())
-                            .tagImgUrl(cardPromotion.getTagImgUrl())
+                    .cardPromotionId(cardPromotion.getCardPromotionId())
+                    .cardName(cardPromotion.getCardName())
+                    .event(cardPromotion.getEvent())
+                    .benefits(cardPromotion.getBenefits())
+                    .tagImgUrl(cardPromotion.getTagImgUrl())
                     .build()));
 
             return cardPromotionDtoRes;
@@ -158,10 +158,10 @@ public class MainServiceImpl implements MainService {
             List<HotBrand> hotBrands = hotBrandRepository.findAllByOrderByPriority();
 
             hotBrands.forEach(hotBrand -> hotBrandDtoRes.add(HotBrandDtoRes.builder()
-                            .hotBrandId(hotBrand.getHotBrandId())
-                            .brandName(hotBrand.getBrandName())
-                            .imgUrl(hotBrand.getImgUrl())
-                            .priority(hotBrand.getPriority())
+                    .hotBrandId(hotBrand.getHotBrandId())
+                    .brandName(hotBrand.getBrandName())
+                    .imgUrl(hotBrand.getImgUrl())
+                    .priority(hotBrand.getPriority())
                     .build()));
 
             return hotBrandDtoRes;

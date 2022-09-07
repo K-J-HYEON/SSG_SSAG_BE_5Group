@@ -1,4 +1,5 @@
 package com.ssg.ssg_be.memberInfo.dto;
+
 import lombok.Builder;
 import lombok.Getter;
 

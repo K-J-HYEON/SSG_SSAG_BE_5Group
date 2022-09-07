@@ -10,6 +10,8 @@ import java.util.List;
 public interface CategoryService {
 
     List<CategoryDtoRes> retrieveCategory() throws BaseException;
+
     SmallCategoryDtoRes retrieveSmallCategory(Long mediumCategoryId) throws BaseException;
+
     MediumCategoryDtoRes retrieveMediumCategory(Long mediumCategoryId) throws BaseException;
 }

@@ -17,6 +17,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     ReviewTotalDto retrieveReviewAvg(@Param("productId") Long productId);
 
     List<ReviewDtoRes> findByProductProductId(Long productId);
+
     List<ReviewDtoRes> findByUserUserId(Long userId);
 
 }

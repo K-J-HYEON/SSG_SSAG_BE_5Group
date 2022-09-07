@@ -37,12 +37,12 @@ public class SignupServiceImpl implements SignupService {
         checkUserId(userDtoReq.getLoginId());
 
         // 이메일 중복 검사
-        if(userRepository.existsByEmail(userDtoReq.getEmail())) {
+        if (userRepository.existsByEmail(userDtoReq.getEmail())) {
             throw new BaseException(POST_EXISTS_EMAIL);
         }
 
         // 휴대폰 번호 중복 검사
-        if(userRepository.existsByPhone(userDtoReq.getPhone())) {
+        if (userRepository.existsByPhone(userDtoReq.getPhone())) {
             throw new BaseException(POST_EXISTS_PHONE);
         }
 
@@ -67,7 +67,7 @@ public class SignupServiceImpl implements SignupService {
 
     @Override
     public void checkUserId(String loginId) throws BaseException {
-        if(userRepository.existsByLoginId(loginId)) {
+        if (userRepository.existsByLoginId(loginId)) {
             throw new BaseException(POST_EXISTS_LOGIN_ID);
         }
     }

@@ -29,7 +29,7 @@ public class ProductController {
         try {
             ProductWithWishDtoRes product = productService.retrieveAllProduct(-1L, pageable);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -53,7 +53,7 @@ public class ProductController {
         try {
             ProductSliceDtoRes product = productService.retrieveMediumCategoryProduct(mediumCategoryId, -1L, pageable);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -66,7 +66,7 @@ public class ProductController {
         try {
             ProductSliceDtoRes product = productService.retrieveMediumCategoryProduct(mediumCategoryId, userId, pageable);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -77,7 +77,7 @@ public class ProductController {
         try {
             ProductSliceDtoRes product = productService.retrieveSmallCategoryProduct(smallCategoryId, -1L, pageable);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -90,7 +90,7 @@ public class ProductController {
         try {
             ProductSliceDtoRes product = productService.retrieveSmallCategoryProduct(smallCategoryId, userId, pageable);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -101,7 +101,7 @@ public class ProductController {
         try {
             ProductSliceDtoRes product = productService.retrieveLargeCategoryProduct(largeCategoryId, -1L, pageable);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -114,7 +114,7 @@ public class ProductController {
         try {
             ProductSliceDtoRes product = productService.retrieveLargeCategoryProduct(largeCategoryId, userId, pageable);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -125,7 +125,7 @@ public class ProductController {
         try {
             ProductSliceDtoRes product = productService.retrieveSearch(searchWord, -1L, pageable);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -138,7 +138,7 @@ public class ProductController {
         try {
             ProductSliceDtoRes product = productService.retrieveSearch(searchWord, userId, pageable);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -148,7 +148,7 @@ public class ProductController {
         try {
             ProductInfoDtoRes product = productService.retrieveProductBasic(productId, -1L);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -161,7 +161,7 @@ public class ProductController {
         try {
             ProductInfoDtoRes product = productService.retrieveProductBasic(productId, userId);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -171,7 +171,7 @@ public class ProductController {
         try {
             List<DetailImgDtoRes> product = productService.retrieveProductDetail(productId);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -181,7 +181,7 @@ public class ProductController {
         try {
             List<ProductColorDtoRes> product = productService.retrieveProductColor(productId);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -191,7 +191,7 @@ public class ProductController {
         try {
             List<ProductSizeDtoRes> product = productService.retrieveProductSize(productId, colorId);
             return new BaseResponse<>(product);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }

@@ -46,10 +46,10 @@ public class NonMemberOrderServiceImpl implements NonMemberOrderService {
         }
 
         try {
-            for(NonMemberOrderDtoReq nonMemberOrderDtoReq : nonMemberOrderListDtoReq.getOrderDtoReq()) {
+            for (NonMemberOrderDtoReq nonMemberOrderDtoReq : nonMemberOrderListDtoReq.getOrderDtoReq()) {
                 ProductOption productOption = productOptionRepository.getById(nonMemberOrderDtoReq.getProductOptionId());
 
-                if(productOption.getStock()-nonMemberOrderDtoReq.getCount() < 0) {
+                if (productOption.getStock() - nonMemberOrderDtoReq.getCount() < 0) {
                     throw new BaseException(OUT_OF_STOCK);
                 }
 
@@ -59,7 +59,7 @@ public class NonMemberOrderServiceImpl implements NonMemberOrderService {
                         .size(productOption.getSize())
                         .color(productOption.getColor())
                         .modelNumber(productOption.getModelNumber())
-                        .stock(productOption.getStock()-nonMemberOrderDtoReq.getCount())
+                        .stock(productOption.getStock() - nonMemberOrderDtoReq.getCount())
                         .build());
             }
         } catch (Exception exception) {
@@ -100,23 +100,23 @@ public class NonMemberOrderServiceImpl implements NonMemberOrderService {
     public void cancelNonMemberOrder(Long orderId) throws BaseException {
         NonMemberOrder nonMemberOrder = nonMemberOrderRepository.getById(orderId);
 
-        if(nonMemberOrder.getOrderState() != 0) {
+        if (nonMemberOrder.getOrderState() != 0) {
             throw new BaseException(UNABLE_TO_CANCEL_ORDER);
         }
 
-        if(nonMemberOrder.getShippingState() == 0) {
+        if (nonMemberOrder.getShippingState() == 0) {
             try {
                 nonMemberOrderRepository.save(NonMemberOrder.builder()
-                            .nonMemberOrderId(nonMemberOrder.getNonMemberOrderId())
-                            .nonMemberOrderList(nonMemberOrder.getNonMemberOrderList())
-                            .productOptionId(nonMemberOrder.getProductOptionId())
-                            .count(nonMemberOrder.getCount())
-                            .totalPayment(nonMemberOrder.getTotalPayment())
-                            .orderState(1)
-                            .shippingState(nonMemberOrder.getShippingState())
-                            .courierCompany(nonMemberOrder.getCourierCompany())
-                            .waybillNumber(nonMemberOrder.getWaybillNumber())
-                            .build());
+                        .nonMemberOrderId(nonMemberOrder.getNonMemberOrderId())
+                        .nonMemberOrderList(nonMemberOrder.getNonMemberOrderList())
+                        .productOptionId(nonMemberOrder.getProductOptionId())
+                        .count(nonMemberOrder.getCount())
+                        .totalPayment(nonMemberOrder.getTotalPayment())
+                        .orderState(1)
+                        .shippingState(nonMemberOrder.getShippingState())
+                        .courierCompany(nonMemberOrder.getCourierCompany())
+                        .waybillNumber(nonMemberOrder.getWaybillNumber())
+                        .build());
 
                 ProductOption productOption = productOptionRepository.getById(nonMemberOrder.getProductOptionId());
 
@@ -126,7 +126,7 @@ public class NonMemberOrderServiceImpl implements NonMemberOrderService {
                         .size(productOption.getSize())
                         .color(productOption.getColor())
                         .modelNumber(productOption.getModelNumber())
-                        .stock(productOption.getStock()+nonMemberOrder.getCount())
+                        .stock(productOption.getStock() + nonMemberOrder.getCount())
                         .build());
             } catch (Exception exception) {
                 throw new BaseException(ORDER_CANCEL_FAILED);
@@ -141,16 +141,16 @@ public class NonMemberOrderServiceImpl implements NonMemberOrderService {
         NonMemberOrder nonMemberOrder = nonMemberOrderRepository.getById(orderId);
         LocalDateTime today = LocalDateTime.now();
 
-        if(nonMemberOrder.getShippingState() == 5) {
+        if (nonMemberOrder.getShippingState() == 5) {
             LocalDateTime arrivalDate = nonMemberOrder.getUpdateAt();
             LocalDateTime expiryDate = arrivalDate.plusDays(7);
 
-            if(today.isAfter(expiryDate)) {
+            if (today.isAfter(expiryDate)) {
                 throw new BaseException(OVERDUE_ORDER_CHANGE);
             }
         }
 
-        if(nonMemberOrder.getOrderState() == 1 || nonMemberOrder.getOrderState() == 2 || nonMemberOrder.getOrderState() == 3) {
+        if (nonMemberOrder.getOrderState() == 1 || nonMemberOrder.getOrderState() == 2 || nonMemberOrder.getOrderState() == 3) {
             throw new BaseException(UNABLE_TO_CHANGE_ORDER);
         }
 
@@ -166,7 +166,7 @@ public class NonMemberOrderServiceImpl implements NonMemberOrderService {
                     .courierCompany(nonMemberOrder.getCourierCompany())
                     .waybillNumber(nonMemberOrder.getWaybillNumber())
                     .build());
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(ORDER_CHANGE_FAILED);
         }
     }

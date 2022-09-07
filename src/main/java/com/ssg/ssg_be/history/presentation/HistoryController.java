@@ -10,6 +10,7 @@ import com.ssg.ssg_be.history.dto.ViewHistoryDto;
 import com.ssg.utils.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -124,7 +125,7 @@ public class HistoryController {
             historyService.deleteBrandHistory(brandId);
             result = "최근 본 브랜드 내역이 삭제되었습니다.";
             return new BaseResponse<>(result);
-        }  catch (BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }

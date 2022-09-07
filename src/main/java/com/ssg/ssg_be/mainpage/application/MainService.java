@@ -8,8 +8,12 @@ import java.util.List;
 public interface MainService {
 
     List<MainBannerDtoRes> retrieveMainBanner() throws BaseException;
+
     List<HappyLoungeDtoRes> retrieveHappyLounge() throws BaseException;
+
     List<NewServiceDtoRes> retrieveNewService() throws BaseException;
+
     List<CardPromotionDtoRes> retrieveCardPromotion() throws BaseException;
+
     List<HotBrandDtoRes> retrieveHotBrand() throws BaseException;
 }

@@ -42,12 +42,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         if (registrationId.equals("naver")) {
             userType = 2;
-        }
-        else if(registrationId.equals("kakao")) {
+        } else if (registrationId.equals("kakao")) {
             userType = 1;
         }
         User user = saveOrUpdate(attributes, userType);
-        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority("ROLE_"+user.getUserRole())), attributes.getAttributes(), attributes.getNameAttributeKey());
+        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority("ROLE_" + user.getUserRole())), attributes.getAttributes(), attributes.getNameAttributeKey());
     }
 
     private User saveOrUpdate(OAuthAttributes attributes, int userType) {

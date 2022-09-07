@@ -6,11 +6,14 @@ public interface ReviewDtoRes {
     Long getReviewId();
 
     int getScore();
+
     String getContent();
 
     LocalDateTime getCreateAt();
+
     LocalDateTime getUpdateAt();
 
     Long getUserUserId();
+
     String getUserLoginId();
 }

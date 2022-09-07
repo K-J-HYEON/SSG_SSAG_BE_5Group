@@ -39,7 +39,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         Map<String, Object> kakao_account;
         String email;
 
-        if(oAuth2User.getAttributes().containsKey("kakao_account")) {
+        if (oAuth2User.getAttributes().containsKey("kakao_account")) {
             kakao_account = (Map<String, Object>) oAuth2User.getAttributes().get("kakao_account");
             email = String.valueOf(kakao_account.get("email"));
         } else {

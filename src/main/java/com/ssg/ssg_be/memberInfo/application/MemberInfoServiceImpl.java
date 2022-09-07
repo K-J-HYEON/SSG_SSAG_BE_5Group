@@ -39,7 +39,7 @@ public class MemberInfoServiceImpl implements MemberInfoService {
     public void updateUserMember(MemberInfoPutDtoReq memberInfoPutDtoReq, Long userId) throws BaseException {
         try {
             User user = userRepository.findByUserId(userId).orElseThrow(() ->
-                new BaseException(USER_RETRIEVE_FAILED)
+                    new BaseException(USER_RETRIEVE_FAILED)
             );
             userRepository.save(memberInfoPutDtoReq.toEntity(user));
         } catch (Exception exception) {

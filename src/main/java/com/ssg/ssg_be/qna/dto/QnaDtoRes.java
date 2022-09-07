@@ -6,14 +6,21 @@ public interface QnaDtoRes {
     Long getQnaId();
 
     int getType();
+
     String getTitle();
+
     String getContent();
+
     int getSecret();
+
     LocalDateTime getCreateAt();
+
     LocalDateTime getUpdateAt();
+
     int getAnswerStatus();
 
     Long getUserUserId();
+
     String getUserLoginId();
 
 }

@@ -45,7 +45,7 @@ public class CategoryServiceImpl implements CategoryService {
                 mediumCategoryListList = new ArrayList<>();
 
                 for (MediumCategory mc : mediumCategories) {
-                    if(Objects.equals(mc.getLargeCategory().getLargeCategoryId(), lc.getLargeCategoryId())) {
+                    if (Objects.equals(mc.getLargeCategory().getLargeCategoryId(), lc.getLargeCategoryId())) {
                         mediumCategoryListList.add(MediumCategoryList.builder()
                                 .mediumCategoryId(mc.getMediumCategoryId())
                                 .mediumCategoryTitle(mc.getMediumCategoryTitle())
@@ -63,7 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
 
             return categoryDtoResList;
 
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(CATEGORY_RETRIEVE_FAILED);
         }
     }
@@ -89,7 +89,7 @@ public class CategoryServiceImpl implements CategoryService {
                     .mediumCategoryTitle(mediumCategory.getMediumCategoryTitle())
                     .smallCategoryList(smallCategoryDtoResList)
                     .build();
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(CATEGORY_RETRIEVE_FAILED);
         }
     }
@@ -115,7 +115,7 @@ public class CategoryServiceImpl implements CategoryService {
                     .largeCategoryTitle(largeCategory.getTitle())
                     .mediumCategoryList(mediumCategoryLists)
                     .build();
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(CATEGORY_RETRIEVE_FAILED);
         }
     }

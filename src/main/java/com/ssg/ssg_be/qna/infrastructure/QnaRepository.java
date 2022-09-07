@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface QnaRepository extends JpaRepository<Qna, Long> {
-    List<QnaDtoRes> findByProductProductId(Long productId);;
+    List<QnaDtoRes> findByProductProductId(Long productId);
+
+    ;
+
     List<QnaDtoRes> findByUserUserId(Long userId);
 }

@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 public interface SearchHistoryDtoRes {
     Long getSearchHistoryId();
+
     String getSearchWord();
+
     LocalDateTime getCreateAt();
 
 }

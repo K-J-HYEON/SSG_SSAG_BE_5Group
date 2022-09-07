@@ -39,7 +39,7 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
         try {
             paymentMethodRepository.save(paymentMethodDtoReq.toEntity(user, cardImg));
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PAYMENT_METHOD_INSERT_FAILED);
         }
     }
@@ -49,7 +49,7 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
         try {
             return paymentMethodRepository.findByUserUserId(userId);
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PAYMENT_METHOD_RETRIEVE_FAILED);
         }
     }
@@ -59,7 +59,7 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
         try {
             paymentMethodRepository.deleteById(paymentId);
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(PAYMENT_METHOD_DELETE_FAILED);
         }
     }

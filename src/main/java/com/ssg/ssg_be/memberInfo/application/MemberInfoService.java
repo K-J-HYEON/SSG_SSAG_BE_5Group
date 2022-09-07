@@ -8,6 +8,8 @@ import com.ssg.ssg_be.memberInfo.dto.MemberUpdatePasswordDtoReq;
 public interface MemberInfoService {
 
     MemberInfoDtoRes retrieveUserMember(Long userId) throws BaseException;
+
     void updateUserMember(MemberInfoPutDtoReq memberInfoPutDtoReq, Long userId) throws BaseException;
+
     void updateUserPassword(MemberUpdatePasswordDtoReq memberUpdatePasswordDtoReq, Long userId) throws BaseException;
 }

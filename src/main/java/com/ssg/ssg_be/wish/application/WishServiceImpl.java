@@ -35,7 +35,7 @@ public class WishServiceImpl implements WishServive {
 
     @Override
     public WishDto createWish(WishDtoReq wishDtoReq, Long userId) throws BaseException {
-        if(wishRepository.existsByProductProductIdAndUserUserId(wishDtoReq.getProductId(), userId)) {
+        if (wishRepository.existsByProductProductIdAndUserUserId(wishDtoReq.getProductId(), userId)) {
             throw new BaseException(POST_EXISTS_WISH);
         }
 

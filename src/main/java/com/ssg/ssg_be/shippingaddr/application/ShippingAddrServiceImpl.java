@@ -37,7 +37,7 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
         User user = userRepository.getById(userId);
         int addrDefault = 0;
 
-        if(!shippingAddrRepository.existsByUserUserId(userId) || !shippingAddrRepository.existsByAddrDefault(1)) {
+        if (!shippingAddrRepository.existsByUserUserId(userId) || !shippingAddrRepository.existsByAddrDefault(1)) {
             addrDefault = 1;
         }
 
@@ -113,7 +113,7 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
             throw new BaseException(SHIPPING_ADDR_DEFAULT_UPDATE_FAILED);
         }
 
-        ShippingAddr newAddr = shippingAddrRepository.findById(shippingAddrDefaultPutDtoReq.getAddrId()).orElseThrow(()->new BaseException(NO_LOOKUP_VALUE));
+        ShippingAddr newAddr = shippingAddrRepository.findById(shippingAddrDefaultPutDtoReq.getAddrId()).orElseThrow(() -> new BaseException(NO_LOOKUP_VALUE));
 
         try {
             shippingAddrRepository.save(ShippingAddr.builder()
@@ -148,7 +148,7 @@ public class ShippingAddrServiceImpl implements ShippingAddrService {
         }
 
         try {
-            if(addrDefault == 1 && shippingAddrRepository.existsByUserUserId(userId)) {
+            if (addrDefault == 1 && shippingAddrRepository.existsByUserUserId(userId)) {
                 List<ShippingAddr> newDefaultAddr = shippingAddrRepository.findByUserUserId(userId);
 
                 shippingAddrRepository.save(ShippingAddr.builder()

@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface CategoryHistoryRepository extends JpaRepository<CategoryHistory, Long> {
     List<CategoryHistoryDtoRes> findAllByUserUserId(Long userId);
+
     boolean existsByUserUserIdAndCategoryTypeAndCategoryId(Long userId, int categoryType, Long categoryId);
+
     CategoryHistory findByUserUserIdAndCategoryTypeAndCategoryId(Long userId, int categoryType, Long categoryId);
 }

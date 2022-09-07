@@ -7,36 +7,36 @@ public enum BaseResponseStatus {
 
     /**
      * 1000: 요청 성공
-     * **/
+     **/
     SUCCESS(true, 1000, "요청에 성공하였습니다."),
 
     /**
      * 2000: Request 오류
-     * **/
+     **/
     // Common
-    POST_EXISTS_LOGIN_ID(false,2000,"중복된 아이디입니다."),
-    POST_EXISTS_PHONE(false,2001,"중복된 휴대폰 번호입니다."),
-    POST_EXISTS_EMAIL(false,2002,"중복된 이메일입니다."),
-    POST_EXISTS_CART(false,2003,"이미 장바구니에 있는 상품입니다."),
-    POST_EXISTS_QNA(false,2004,"중복된 문의&답변 입니다."),
-    AUTH_NUM_IS_NULL(false,2005,"인증번호가 비어 있습니다."),
-    INVALID_PHONE_NUM(false,2006,"유효하지 않은 전화번호 형식입니다."),
+    POST_EXISTS_LOGIN_ID(false, 2000, "중복된 아이디입니다."),
+    POST_EXISTS_PHONE(false, 2001, "중복된 휴대폰 번호입니다."),
+    POST_EXISTS_EMAIL(false, 2002, "중복된 이메일입니다."),
+    POST_EXISTS_CART(false, 2003, "이미 장바구니에 있는 상품입니다."),
+    POST_EXISTS_QNA(false, 2004, "중복된 문의&답변 입니다."),
+    AUTH_NUM_IS_NULL(false, 2005, "인증번호가 비어 있습니다."),
+    INVALID_PHONE_NUM(false, 2006, "유효하지 않은 전화번호 형식입니다."),
     POST_EXISTS_WISH(false, 2007, "중복된 좋아요 요청입니다."),
 
     /**
      * 3000: Response 오류
-     * **/
+     **/
     // Common
-    FAILED_TO_LOGIN(false,3000,"없는 아이디거나 비밀번호가 틀렸습니다."),
+    FAILED_TO_LOGIN(false, 3000, "없는 아이디거나 비밀번호가 틀렸습니다."),
     NO_LOOKUP_VALUE(false, 3001, "조회된 데이터가 없습니다."),
     JWT_CREATE_FAILED(false, 3002, "토큰 생성에 실패하였습니다."),
     NO_EXIST_USER(false, 3003, "존재하지 않는 유저 정보입니다."),
-    OUT_OF_STOCK(false,3004,"상품 재고량이 부족합니다."),
+    OUT_OF_STOCK(false, 3004, "상품 재고량이 부족합니다."),
     ALREADY_BEING_PREPARED(false, 3005, "이미 준비 중인 상품입니다."),
 
     /**
      * 4000: Database 오류
-     * **/
+     **/
     // Common
     DATABASE_ERROR(false, 4000, "데이터베이스 연결에 실패하였습니다."),
     SEARCH_RETRIEVE_FAILED(false, 4001, "상품 검색에 실패했습니다."),
@@ -104,14 +104,14 @@ public enum BaseResponseStatus {
 
     /**
      * 5000: S3 오류
-     * **/
+     **/
     // Common
     TRANSLATE_FILE_FAILED(false, 5000, "파일 변환에 실패하였습니다."),
 
 
     /**
      * 6000: SMS 오류
-     * **/
+     **/
     // Common
     OBJECT_TO_JSON_FAILED(false, 6000, "JSON 변환에 실패하였습니다."),
     CREATE_URI_FAILED(false, 6001, "URI 생성에 실패하였습니다."),

@@ -36,20 +36,20 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public boolean createCart(CartDtoReq cartDtoReq, Long userId) throws BaseException {
-        User user = userRepository.findByUserId(userId).orElseThrow(()->new BaseException(NO_EXIST_USER));
+        User user = userRepository.findByUserId(userId).orElseThrow(() -> new BaseException(NO_EXIST_USER));
         boolean isOverlap = false;
 
         try {
             ProductOption productOption;
 
-            for(CartListDto cartListDto : cartDtoReq.getCartList()) {
+            for (CartListDto cartListDto : cartDtoReq.getCartList()) {
                 productOption = productOptionRepository.getById(cartListDto.getProductOptionId());
 
                 // 장바구니에 해당 옵션이 이미 존재하는 경우, 수량만 더해 줌. 존재하지 않는 경우는 해당 옵션을 장바구니에 새로 추가
-                if(cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(userId, cartListDto.getProductOptionId())) {
+                if (cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(userId, cartListDto.getProductOptionId())) {
                     Cart cart = cartRepository.findByUserUserIdAndProductOption_ProductOptionId(userId, cartListDto.getProductOptionId());
 
-                    cartListDto.setCount(cartListDto.getCount()+cart.getCount());
+                    cartListDto.setCount(cartListDto.getCount() + cart.getCount());
                     cartRepository.save(cartListDto.toOriginEntity(user, productOption, cart.getCartId()));
                     isOverlap = true;
                 } else {
@@ -74,19 +74,19 @@ public class CartServiceImpl implements CartService {
             int totalSale = 0;
             int totalAmount = 0;
 
-            for(StoreIdDto storeIdDto : storeIdDtos) {
+            for (StoreIdDto storeIdDto : storeIdDtos) {
                 map.put(storeIdDto.getProductOptionProductStoreStoreId(), storeIdDto.getProductOptionProductStoreName());
             }
 
             List<StoreList> storeLists = new ArrayList<>();
-            for(Long s : map.keySet()){
+            for (Long s : map.keySet()) {
                 int storeTotal = 0;
                 int storeSale = 0;
                 int storeAmount = 0;
                 List<Cart> carts = cartRepository.getCartsByStore(userId, s);
                 List<CartList> cartLists = new ArrayList<>();
 
-                for(Cart cart : carts) {
+                for (Cart cart : carts) {
                     ProductOption productOption = cart.getProductOption();
                     Product product = productOption.getProduct();
                     int cartTotal = cart.getCount() * product.getPrice();
@@ -129,12 +129,12 @@ public class CartServiceImpl implements CartService {
                 }
 
                 storeLists.add(StoreList.builder()
-                                .storeId(s)
-                                .storeName(map.get(s))
-                                .storeTotal(storeTotal)
-                                .storeSale(storeSale)
-                                .storeAmount(storeAmount)
-                                .cartList(cartLists)
+                        .storeId(s)
+                        .storeName(map.get(s))
+                        .storeTotal(storeTotal)
+                        .storeSale(storeSale)
+                        .storeAmount(storeAmount)
+                        .cartList(cartLists)
                         .build());
 
                 totalOrder += storeTotal;
@@ -182,7 +182,7 @@ public class CartServiceImpl implements CartService {
         ProductOption newProductOption;
         try {
             newProductOption = productOptionRepository.getById(cartOptionPatchDtoReq.getProductOptionId());
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(OPTION_RETRIEVE_FAILED);
         }
 
@@ -195,29 +195,29 @@ public class CartServiceImpl implements CartService {
                 .build();
 
         try {
-            if(cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(userId, newProductOption.getProductOptionId())) {
+            if (cartRepository.existsByUserUserIdAndProductOption_ProductOptionId(userId, newProductOption.getProductOptionId())) {
                 Cart overlapCart = cartRepository.findByUserUserIdAndProductOption_ProductOptionId(userId, newProductOption.getProductOptionId());
 
                 cartRepository.save(Cart.builder()
-                            .cartId(overlapCart.getCartId())
-                            .productOption(newProductOption)
-                            .user(overlapCart.getUser())
-                            .count(overlapCart.getCount()+cart.getCount())
-                            .build());
+                        .cartId(overlapCart.getCartId())
+                        .productOption(newProductOption)
+                        .user(overlapCart.getUser())
+                        .count(overlapCart.getCount() + cart.getCount())
+                        .build());
 
                 cartRepository.deleteById(cart.getCartId());
-                return new CartOptionPatchDtoRes(overlapCart.getCartId(), productOptionDtoRes, overlapCart.getCount()+cart.getCount());
+                return new CartOptionPatchDtoRes(overlapCart.getCartId(), productOptionDtoRes, overlapCart.getCount() + cart.getCount());
 
             } else {
                 cartRepository.save(Cart.builder()
-                            .cartId(cartOptionPatchDtoReq.getCartId())
-                            .productOption(newProductOption)
-                            .user(cart.getUser())
-                            .count(cart.getCount())
-                            .build());
+                        .cartId(cartOptionPatchDtoReq.getCartId())
+                        .productOption(newProductOption)
+                        .user(cart.getUser())
+                        .count(cart.getCount())
+                        .build());
                 return new CartOptionPatchDtoRes(cartOptionPatchDtoReq.getCartId(), productOptionDtoRes, cart.getCount());
             }
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(CART_OPTION_UPDATE_FAILED);
         }
     }

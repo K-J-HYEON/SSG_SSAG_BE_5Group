@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
         try {
             OrderList orderList = orderListRepository.save(orderListDtoReq.toEntity(user));
 
-            for(OrderDtoReq orderDtoReq : orderListDtoReq.getOrderDtoReq()) {
+            for (OrderDtoReq orderDtoReq : orderListDtoReq.getOrderDtoReq()) {
                 ProductOption productOption = productOptionRepository.getById(orderDtoReq.getProductOptionId());
                 orderRepository.save(orderDtoReq.toEntity(orderList, productOption));
             }
@@ -60,10 +60,10 @@ public class OrderServiceImpl implements OrderService {
         }
 
         try {
-            for(OrderDtoReq orderDtoReq : orderListDtoReq.getOrderDtoReq()) {
+            for (OrderDtoReq orderDtoReq : orderListDtoReq.getOrderDtoReq()) {
                 ProductOption productOption = productOptionRepository.getById(orderDtoReq.getProductOptionId());
 
-                if(productOption.getStock()-orderDtoReq.getCount() < 0) {
+                if (productOption.getStock() - orderDtoReq.getCount() < 0) {
                     throw new BaseException(OUT_OF_STOCK);
                 }
 
@@ -73,14 +73,14 @@ public class OrderServiceImpl implements OrderService {
                         .size(productOption.getSize())
                         .color(productOption.getColor())
                         .modelNumber(productOption.getModelNumber())
-                        .stock(productOption.getStock()-orderDtoReq.getCount())
+                        .stock(productOption.getStock() - orderDtoReq.getCount())
                         .build());
             }
         } catch (Exception exception) {
             throw new BaseException(REDUCE_STOCK_FAILED);
         }
 
-        if(orderListDtoReq.getCartId() != null) {
+        if (orderListDtoReq.getCartId() != null) {
             try {
                 cartRepository.deleteAllById(orderListDtoReq.getCartId());
             } catch (Exception exception) {
@@ -96,41 +96,41 @@ public class OrderServiceImpl implements OrderService {
             List<OrderDtoListRes> orderDtoListRes = orderListRepository.findAllByUserUserId(userId);
             List<OrderDtoList> orderDtoLists = new ArrayList<>();
 
-            for(OrderDtoListRes odl : orderDtoListRes) {
+            for (OrderDtoListRes odl : orderDtoListRes) {
 
                 List<OrderDto> orderDtos = new ArrayList<>();
 
                 odl.getOrders().forEach(orderDtoRes -> orderDtos.add(OrderDto.builder()
-                                .orderId(orderDtoRes.getOrderId())
-                                .count(orderDtoRes.getCount())
-                                .totalPayment(orderDtoRes.getTotalPayment())
-                                .orderState(orderDtoRes.getOrderState())
-                                .shippingState(orderDtoRes.getShippingState())
-                                .courierCompany(orderDtoRes.getCourierCompany())
-                                .waybillNumber(orderDtoRes.getWaybillNumber())
-                                .productOptionId(orderDtoRes.getProductOption().getProductOptionId())
-                                .productId(orderDtoRes.getProductOption().getProduct().getProductId())
-                                .productName(orderDtoRes.getProductOption().getProduct().getName())
-                                .price(orderDtoRes.getProductOption().getProduct().getPrice())
-                                .sale(orderDtoRes.getProductOption().getProduct().getSale())
-                                .imgUrl(orderDtoRes.getProductOption().getProduct().getImgUrl())
-                                .storeName(orderDtoRes.getProductOption().getProduct().getStore().getName())
-                                .size(orderDtoRes.getProductOption().getSize().getSize())
-                                .color(orderDtoRes.getProductOption().getColor().getColor())
+                        .orderId(orderDtoRes.getOrderId())
+                        .count(orderDtoRes.getCount())
+                        .totalPayment(orderDtoRes.getTotalPayment())
+                        .orderState(orderDtoRes.getOrderState())
+                        .shippingState(orderDtoRes.getShippingState())
+                        .courierCompany(orderDtoRes.getCourierCompany())
+                        .waybillNumber(orderDtoRes.getWaybillNumber())
+                        .productOptionId(orderDtoRes.getProductOption().getProductOptionId())
+                        .productId(orderDtoRes.getProductOption().getProduct().getProductId())
+                        .productName(orderDtoRes.getProductOption().getProduct().getName())
+                        .price(orderDtoRes.getProductOption().getProduct().getPrice())
+                        .sale(orderDtoRes.getProductOption().getProduct().getSale())
+                        .imgUrl(orderDtoRes.getProductOption().getProduct().getImgUrl())
+                        .storeName(orderDtoRes.getProductOption().getProduct().getStore().getName())
+                        .size(orderDtoRes.getProductOption().getSize().getSize())
+                        .color(orderDtoRes.getProductOption().getColor().getColor())
                         .build())
                 );
 
                 orderDtoLists.add(OrderDtoList.builder()
-                                .orderListId(odl.getOrderListId())
-                                .user(odl.getUser())
-                                .refundType(odl.getRefundType())
-                                .recipient(odl.getRecipient())
-                                .addrName(odl.getAddrName())
-                                .streetAddr(odl.getStreetAddr())
-                                .zipCode(odl.getZipCode())
-                                .shippingMsg(odl.getShippingMsg())
-                                .createAt(odl.getCreateAt())
-                                .orders(orderDtos)
+                        .orderListId(odl.getOrderListId())
+                        .user(odl.getUser())
+                        .refundType(odl.getRefundType())
+                        .recipient(odl.getRecipient())
+                        .addrName(odl.getAddrName())
+                        .streetAddr(odl.getStreetAddr())
+                        .zipCode(odl.getZipCode())
+                        .shippingMsg(odl.getShippingMsg())
+                        .createAt(odl.getCreateAt())
+                        .orders(orderDtos)
                         .build());
             }
 
@@ -146,34 +146,34 @@ public class OrderServiceImpl implements OrderService {
 
         Orders order = orderRepository.getById(updateDtoReq.getOrderId());
 
-        if(order.getOrderState() != 0) {
+        if (order.getOrderState() != 0) {
             throw new BaseException(UNABLE_TO_CANCEL_ORDER);
         }
 
-        if(order.getShippingState() == 0) {
+        if (order.getShippingState() == 0) {
             try {
                 orderRepository.save(Orders.builder()
-                                .orderId(order.getOrderId())
-                                .orderList(order.getOrderList())
-                                .productOption(order.getProductOption())
-                                .count(order.getCount())
-                                .totalPayment(order.getTotalPayment())
-                                .orderState(1)
-                                .shippingState(order.getShippingState())
-                                .courierCompany(order.getCourierCompany())
-                                .waybillNumber(order.getWaybillNumber())
-                                .build());
+                        .orderId(order.getOrderId())
+                        .orderList(order.getOrderList())
+                        .productOption(order.getProductOption())
+                        .count(order.getCount())
+                        .totalPayment(order.getTotalPayment())
+                        .orderState(1)
+                        .shippingState(order.getShippingState())
+                        .courierCompany(order.getCourierCompany())
+                        .waybillNumber(order.getWaybillNumber())
+                        .build());
 
                 ProductOption productOption = productOptionRepository.getById(order.getProductOption().getProductOptionId());
 
                 productOptionRepository.save(ProductOption.builder()
-                                .productOptionId(productOption.getProductOptionId())
-                                .product(productOption.getProduct())
-                                .size(productOption.getSize())
-                                .color(productOption.getColor())
-                                .modelNumber(productOption.getModelNumber())
-                                .stock(productOption.getStock()+order.getCount())
-                                .build());
+                        .productOptionId(productOption.getProductOptionId())
+                        .product(productOption.getProduct())
+                        .size(productOption.getSize())
+                        .color(productOption.getColor())
+                        .modelNumber(productOption.getModelNumber())
+                        .stock(productOption.getStock() + order.getCount())
+                        .build());
             } catch (Exception exception) {
                 throw new BaseException(ORDER_CANCEL_FAILED);
             }
@@ -188,16 +188,16 @@ public class OrderServiceImpl implements OrderService {
         Orders order = orderRepository.getById(updateDtoReq.getOrderId());
         LocalDateTime today = LocalDateTime.now();
 
-        if(order.getShippingState() == 5) {
+        if (order.getShippingState() == 5) {
             LocalDateTime arrivalDate = order.getUpdateAt();
             LocalDateTime expiryDate = arrivalDate.plusDays(7);
 
-            if(today.isAfter(expiryDate)) {
+            if (today.isAfter(expiryDate)) {
                 throw new BaseException(OVERDUE_ORDER_CHANGE);
             }
         }
 
-        if(order.getOrderState() == 1 || order.getOrderState() == 2 || order.getOrderState() == 3) {
+        if (order.getOrderState() == 1 || order.getOrderState() == 2 || order.getOrderState() == 3) {
             throw new BaseException(UNABLE_TO_CHANGE_ORDER);
         }
 
@@ -213,7 +213,7 @@ public class OrderServiceImpl implements OrderService {
                     .courierCompany(order.getCourierCompany())
                     .waybillNumber(order.getWaybillNumber())
                     .build());
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             throw new BaseException(ORDER_CHANGE_FAILED);
         }
 
@@ -224,7 +224,7 @@ public class OrderServiceImpl implements OrderService {
         try {
             Orders order = orderRepository.getById(orderId);
 
-            if(order.getOrderState() == 4 && order.getShippingState() == 5) {
+            if (order.getOrderState() == 4 && order.getShippingState() == 5) {
                 orderRepository.deleteById(orderId);
             } else {
                 throw new BaseException(ORDER_DELETE_FAILED);

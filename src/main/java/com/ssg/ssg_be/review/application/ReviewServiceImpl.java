@@ -1,4 +1,5 @@
 package com.ssg.ssg_be.review.application;
+
 import com.ssg.config.BaseException;
 import com.ssg.ssg_be.product.domain.Product;
 import com.ssg.ssg_be.product.infrastructure.ProductRepository;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
@@ -46,7 +48,7 @@ public class ReviewServiceImpl implements ReviewService {
             Product product = productRepository.getById(reviewDtoReq.getProductId());
             Review review = reviewRepository.save(reviewDtoReq.toEntity(product, user));
 
-            for(MultipartFile m : multipartFile) {
+            for (MultipartFile m : multipartFile) {
                 S3UploadDtoReq s3UploadDtoReq = s3UploaderService.upload(m, "review");
                 reviewImgRepository.save(ReviewImg.builder()
                         .review(review)

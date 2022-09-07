@@ -13,9 +13,11 @@ public interface ReviewService {
     void createReview(ReviewDtoReq reviewDtoReq, Long userId, List<MultipartFile> multipartFile) throws BaseException;
 
     List<ReviewDtoRes> retrieveReview(Long reviewId) throws BaseException;
+
     List<ReviewDtoRes> retrieveMyReview(Long userId) throws BaseException;
 
     void deleteReview(Long reviewId) throws BaseException;
+
     void updateReview(ReviewPatchDtoReq reviewPatchDtoReq) throws BaseException;
 
 

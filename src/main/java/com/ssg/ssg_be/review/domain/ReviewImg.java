@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ReviewImg{
+public class ReviewImg {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

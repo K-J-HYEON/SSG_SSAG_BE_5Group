@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication(scanBasePackages = "com.ssg")
 public class SsgBeApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SsgBeApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SsgBeApplication.class, args);
+    }
 
 }

@@ -34,10 +34,10 @@ public class CategoryHistory extends BaseTimeEntity {
     private User user;
 
     public CategoryHistory dtoToCategoryHistoryEntity(Long categoryHistoryId,
-                                                   Long categoryId,
-                                                   String name,
-                                                   int type,
-                                                   User user) {
+                                                      Long categoryId,
+                                                      String name,
+                                                      int type,
+                                                      User user) {
         return CategoryHistory.builder()
                 .categoryHistoryId(categoryHistoryId)
                 .categoryId(categoryId)

@@ -42,10 +42,10 @@ public class HistoryServiceImpl implements HistoryService {
             List<ViewHistoryDtoRes> viewHistoryDtoResList = viewHistoryRepository.findAllByUserUserId(userId);
             List<ViewHistoryDto> viewHistoryDtos = new ArrayList<>();
 
-            for(ViewHistoryDtoRes v : viewHistoryDtoResList) {
+            for (ViewHistoryDtoRes v : viewHistoryDtoResList) {
                 Wish wish = wishRepository.findByUserUserIdAndProductProductId(userId, v.getProductId());
                 WishDto wishDto = null;
-                if(wish != null) {
+                if (wish != null) {
                     wishDto = new WishDto(wish.getWishId());
                 }
 

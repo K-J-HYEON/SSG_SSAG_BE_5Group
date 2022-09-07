@@ -38,7 +38,7 @@ public class PaymentMethodController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
-    
+
     @GetMapping("/payment")
     public BaseResponse<List<PaymentMethodDtoRes>> retrievePaymentMethod() {
         String token = jwtTokenProvider.getHeader();
@@ -47,7 +47,7 @@ public class PaymentMethodController {
         try {
             List<PaymentMethodDtoRes> paymentMethodDtoRes = paymentMethodService.retrievePaymentMethod(userId);
             return new BaseResponse<>(paymentMethodDtoRes);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }
@@ -60,7 +60,7 @@ public class PaymentMethodController {
             paymentMethodService.deletePaymentMethod(paymentId);
             result = "결제 수단 삭제에 성공하였습니다.";
             return new BaseResponse<>(result);
-        } catch(BaseException exception) {
+        } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
     }

@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface WishServive {
     WishDto createWish(WishDtoReq wishDtoReq, Long userId) throws BaseException;
+
     List<WishDtoRes> retrieveWish(Long userId) throws BaseException;
+
     void deleteWish(Long wishId) throws BaseException;
 }

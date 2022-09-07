@@ -7,14 +7,24 @@ import java.util.List;
 
 public interface OrderDtoListRes {
     Long getOrderListId();
+
     UserDtoRes getUser();
+
     int getRefundType();
+
     String getRecipient();
+
     String gerRecipientPhone();
+
     String getAddrName();
+
     String getStreetAddr();
+
     String getZipCode();
+
     String getShippingMsg();
+
     LocalDateTime getCreateAt();
+
     List<OrderDtoRes> getOrders();
 }
