@@ -86,3 +86,8 @@ sms:
     accessKey: [Access Key 입력]
     secretKey: [Secret Key 입력]
     phone: '01047569038'
+
+logs:
+    config:
+        filePath: C:\Users\교육생09\Desktop\adh\logs
+        fileName: SSG_SSAG
