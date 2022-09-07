@@ -27,16 +27,9 @@
 
 ### 설치 및 실행
 
-1. `.env.sample` 파일 `.env`로 수정
+1. `applicatiom.yml` 파일의 `datasource`, `security.oauth2`, `cloud.aws`, `sms(네이버 SMS API)` 수정 => 사용자 계정, Secret Key 등 입력
 
-2. `.env` 파일의 `REACT_APP_ZIPCODE_SERVICE_KEY2`, `REACT_APP_ZIPCODE_SERVICE_URL2` 수정  
-   [주소기반산업지원서비스의 도로명주소 검색 API](https://www.juso.go.kr/addrlink/openApi/searchApi.do) 사용 중
-
-3. 설치 및 실행
-   ```bash
-   $ npm install
-   $ npm run start
-   ```
+2. `SsgBeApplication.java` main 함수 실행
 
 &nbsp;
 
