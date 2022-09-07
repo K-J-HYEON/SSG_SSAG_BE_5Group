@@ -13,12 +13,11 @@ import org.springframework.stereotype.Service;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
-@RequiredArgsConstructor
 @Service
 public class MemberInfoServiceImpl implements MemberInfoService {
 
-    private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public MemberInfoServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {

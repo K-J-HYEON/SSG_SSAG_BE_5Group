@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/users")
 public class QnaController {
 
-    private QnaService qnaService;
-    private JwtTokenProvider jwtTokenProvider;
+    private final QnaService qnaService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     public QnaController(QnaService qnaService, JwtTokenProvider jwtTokenProvider) {

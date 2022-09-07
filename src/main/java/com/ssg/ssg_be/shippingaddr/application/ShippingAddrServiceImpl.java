@@ -1,7 +1,7 @@
 package com.ssg.ssg_be.shippingaddr.application;
 
 import com.ssg.config.BaseException;
-import com.ssg.ssg_be.shippingaddr.domain.*;
+import com.ssg.ssg_be.shippingaddr.domain.ShippingAddr;
 import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDefaultPutDtoReq;
 import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDtoReq;
 import com.ssg.ssg_be.shippingaddr.dto.ShippingAddrDtoRes;
@@ -10,7 +10,6 @@ import com.ssg.ssg_be.shippingaddr.infrastructure.ShippingAddrRepository;
 import com.ssg.ssg_be.signup.domain.User;
 import com.ssg.ssg_be.signup.infrastucture.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,14 +21,8 @@ import static com.ssg.config.BaseResponseStatus.*;
 @RequiredArgsConstructor
 public class ShippingAddrServiceImpl implements ShippingAddrService {
 
-    private ShippingAddrRepository shippingAddrRepository;
-    private UserRepository userRepository;
-
-    @Autowired
-    public ShippingAddrServiceImpl(ShippingAddrRepository shippingAddrRepository, UserRepository userRepository) {
-        this.shippingAddrRepository = shippingAddrRepository;
-        this.userRepository = userRepository;
-    }
+    private final ShippingAddrRepository shippingAddrRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void createShippingAddr(ShippingAddrDtoReq shippingAddrDtoReq, Long userId) throws BaseException {

@@ -61,10 +61,9 @@ public class LogBackConfig {
         // 로거 이름, 로깅 레벨, 상위 로깅 설정 상속 여부
         createLogger("root", INFO, true);
         createLogger("com.ssg.ssg_be", INFO, false);
-        createLogger("com.ssg.ssg_be.*..*Controller", DEBUG, false);
+        createLogger("com.ssg.ssg_be.*..*Controller", WARN, false);
         createLogger("com.ssg.ssg_be.*..*Service", WARN, false);
         createLogger("com.ssg.ssg_be.*..*Repository", INFO, false);
-        createLogger("com.ssg.config.*..*Security", DEBUG, false);
     }
 
     // 어펜더 추가 시 로거 등록 필요

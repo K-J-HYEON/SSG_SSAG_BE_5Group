@@ -18,13 +18,12 @@ import java.sql.Timestamp;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Slf4j
-@RequiredArgsConstructor
 @Service
 public class LoginServiceImpl implements LoginService {
 
-    private UserRepository userRepository;
-    private JwtTokenProvider jwtTokenProvider;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public LoginServiceImpl(UserRepository userRepository, JwtTokenProvider jwtTokenProvider, BCryptPasswordEncoder bCryptPasswordEncoder) {

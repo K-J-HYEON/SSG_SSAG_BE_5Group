@@ -16,13 +16,12 @@ import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
-@RequiredArgsConstructor
 @Service
 public class PaymentMethodServiceImpl implements PaymentMethodService {
 
-    private PaymentMethodRepository paymentMethodRepository;
-    private UserRepository userRepository;
-    private CardImgRepository cardImgRepository;
+    private final PaymentMethodRepository paymentMethodRepository;
+    private final UserRepository userRepository;
+    private final CardImgRepository cardImgRepository;
 
     @Autowired
     public PaymentMethodServiceImpl(PaymentMethodRepository paymentMethodRepository, UserRepository userRepository, CardImgRepository cardImgRepository) {

@@ -17,12 +17,11 @@ import static com.ssg.config.BaseResponseStatus.AUTH_NUM_IS_NULL;
 import static com.ssg.config.BaseResponseStatus.INVALID_PHONE_NUM;
 import static com.ssg.utils.ValidationRegex.isRegexPhone;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("comm-users/")
 public class SmsAuthController {
 
-    private SmsAuthService smsAuthService;
+    private final SmsAuthService smsAuthService;
 
     @Autowired
     public SmsAuthController(SmsAuthService smsAuthService) {

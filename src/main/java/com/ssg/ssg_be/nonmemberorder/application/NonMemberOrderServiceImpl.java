@@ -17,13 +17,12 @@ import java.util.List;
 
 import static com.ssg.config.BaseResponseStatus.*;
 
-@RequiredArgsConstructor
 @Service
 public class NonMemberOrderServiceImpl implements NonMemberOrderService {
 
-    private NonMemberOrderRepository nonMemberOrderRepository;
-    private NonMemberOrderListRepository nonMemberOrderListRepository;
-    private ProductOptionRepository productOptionRepository;
+    private final NonMemberOrderRepository nonMemberOrderRepository;
+    private final NonMemberOrderListRepository nonMemberOrderListRepository;
+    private final ProductOptionRepository productOptionRepository;
 
     @Autowired
     public NonMemberOrderServiceImpl(NonMemberOrderRepository nonMemberOrderRepository, NonMemberOrderListRepository nonMemberOrderListRepository, ProductOptionRepository productOptionRepository) {

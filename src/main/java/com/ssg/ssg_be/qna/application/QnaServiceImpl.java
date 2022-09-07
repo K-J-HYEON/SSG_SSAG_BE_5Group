@@ -18,12 +18,11 @@ import java.util.List;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
-@RequiredArgsConstructor
 public class QnaServiceImpl implements QnaService {
 
-    private QnaRepository qnaRepository;
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
+    private final QnaRepository qnaRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
     public QnaServiceImpl(QnaRepository qnaRepository, UserRepository userRepository, ProductRepository productRepository) {

@@ -14,13 +14,11 @@ import org.springframework.stereotype.Service;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
-@RequiredArgsConstructor
 public class SignupServiceImpl implements SignupService {
 
-    private UserRepository userRepository;
-
-    private MarketingRepository marketingRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserRepository userRepository;
+    private final MarketingRepository marketingRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public SignupServiceImpl(UserRepository userRepository, MarketingRepository marketingRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {

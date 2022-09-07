@@ -23,15 +23,14 @@ import java.util.List;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Slf4j
-@RequiredArgsConstructor
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    private OrderRepository orderRepository;
-    private OrderListRepository orderListRepository;
-    private UserRepository userRepository;
-    private CartRepository cartRepository;
-    private ProductOptionRepository productOptionRepository;
+    private final OrderRepository orderRepository;
+    private final OrderListRepository orderListRepository;
+    private final UserRepository userRepository;
+    private final CartRepository cartRepository;
+    private final ProductOptionRepository productOptionRepository;
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository, OrderListRepository orderListRepository, UserRepository userRepository, CartRepository cartRepository, ProductOptionRepository productOptionRepository) {

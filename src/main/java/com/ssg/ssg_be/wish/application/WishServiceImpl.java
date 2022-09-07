@@ -19,12 +19,11 @@ import java.util.List;
 import static com.ssg.config.BaseResponseStatus.*;
 
 @Service
-@RequiredArgsConstructor
 public class WishServiceImpl implements WishServive {
 
-    private WishRepository wishRepository;
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
+    private final WishRepository wishRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
     public WishServiceImpl(WishRepository wishRepository, UserRepository userRepository, ProductRepository productRepository) {

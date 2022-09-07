@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/comm-users")
 public class SignupController {
 
-    private SignupService signupService;
-    private ReviewRepository reviewRepository;
+    private final SignupService signupService;
+    private final ReviewRepository reviewRepository;
 
     @Autowired
     public SignupController(SignupService signupService, ReviewRepository reviewRepository) {
