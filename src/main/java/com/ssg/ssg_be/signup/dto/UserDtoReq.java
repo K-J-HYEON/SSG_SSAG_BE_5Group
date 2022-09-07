@@ -2,13 +2,15 @@ package com.ssg.ssg_be.signup.dto;
 
 import com.ssg.config.Role;
 import com.ssg.ssg_be.signup.domain.User;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Timestamp;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserDtoReq {
 
     private String loginId;
