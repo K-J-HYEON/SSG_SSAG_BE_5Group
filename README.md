@@ -12,6 +12,18 @@
 - [백엔드](https://github.com/K-J-HYEON/SSG_SSAG_BE)
 - [Demo](https://ssg-ssag.shop/)
 
+### 요구사항 명세서
+
+### API 명세서
+- [프론트엔드](https://docs.google.com/spreadsheets/d/1fM01AirK6FbQDCM7PbVAU5i9HcCoMQ53Etgj0bbUIto/edit#gid=0)
+- [백엔드](https://docs.google.com/spreadsheets/d/1Aq4r99EeWKmvo9DBn9GqJEGnWcX8iQBx/edit#gid=990061567)
+
+### 테스트 케이스
+
+### 시스템 아키텍쳐
+
+### JIRA 활용
+
 &nbsp;
 
 ## 📍 개발환경
