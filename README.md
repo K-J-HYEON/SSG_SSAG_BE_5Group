@@ -13,16 +13,20 @@
 - [Demo](https://ssg-ssag.shop/)
 
 ### 요구사항 명세서
+- [공통](https://applebanana.atlassian.net/wiki/spaces/SPHAR/pages/2457601)
 
 ### API 명세서
 - [프론트엔드](https://docs.google.com/spreadsheets/d/1fM01AirK6FbQDCM7PbVAU5i9HcCoMQ53Etgj0bbUIto/edit#gid=0)
 - [백엔드](https://docs.google.com/spreadsheets/d/1Aq4r99EeWKmvo9DBn9GqJEGnWcX8iQBx/edit#gid=990061567)
 
 ### 테스트 케이스
+- (https://docs.google.com/spreadsheets/d/1L2U9AW0K4CZAcw2gEB2nxJ5lRfKHPoah/edit#gid=2076342699)
 
 ### 시스템 아키텍쳐
+- ()
 
 ### JIRA 활용
+- (https://applebanana.atlassian.net/jira/software/projects/SPHAR/boards/2)
 
 &nbsp;
 
