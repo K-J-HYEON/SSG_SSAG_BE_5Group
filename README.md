@@ -28,6 +28,14 @@
 ### JIRA 활용
 - [공통](https://applebanana.atlassian.net/jira/software/projects/SPHAR/boards/2)
 
+
+### WBS
+[1_WBS.pdf](https://github.com/K-J-HYEON/SSG_SSAG_BE_5Group/files/9590848/1_WBS.pdf)
+
+
+### SSG_SSAG_PPT
+[SSG_SSAG_PPT.pptx](https://github.com/K-J-HYEON/SSG_SSAG_BE_5Group/files/9590846/SSG_SSAG_PPT.pptx)
+
 &nbsp;
 
 ## 📍 개발환경
@@ -72,9 +80,6 @@
 <img src="https://img.shields.io/badge/NGINX-009639?style=flat-square&logo=NGINX&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=flat-square&logo=Amazon RDS&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/Amazon S3-569A31?style=flat-square&logo=Amazon S3&logoColor=white"/></a>&nbsp;
-
-### SSG_SSAG_PPT
-[SSG_SSAG_PPT.pptx](https://github.com/K-J-HYEON/SSG_SSAG_BE_5Group/files/9590846/SSG_SSAG_PPT.pptx)
 
 
 ### Tools
