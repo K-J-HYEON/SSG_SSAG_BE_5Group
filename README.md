@@ -73,6 +73,10 @@
 <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=flat-square&logo=Amazon RDS&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/Amazon S3-569A31?style=flat-square&logo=Amazon S3&logoColor=white"/></a>&nbsp;
 
+### SSG_SSAG_PPT
+[SSG_SSAG_PPT.pptx](https://github.com/K-J-HYEON/SSG_SSAG_BE_5Group/files/9590846/SSG_SSAG_PPT.pptx)
+
+
 ### Tools
 
 <img src="https://img.shields.io/badge/Jira-0052CC?style=flat-square&logo=Jira&logoColor=white"/></a>&nbsp;
