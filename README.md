@@ -22,6 +22,10 @@
 ### 테스트 케이스
 - [공통](https://docs.google.com/spreadsheets/d/1L2U9AW0K4CZAcw2gEB2nxJ5lRfKHPoah/edit#gid=2076342699)
 
+### ERD 구성도
+- [공통](![4_SSG_SSAG-ERD](https://user-images.githubusercontent.com/77037051/191955309-57fcd49e-9663-4cb1-a7b3-43ed61a3c5c5.png)
+)
+
 ### 시스템 아키텍쳐
 ![KakaoTalk_Photo_2022-09-14-22-28-05](https://user-images.githubusercontent.com/77037051/190167424-5181ad73-1d2b-487d-9d77-175b9e647498.png)
 
