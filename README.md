@@ -5,40 +5,17 @@
 > 본 프로젝트는 스파로스 아카데미 1기에서 진행한 **SSG.COM 신세계몰 클론 코딩 프로젝트**입니다.
 
 - **쓱싹쓱싹(5조)의 백엔드 저장소**입니다.
+- [Demo](https://ssg-ssag.vercel.app/)
 
 ### Project Repositories
 
 - [프론트엔드](https://github.com/Im-hass/SSG_SSAG_FE)
 - [백엔드](https://github.com/K-J-HYEON/SSG_SSAG_BE)
-- [Demo - vercel](https://ssg-ssag.vercel.app/)
 
-### 요구사항 명세서
-- [공통](https://applebanana.atlassian.net/wiki/spaces/SPHAR/pages/2457601)
+&nbsp;
 
-### API 명세서
-- [프론트엔드](https://docs.google.com/spreadsheets/d/1fM01AirK6FbQDCM7PbVAU5i9HcCoMQ53Etgj0bbUIto/edit#gid=0)
-- [백엔드](https://docs.google.com/spreadsheets/d/1Aq4r99EeWKmvo9DBn9GqJEGnWcX8iQBx/edit#gid=990061567)
-
-### 테스트 케이스
-- [공통](https://docs.google.com/spreadsheets/d/1L2U9AW0K4CZAcw2gEB2nxJ5lRfKHPoah/edit#gid=2076342699)
-
-### ERD 구성도
-<img width="1384" alt="image" src="https://user-images.githubusercontent.com/77037051/191955769-2823838f-625b-4aac-910a-e778d5d9242c.png">
-
-
-### 시스템 아키텍쳐
-![KakaoTalk_Photo_2022-09-14-22-28-05](https://user-images.githubusercontent.com/77037051/190167424-5181ad73-1d2b-487d-9d77-175b9e647498.png)
-
-### JIRA 활용
-- [공통](https://applebanana.atlassian.net/jira/software/projects/SPHAR/boards/2)
-
-
-### WBS
-[1_WBS.pdf](https://github.com/K-J-HYEON/SSG_SSAG_BE_5Group/files/9590848/1_WBS.pdf)
-
-
-### SSG_SSAG_PPT
-[SSG_SSAG_PPT.pptx](https://github.com/K-J-HYEON/SSG_SSAG_BE_5Group/files/9590846/SSG_SSAG_PPT.pptx)
+## 📍 시스템 아키텍처
+![시스템 아키텍처](https://user-images.githubusercontent.com/77854486/203240194-fba60225-adfd-452e-afeb-f9d7f56b1368.png)
 
 &nbsp;
 
@@ -118,3 +95,8 @@
     │  └─resources # application.yml 관리
     └─test
 ```
+
+&nbsp;
+
+## 📍 개발 산출물
+- [wiki 참조](https://github.com/Im-hass/SSG_SSAG_FE/wiki)
