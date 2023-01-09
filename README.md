@@ -14,6 +14,10 @@
 
 &nbsp;
 
+## 📍 [Notion](https://maddening-spruce-1ee.notion.site/068d6ad20bc6402da8793b77f6eb6324)
+
+
+
 ## 📍 시스템 아키텍처
 ![시스템 아키텍처](https://user-images.githubusercontent.com/77854486/203240194-fba60225-adfd-452e-afeb-f9d7f56b1368.png)
 
@@ -100,4 +104,3 @@
 
 ## 📍 개발 산출물
 - [wiki 참조](https://github.com/Im-hass/SSG_SSAG_FE/wiki)
-- [Notion](https://maddening-spruce-1ee.notion.site/068d6ad20bc6402da8793b77f6eb6324)
